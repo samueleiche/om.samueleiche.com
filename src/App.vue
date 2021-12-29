@@ -1,27 +1,53 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+	<!-- <audio ref="audio">
+    <source
+      src="https://assets.samueleiche.com/media/bowls/bowl-1-sing.mp3"
+      type="audio/mp3"
+    />
+  </audio> -->
+	<Transition>
+		<Component :is="activeView.component" />
+	</Transition>
+
+	<Transition>
+		<CountDownOverlay v-if="isModalActive(ModalName.CountDown)" />
+	</Transition>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import { defineComponent } from 'vue'
+import CountDownOverlay from './components/countDown/CountDownOverlay.vue'
+import { useViewController } from './composables/global/useViewController'
+import { useModalController, ModalName } from './composables/global/useModalController'
 
 export default defineComponent({
-  name: "App",
-  components: {
-    HelloWorld,
-  },
-});
+	components: { CountDownOverlay },
+	setup() {
+		const { activeView } = useViewController()
+		const { isModalActive } = useModalController()
+
+		return { activeView, isModalActive, ModalName }
+	},
+})
 </script>
 
 <style lang="scss">
+html,
+body {
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	background: #fef9f8;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	color: #000;
+	margin: 0;
+	padding: 0;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+	height: 100%;
 }
 </style>
