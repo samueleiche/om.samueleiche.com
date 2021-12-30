@@ -7,15 +7,15 @@
 <script lang="ts">
 import { computed, watch, defineComponent } from 'vue'
 
-import AppLayout from '../components/app/AppLayout.vue'
-import IntervalSlider from '../components/interval/IntervalSlider.vue'
-import type { SlideOptionType } from '../components/app/SwiperControl.vue'
+import AppLayout from '../../app/AppLayout.vue'
+import type { SlideOptionType } from '../../app/SwiperControl.vue'
+import IntervalSlider from './components/IntervalSlider.vue'
 
-import { useCountDown } from '../composables/global/useCountDown'
-import { useViewController } from '../composables/global/useViewController'
-import { useModalController, ModalName } from '../composables/global/useModalController'
+import { useCountDown } from '../../../composables/global/useCountDown'
+import { useViewController } from '../../../composables/global/useViewController'
+import { useModalController, ModalName } from '../../../composables/global/useModalController'
 
-import { store } from '../store'
+import { store } from '../../../store'
 
 export default defineComponent({
 	components: { AppLayout, IntervalSlider },

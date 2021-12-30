@@ -1,6 +1,6 @@
 import { computed, ref, readonly, defineComponent, markRaw } from 'vue'
-import MenuView from '../../views/MenuView.vue'
-import TimerView from '../../views/TimerView.vue'
+import MenuView from '../../components/views/menu/MenuView.vue'
+import TimerView from '../../components/views/timer/TimerView.vue'
 
 enum AppView {
 	MENU = 'MenuView',

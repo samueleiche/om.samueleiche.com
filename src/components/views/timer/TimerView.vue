@@ -7,14 +7,14 @@
 <script lang="ts">
 import { onMounted, watchEffect, ref, computed, defineComponent } from 'vue'
 
-import AppLayout from '../components/app/AppLayout.vue'
+import AppLayout from '../../app/AppLayout.vue'
 
-import { useWindowSize } from '../composables/useWindowSize'
-import { useRaf } from '../composables/useRaf'
-import { useViewController } from '../composables/global/useViewController'
+import { useWindowSize } from '../../../composables/useWindowSize'
+import { useRaf } from '../../../composables/useRaf'
+import { useViewController } from '../../../composables/global/useViewController'
 
-import { minsToMs, easeInOutQuint, PI2, PIHalf } from '../utils'
-import { store } from '../store'
+import { minsToMs, easeInOutQuint, PI2, PIHalf } from '../../../utils'
+import { store } from '../../../store'
 
 interface Circle {
 	radius: number

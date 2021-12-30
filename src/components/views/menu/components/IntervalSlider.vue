@@ -1,7 +1,7 @@
 <template>
 	<SwiperControl
 		class="interval-selection"
-		:options="intervalOptions"
+		:options="intervalSliderOptions"
 		:modelValue="modelValue"
 		:spaceBetween="30"
 		:direction="'vertical'"
@@ -11,8 +11,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import SwiperControl from '../app/SwiperControl.vue'
-import { intervalOptions } from './options'
+
+import SwiperControl from '../../../app/SwiperControl.vue'
+import { intervalSliderOptions } from './intervalSliderOptions'
 
 export default defineComponent({
 	components: { SwiperControl },
@@ -22,7 +23,7 @@ export default defineComponent({
 		},
 	},
 	setup() {
-		return { intervalOptions }
+		return { intervalSliderOptions }
 	},
 })
 </script>

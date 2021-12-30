@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import CountDownOverlay from './components/countDown/CountDownOverlay.vue'
+import CountDownOverlay from './components/views/menu/components/CountDownOverlay.vue'
 import { useViewController } from './composables/global/useViewController'
 import { useModalController, ModalName } from './composables/global/useModalController'
 
