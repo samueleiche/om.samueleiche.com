@@ -1,9 +1,11 @@
+import { ref, readonly } from 'vue'
+
 export function useRaf(callback: (elapsed: number) => void) {
-	let isRunning = false
+	const isRunning = ref(false)
 	let startTime = null as number | null
 
 	function frame(timestamp: number) {
-		if (!isRunning) {
+		if (!isRunning.value) {
 			return
 		}
 
@@ -18,27 +20,22 @@ export function useRaf(callback: (elapsed: number) => void) {
 	}
 
 	function start() {
-		if (isRunning) {
+		if (isRunning.value) {
 			return
 		}
 
-		isRunning = true
+		isRunning.value = true
 		window.requestAnimationFrame(frame)
 	}
 
 	function stop() {
 		startTime = null
-		isRunning = false
-	}
-
-	function pause() {
-		isRunning = false
+		isRunning.value = false
 	}
 
 	return {
-		isRunning,
+		isRunning: readonly(isRunning),
 		start,
 		stop,
-		pause,
 	}
 }

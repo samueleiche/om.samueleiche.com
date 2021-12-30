@@ -6,10 +6,6 @@ export enum ModalName {
 
 const modals = ref([] as ModalName[])
 
-function isModalActive(name: ModalName) {
-	return modals.value.includes(name)
-}
-
 function openModal(name: ModalName) {
 	modals.value.push(name)
 }
@@ -26,9 +22,12 @@ function toggleModal(name: ModalName) {
 	}
 }
 
+function isModalActive(name: ModalName) {
+	return modals.value.includes(name)
+}
+
 export function useModalController() {
 	return {
-		modals,
 		isModalActive,
 		openModal,
 		closeModal,
