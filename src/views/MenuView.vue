@@ -29,7 +29,7 @@ export default defineComponent({
 		function onSlideClick(option: SlideOptionType) {
 			store.actions.setInterval(option.id)
 
-			startTimer(5, () => {
+			startTimer(3, () => {
 				setActiveView(AppView.TIMER)
 			})
 		}
