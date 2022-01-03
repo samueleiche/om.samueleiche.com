@@ -1,6 +1,9 @@
 <template>
 	<AppLayout>
 		<canvas ref="canvas" :width="windowWidth" :height="windowHeight" />
+		<audio ref="audio" preload="auto">
+			<source src="https://assets.samueleiche.com/media/bowls/large-bowl-1.mp3" type="audio/mp3" />
+		</audio>
 	</AppLayout>
 </template>
 
@@ -12,8 +15,9 @@ import AppLayout from '../../app/AppLayout.vue'
 import { useWindowSize } from '../../../composables/useWindowSize'
 import { useRaf } from '../../../composables/useRaf'
 import { useViewController } from '../../../composables/global/useViewController'
+import { useEventListener } from '../../../composables/useEventListener'
 
-import { minsToMs, easeInOutQuint, PI2, PIHalf } from '../../../utils'
+import { minsToMs, easeInOutQuint, m2PI, mPI2, isDocumentVisible } from '../../../utils'
 import { store } from '../../../store'
 
 interface Circle {
@@ -30,8 +34,11 @@ export default defineComponent({
 		const { setActiveView, AppView } = useViewController()
 
 		const canvas = ref<HTMLCanvasElement | undefined>()
+		const audio = ref<HTMLAudioElement | undefined>()
+
 		const runDuration = computed(() => minsToMs(Number(store.state.interval)))
 		const rewindDuration = 2000
+
 		const circle = {
 			radius: 100,
 			color: '#ffffff',
@@ -54,8 +61,13 @@ export default defineComponent({
 			}
 
 			const ctx = canvas.value.getContext('2d')!
+			let isRewinding = false
 
 			function draw(circle: Circle, start: number, end: number) {
+				if (!isDocumentVisible()) {
+					return
+				}
+
 				ctx.beginPath()
 				ctx.arc(circle.center.x, circle.center.y, circle.radius, start, end)
 				ctx.lineWidth = circle.width
@@ -64,21 +76,30 @@ export default defineComponent({
 				ctx.stroke()
 			}
 
+			function playSound() {
+				audio.value?.play()
+			}
+
 			const { start, stop } = useRaf((elapsed) => {
 				ctx.fillStyle = '#111827'
 				ctx.fillRect(0, 0, canvas.value!.width, canvas.value!.height)
 
 				// background circle
-				draw({ ...circle, color: '#374151' }, 0, PI2)
+				draw({ ...circle, color: '#374151' }, 0, m2PI)
 
 				// render progress circle
 				if (elapsed < runDuration.value - rewindDuration) {
 					const progress = elapsed / (runDuration.value - rewindDuration)
 
-					const start = -PIHalf
-					const end = PI2 * progress + start
+					const start = -mPI2
+					const end = m2PI * progress + start
 					draw(circle, start, end)
 				} else {
+					if (!isRewinding) {
+						playSound()
+						isRewinding = true
+					}
+
 					const elapsedRewind = elapsed - runDuration.value + rewindDuration
 					const reverseProgress = 1 - elapsedRewind / rewindDuration
 
@@ -86,27 +107,32 @@ export default defineComponent({
 					if (reverseProgress > 0) {
 						const reverseProgressEase = easeInOutQuint(reverseProgress)
 
-						const end = -PIHalf
-						const start = -PI2 * reverseProgressEase + end
+						const end = -mPI2
+						const start = -m2PI * reverseProgressEase + end
 						draw(circle, start, end)
 					}
 					// restart
 					else {
+						isRewinding = false
 						stop()
 						start()
 					}
 				}
 			})
 
-			canvas.value.addEventListener('click', () => {
+			useEventListener(canvas.value, 'click', () => {
 				stop()
 				setActiveView(AppView.MENU)
 			})
 
-			start()
+			useEventListener(audio.value, 'canplay', () => {
+				start()
+			})
+
+			playSound()
 		})
 
-		return { canvas, windowWidth, windowHeight }
+		return { canvas, audio, windowWidth, windowHeight }
 	},
 })
 </script>

@@ -1,10 +1,4 @@
 <template>
-	<!-- <audio ref="audio">
-    <source
-      src="https://assets.samueleiche.com/media/bowls/bowl-1-sing.mp3"
-      type="audio/mp3"
-    />
-  </audio> -->
 	<Transition>
 		<Component :is="activeView.component" />
 	</Transition>

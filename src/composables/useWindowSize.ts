@@ -1,6 +1,5 @@
 import { ref, readonly } from 'vue'
-
-const listenerOptions: AddEventListenerOptions & EventListenerOptions = { passive: true }
+import { useEventListener } from './useEventListener'
 
 export function useWindowSize() {
 	const width = ref(window.innerWidth)
@@ -11,15 +10,10 @@ export function useWindowSize() {
 		height.value = window.innerHeight
 	}
 
-	function unbind() {
-		window.removeEventListener('resize', update, listenerOptions)
-	}
-
-	window.addEventListener('resize', update, listenerOptions)
+	useEventListener(window, 'resize', update, { passive: true })
 
 	return {
 		width: readonly(width),
 		height: readonly(height),
-		unbind,
 	}
 }

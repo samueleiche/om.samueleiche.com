@@ -1,22 +1,44 @@
 import { ref, readonly } from 'vue'
+import { isDocumentVisible, tryOnScopeDispose } from '../utils'
+import { useEventListener } from './useEventListener'
+
+type TickerFn = (fn: any) => number
+
+const timeoutFn = (callback: () => void) => setTimeout(callback, 16)
+
+function getTickerFn() {
+	return isDocumentVisible() ? requestAnimationFrame : timeoutFn
+}
 
 export function useRaf(callback: (elapsed: number) => void) {
 	const isRunning = ref(false)
 	let startTime = null as number | null
+	let ticker: TickerFn = getTickerFn()
 
-	function frame(timestamp: number) {
+	// Inactive browser tabs pause rAF. to get around this, we dynamically switch
+	// rAF to setTimeout (which the browser *doesn't* pause) when the tab loses focus.
+	useEventListener(document, 'visibilitychange', () => {
+		ticker = getTickerFn()
+
+		// The rAF loop has been paused by the browser, so we manually restart the ticker
+		if (!isDocumentVisible()) {
+			frame()
+		}
+	})
+
+	function frame() {
 		if (!isRunning.value) {
 			return
 		}
 
 		if (!startTime) {
-			startTime = timestamp
+			startTime = Date.now()
 		}
 
-		const elapsed = timestamp - startTime
+		const elapsed = Date.now() - startTime
 
 		callback(elapsed)
-		window.requestAnimationFrame(frame)
+		ticker(frame)
 	}
 
 	function start() {
@@ -25,13 +47,15 @@ export function useRaf(callback: (elapsed: number) => void) {
 		}
 
 		isRunning.value = true
-		window.requestAnimationFrame(frame)
+		ticker(frame)
 	}
 
 	function stop() {
 		startTime = null
 		isRunning.value = false
 	}
+
+	tryOnScopeDispose(stop)
 
 	return {
 		isRunning: readonly(isRunning),
