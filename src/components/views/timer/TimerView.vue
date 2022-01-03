@@ -17,7 +17,7 @@ import { useRaf } from '../../../composables/useRaf'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useEventListener } from '../../../composables/useEventListener'
 
-import { minsToMs, easeInOutQuint, m2PI, mPI2, isDocumentVisible } from '../../../utils'
+import { minsToMs, easeInOutQuint, m2PI, mPI2 } from '../../../utils'
 import { store } from '../../../store'
 
 interface Circle {
@@ -64,10 +64,6 @@ export default defineComponent({
 			let isRewinding = false
 
 			function draw(circle: Circle, start: number, end: number) {
-				if (!isDocumentVisible()) {
-					return
-				}
-
 				ctx.beginPath()
 				ctx.arc(circle.center.x, circle.center.y, circle.radius, start, end)
 				ctx.lineWidth = circle.width
