@@ -1,7 +1,7 @@
 module.exports = {
 	pwa: {
 		name: 'om',
-		assetsVersion: '1',
+		assetsVersion: '1.1',
 		themeColor: '#000000',
 		msTileColor: '#000000',
 		appleMobileWebAppCapable: 'yes',
