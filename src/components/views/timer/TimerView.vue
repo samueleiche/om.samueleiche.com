@@ -1,6 +1,6 @@
 <template>
 	<AppLayout>
-		<canvas ref="canvas" :width="windowWidth" :height="windowHeight" />
+		<canvas ref="canvas" class="canvas" />
 		<audio ref="audio" preload="auto">
 			<source src="https://assets.samueleiche.com/media/bowls/large-bowl-1.mp3" type="audio/mp3" />
 		</audio>
@@ -38,22 +38,40 @@ export default defineComponent({
 
 		const runDuration = computed(() => minsToMs(Number(store.state.interval)))
 		const rewindDuration = 2000
-
 		const circle = {
-			radius: 100,
+			baseRadius: 100,
+			radius: 0,
+			baseWidth: 5,
+			width: 0,
 			color: '#ffffff',
-			width: 5,
-			center: { x: windowWidth.value / 2, y: windowHeight.value / 2 },
+			center: { x: 0, y: 0 },
 		}
 
 		watchEffect(() => {
+			setupCanvas()
+		})
+
+		function setupCanvas(ctx?: CanvasRenderingContext2D) {
 			if (!canvas.value) {
 				return
 			}
 
-			circle.center.x = windowWidth.value / 2
-			circle.center.y = windowHeight.value / 2
-		})
+			const { devicePixelRatio: dpr } = window
+
+			circle.center.x = (windowWidth.value * dpr) / 2
+			circle.center.y = (windowHeight.value * dpr) / 2
+			circle.radius = circle.baseRadius * dpr
+			circle.width = circle.baseWidth * dpr
+
+			canvas.value.width = windowWidth.value * dpr
+			canvas.value.height = windowHeight.value * dpr
+			canvas.value.style.width = windowWidth.value + 'px'
+			canvas.value.style.height = windowHeight.value + 'px'
+
+			if (ctx) {
+				ctx.scale(dpr, dpr)
+			}
+		}
 
 		onMounted(() => {
 			if (!canvas.value) {
@@ -62,6 +80,8 @@ export default defineComponent({
 
 			const ctx = canvas.value.getContext('2d')!
 			let isRewinding = false
+
+			setupCanvas(ctx)
 
 			function draw(circle: Circle, start: number, end: number) {
 				ctx.beginPath()
@@ -77,7 +97,7 @@ export default defineComponent({
 			}
 
 			const { start, stop } = useRaf((elapsed) => {
-				ctx.fillStyle = '#111827'
+				ctx.fillStyle = '#000000'
 				ctx.fillRect(0, 0, canvas.value!.width, canvas.value!.height)
 
 				// background circle
@@ -133,4 +153,8 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.canvas {
+	background-color: #000000;
+}
+</style>
