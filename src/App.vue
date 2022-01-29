@@ -35,7 +35,7 @@ body {
 
 body {
 	background: #fef9f8;
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-family: 'Inter', sans-serif;
 	color: #000;
 	margin: 0;
 	padding: 0;

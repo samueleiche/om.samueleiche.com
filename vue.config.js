@@ -1,7 +1,41 @@
 module.exports = {
 	pwa: {
+		workboxOptions: {
+			skipWaiting: true,
+			clientsClaim: true,
+			runtimeCaching: [
+				{
+					urlPattern: /^https:\/\/assets.samueleiche.com/,
+					handler: 'StaleWhileRevalidate',
+					options: {
+						cacheName: 'audio',
+					},
+				},
+				{
+					urlPattern: /^https:\/\/fonts.googleapis.com/,
+					handler: 'StaleWhileRevalidate',
+					options: {
+						cacheName: 'google-fonts-stylesheets',
+					},
+				},
+				{
+					urlPattern: /^https:\/\/fonts.gstatic.com/,
+					handler: 'CacheFirst',
+					options: {
+						cacheName: 'google-fonts-webfonts',
+						cacheableResponse: {
+							statuses: [0, 200],
+						},
+						expiration: {
+							maxAgeSeconds: 60 * 60 * 24 * 365,
+							maxEntries: 30,
+						},
+					},
+				},
+			],
+		},
 		name: 'om',
-		assetsVersion: '1.2.1',
+		assetsVersion: '1.2.2',
 		themeColor: '#000000',
 		msTileColor: '#000000',
 		appleMobileWebAppCapable: 'yes',
