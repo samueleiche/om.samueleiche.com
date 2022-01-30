@@ -1,11 +1,11 @@
 <template>
 	<AppLayout>
-		<div v-for="option of intervalOptions" :key="option.id" @click="onClick(option)">
-			{{ option.value }}
-		</div>
+		<LotusMenu :options="intervalOptions" :modelValue="activeIntervalId" @update:modelValue="onChange" />
 
 		<Teleport to="#app-overlays">
-			<CountDownOverlay v-if="isOverlayActive(OverlayName.CountDown)" />
+			<AppOverlayTransition>
+				<CountDownOverlay v-if="isOverlayActive(OverlayName.CountDown)" />
+			</AppOverlayTransition>
 		</Teleport>
 	</AppLayout>
 </template>
@@ -17,14 +17,29 @@ import { store } from '../../../store'
 import { useCountDown } from '../../../composables/global/useCountDown'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useOverlay, OverlayName } from '../../../composables/global/useOverlay'
-import { intervalOptions, IntervalOption } from './intervalOptions'
+import LotusMenu, { MenuOption } from './components/LotusMenu.vue'
 
 import AppLayout from '../../app/AppLayout.vue'
+import AppOverlayTransition from '../../app/AppOverlayTransition.vue'
 import CountDownOverlay from './components/CountDownOverlay.vue'
+
+export const intervalOptions: MenuOption[] = [
+	{ id: '1', text: '1 min' },
+	{ id: '2', text: '2 min' },
+	{ id: '3', text: '3 min' },
+	{ id: '4', text: '4 min' },
+	{ id: '5', text: '5 min' },
+	{ id: '10', text: '10 min' },
+	{ id: '20', text: '20 min' },
+	{ id: '30', text: '30 min' },
+	{ id: '60', text: '60 min' },
+]
 
 export default defineComponent({
 	components: {
 		AppLayout,
+		AppOverlayTransition,
+		LotusMenu,
 		CountDownOverlay,
 	},
 	setup() {
@@ -34,8 +49,8 @@ export default defineComponent({
 
 		const activeIntervalId = computed(() => store.state.activeIntervalId)
 
-		function onClick(option: IntervalOption) {
-			store.actions.setActiveIntervalId(option.id)
+		function onChange(intervalId: string) {
+			store.actions.setActiveIntervalId(intervalId)
 
 			startTimer(3, () => {
 				setActiveView(AppView.TIMER)
@@ -56,7 +71,7 @@ export default defineComponent({
 		return {
 			activeIntervalId,
 			intervalOptions,
-			onClick,
+			onChange,
 			OverlayName,
 			isOverlayActive,
 		}
