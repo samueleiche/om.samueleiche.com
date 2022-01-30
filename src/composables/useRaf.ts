@@ -2,7 +2,7 @@ import { ref, readonly } from 'vue'
 import { isDocumentVisible, tryOnScopeDispose } from '../utils'
 import { useEventListener } from './useEventListener'
 
-type TickerFn = (fn: any) => number
+type TickerFn = (fn: () => void) => number
 
 const timeoutFn = (callback: () => void) => setTimeout(callback, 16)
 

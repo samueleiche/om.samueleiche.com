@@ -1,12 +1,12 @@
 import { reactive, readonly } from 'vue'
 
 const state = reactive({
-	interval: '20',
+	activeIntervalId: '20',
 })
 
 const actions = {
-	setInterval(value: string) {
-		state.interval = value
+	setActiveIntervalId(value: string) {
+		state.activeIntervalId = value
 	},
 }
 

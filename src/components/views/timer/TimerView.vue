@@ -1,7 +1,7 @@
 <template>
 	<AppLayout>
-		<canvas ref="canvas" class="canvas" />
-		<audio ref="audio" preload="auto">
+		<canvas ref="canvasRef" class="canvas" />
+		<audio ref="audioRef" preload="auto">
 			<source src="https://assets.samueleiche.com/media/bowls/large-bowl-1.mp3" type="audio/mp3" />
 		</audio>
 	</AppLayout>
@@ -10,15 +10,14 @@
 <script lang="ts">
 import { onMounted, watchEffect, ref, computed, defineComponent } from 'vue'
 
-import AppLayout from '../../app/AppLayout.vue'
-
 import { useWindowSize } from '../../../composables/useWindowSize'
 import { useRaf } from '../../../composables/useRaf'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useEventListener } from '../../../composables/useEventListener'
-
 import { minsToMs, easeInOutQuint, m2PI, mPI2 } from '../../../utils'
 import { store } from '../../../store'
+
+import AppLayout from '../../app/AppLayout.vue'
 
 interface Circle {
 	radius: number
@@ -28,15 +27,17 @@ interface Circle {
 }
 
 export default defineComponent({
-	components: { AppLayout },
+	components: {
+		AppLayout,
+	},
 	setup() {
 		const { width: windowWidth, height: windowHeight } = useWindowSize()
 		const { setActiveView, AppView } = useViewController()
 
-		const canvas = ref<HTMLCanvasElement | undefined>()
-		const audio = ref<HTMLAudioElement | undefined>()
+		const canvasRef = ref<HTMLCanvasElement | undefined>()
+		const audioRef = ref<HTMLAudioElement | undefined>()
 
-		const runDuration = computed(() => minsToMs(Number(store.state.interval)))
+		const runDuration = computed(() => minsToMs(Number(store.state.activeIntervalId)))
 		const rewindDuration = 2000
 		const circle = {
 			baseRadius: 100,
@@ -52,7 +53,7 @@ export default defineComponent({
 		})
 
 		function setupCanvas(ctx?: CanvasRenderingContext2D) {
-			if (!canvas.value) {
+			if (!canvasRef.value) {
 				return
 			}
 
@@ -63,10 +64,10 @@ export default defineComponent({
 			circle.radius = circle.baseRadius * dpr
 			circle.width = circle.baseWidth * dpr
 
-			canvas.value.width = windowWidth.value * dpr
-			canvas.value.height = windowHeight.value * dpr
-			canvas.value.style.width = windowWidth.value + 'px'
-			canvas.value.style.height = windowHeight.value + 'px'
+			canvasRef.value.width = windowWidth.value * dpr
+			canvasRef.value.height = windowHeight.value * dpr
+			canvasRef.value.style.width = windowWidth.value + 'px'
+			canvasRef.value.style.height = windowHeight.value + 'px'
 
 			if (ctx) {
 				ctx.scale(dpr, dpr)
@@ -74,11 +75,11 @@ export default defineComponent({
 		}
 
 		onMounted(() => {
-			if (!canvas.value) {
+			if (!canvasRef.value) {
 				return
 			}
 
-			const ctx = canvas.value.getContext('2d')!
+			const ctx = canvasRef.value.getContext('2d')!
 			let isRewinding = false
 
 			setupCanvas(ctx)
@@ -93,12 +94,12 @@ export default defineComponent({
 			}
 
 			function playSound() {
-				audio.value?.play()
+				audioRef.value?.play()
 			}
 
 			const { start, stop } = useRaf((elapsed) => {
 				ctx.fillStyle = '#000000'
-				ctx.fillRect(0, 0, canvas.value!.width, canvas.value!.height)
+				ctx.fillRect(0, 0, canvasRef.value!.width, canvasRef.value!.height)
 
 				// background circle
 				draw({ ...circle, color: '#374151' }, 0, m2PI)
@@ -136,19 +137,24 @@ export default defineComponent({
 				}
 			})
 
-			useEventListener(canvas.value, 'click', () => {
+			useEventListener(canvasRef.value, 'click', () => {
 				stop()
 				setActiveView(AppView.MENU)
 			})
 
-			useEventListener(audio.value, 'canplay', () => {
+			useEventListener(audioRef.value, 'canplay', () => {
 				start()
 			})
 
 			playSound()
 		})
 
-		return { canvas, audio, windowWidth, windowHeight }
+		return {
+			canvasRef,
+			audioRef,
+			windowWidth,
+			windowHeight,
+		}
 	},
 })
 </script>

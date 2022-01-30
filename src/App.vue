@@ -2,25 +2,17 @@
 	<Transition>
 		<Component :is="activeView.component" />
 	</Transition>
-
-	<Transition>
-		<CountDownOverlay v-if="isModalActive(ModalName.CountDown)" />
-	</Transition>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import CountDownOverlay from './components/views/menu/components/CountDownOverlay.vue'
 import { useViewController } from './composables/global/useViewController'
-import { useModalController, ModalName } from './composables/global/useModalController'
 
 export default defineComponent({
-	components: { CountDownOverlay },
 	setup() {
 		const { activeView } = useViewController()
-		const { isModalActive } = useModalController()
 
-		return { activeView, isModalActive, ModalName }
+		return { activeView }
 	},
 })
 </script>

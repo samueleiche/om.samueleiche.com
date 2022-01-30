@@ -1,33 +1,41 @@
 <template>
 	<AppLayout>
-		<IntervalSlider :modelValue="selectedIntervalId" @update:modelValue="onSlideClick" />
+		<div v-for="option of intervalOptions" :key="option.id" @click="onClick(option)">
+			{{ option.value }}
+		</div>
+
+		<Teleport to="#app-overlays">
+			<CountDownOverlay v-if="isOverlayActive(OverlayName.CountDown)" />
+		</Teleport>
 	</AppLayout>
 </template>
 
 <script lang="ts">
 import { computed, watch, defineComponent } from 'vue'
 
-import AppLayout from '../../app/AppLayout.vue'
-import type { SlideOptionType } from '../../app/SwiperControl.vue'
-import IntervalSlider from './components/IntervalSlider.vue'
-
+import { store } from '../../../store'
 import { useCountDown } from '../../../composables/global/useCountDown'
 import { useViewController } from '../../../composables/global/useViewController'
-import { useModalController, ModalName } from '../../../composables/global/useModalController'
+import { useOverlay, OverlayName } from '../../../composables/global/useOverlay'
+import { intervalOptions, IntervalOption } from './intervalOptions'
 
-import { store } from '../../../store'
+import AppLayout from '../../app/AppLayout.vue'
+import CountDownOverlay from './components/CountDownOverlay.vue'
 
 export default defineComponent({
-	components: { AppLayout, IntervalSlider },
+	components: {
+		AppLayout,
+		CountDownOverlay,
+	},
 	setup() {
 		const { time: countDownTime, startTimer } = useCountDown()
 		const { setActiveView, AppView } = useViewController()
-		const { openModal, closeModal } = useModalController()
+		const { addOverlay, removeOverlay, isOverlayActive } = useOverlay()
 
-		const selectedIntervalId = computed(() => store.state.interval)
+		const activeIntervalId = computed(() => store.state.activeIntervalId)
 
-		function onSlideClick(option: SlideOptionType) {
-			store.actions.setInterval(option.id)
+		function onClick(option: IntervalOption) {
+			store.actions.setActiveIntervalId(option.id)
 
 			startTimer(3, () => {
 				setActiveView(AppView.TIMER)
@@ -38,14 +46,20 @@ export default defineComponent({
 			() => countDownTime.value,
 			() => {
 				if (countDownTime.value > -1) {
-					openModal(ModalName.CountDown)
+					addOverlay(OverlayName.CountDown)
 				} else {
-					closeModal(ModalName.CountDown)
+					removeOverlay(OverlayName.CountDown)
 				}
 			},
 		)
 
-		return { selectedIntervalId, onSlideClick }
+		return {
+			activeIntervalId,
+			intervalOptions,
+			onClick,
+			OverlayName,
+			isOverlayActive,
+		}
 	},
 })
 </script>
