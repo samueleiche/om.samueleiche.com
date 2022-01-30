@@ -19,7 +19,7 @@ import { store } from '../../../store'
 
 import AppLayout from '../../app/AppLayout.vue'
 
-const MIN_VISIBLE_PROGRESS = 0.0001 // min progress that can render on rewind; avoid flickering when starting progress from 0
+const MIN_VISIBLE_PROGRESS = 0.001 // min progress that can render on rewind; avoid flickering when starting progress from 0
 
 interface Circle {
 	radius: number
@@ -114,6 +114,7 @@ export default defineComponent({
 					const endAngle = m2PI * progress + startAngle
 					draw(circle, startAngle, endAngle)
 				} else {
+					// play sound and begin rewinding phase
 					if (!isRewinding) {
 						playSound()
 						isRewinding = true
@@ -125,13 +126,11 @@ export default defineComponent({
 					// render progress rewind
 					if (reverseProgress > 0) {
 						const reverseProgressEase = Math.max(easeInOutQuint(reverseProgress), MIN_VISIBLE_PROGRESS)
-
 						const endAngle = -mPI2
 						const startAngle = -m2PI * reverseProgressEase + endAngle
+
 						draw(circle, startAngle, endAngle)
-					}
-					// restart
-					else {
+					} else {
 						isRewinding = false
 						stop()
 						start()
