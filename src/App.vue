@@ -26,6 +26,19 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+	line-height: 1.5;
+	text-size-adjust: 100%;
+	tab-size: 4;
+}
+
 html,
 body {
 	position: relative;
@@ -39,6 +52,16 @@ body {
 	color: #000;
 	margin: 0;
 	padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: 'PT Serif', serif;
+	margin: 0;
+	font-size: inherit;
+	font-weight: inherit;
 }
 
 #app {
