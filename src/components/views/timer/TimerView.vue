@@ -19,6 +19,8 @@ import { store } from '../../../store'
 
 import AppLayout from '../../app/AppLayout.vue'
 
+const MIN_VISIBLE_PROGRESS = 0.0001 // min progress that can render on rewind; avoid flickering when starting progress from 0
+
 interface Circle {
 	radius: number
 	color: string
@@ -84,9 +86,9 @@ export default defineComponent({
 
 			setupCanvas(ctx)
 
-			function draw(circle: Circle, start: number, end: number) {
+			function draw(circle: Circle, startAngle: number, endAngle: number) {
 				ctx.beginPath()
-				ctx.arc(circle.center.x, circle.center.y, circle.radius, start, end)
+				ctx.arc(circle.center.x, circle.center.y, circle.radius, startAngle, endAngle)
 				ctx.lineWidth = circle.width
 				ctx.lineCap = 'round'
 				ctx.strokeStyle = circle.color
@@ -102,15 +104,15 @@ export default defineComponent({
 				ctx.fillRect(0, 0, canvasRef.value!.width, canvasRef.value!.height)
 
 				// background circle
-				draw({ ...circle, color: '#374151' }, 0, m2PI)
+				draw({ ...circle, color: '#111827' }, 0, m2PI)
 
 				// render progress circle
 				if (elapsed < runDuration.value - rewindDuration) {
 					const progress = elapsed / (runDuration.value - rewindDuration)
 
-					const start = -mPI2
-					const end = m2PI * progress + start
-					draw(circle, start, end)
+					const startAngle = -mPI2
+					const endAngle = m2PI * progress + startAngle
+					draw(circle, startAngle, endAngle)
 				} else {
 					if (!isRewinding) {
 						playSound()
@@ -122,11 +124,11 @@ export default defineComponent({
 
 					// render progress rewind
 					if (reverseProgress > 0) {
-						const reverseProgressEase = easeInOutQuint(reverseProgress)
+						const reverseProgressEase = Math.max(easeInOutQuint(reverseProgress), MIN_VISIBLE_PROGRESS)
 
-						const end = -mPI2
-						const start = -m2PI * reverseProgressEase + end
-						draw(circle, start, end)
+						const endAngle = -mPI2
+						const startAngle = -m2PI * reverseProgressEase + endAngle
+						draw(circle, startAngle, endAngle)
 					}
 					// restart
 					else {

@@ -3,18 +3,11 @@ import { getCurrentScope, onScopeDispose } from 'vue'
 export const m2PI = Math.PI * 2
 export const mPI2 = Math.PI / 2
 
-export function minsToMs(minutes: number) {
-	return minutes * 60 * 1000
-}
+export const easeInOutQuint = (t: number) => (t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t)
 
-export function easeInOutQuint(t: number) {
-	const t2 = t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t
-	return Math.max(t2, 0.0000001)
-}
-
-export function isDocumentVisible() {
-	return document.visibilityState === 'visible'
-}
+export const toPx = (value: string | number) => value + 'px'
+export const minsToMs = (minutes: number) => minutes * 60 * 1000
+export const isDocumentVisible = () => document.visibilityState === 'visible'
 
 export function noop() {
 	// do nothing
