@@ -1,5 +1,7 @@
 <template>
-	<AppOverlay @click="clearTimer">{{ countDownTime }}</AppOverlay>
+	<AppOverlay @click="clearTimer">
+		<div class="count-down-time">{{ countDownTime }}</div>
+	</AppOverlay>
 </template>
 
 <script lang="ts">
@@ -22,4 +24,9 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.count-down-time {
+	font-size: 52px;
+	font-weight: 700;
+}
+</style>
