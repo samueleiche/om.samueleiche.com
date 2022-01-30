@@ -1,7 +1,5 @@
 <template>
-	<Transition>
-		<Component :is="activeView.component" />
-	</Transition>
+	<Component :is="activeView.component" />
 </template>
 
 <script lang="ts">
@@ -29,6 +27,7 @@ html {
 	line-height: 1.5;
 	text-size-adjust: 100%;
 	tab-size: 4;
+	touch-action: pan-x pan-y; // disable touch zooming
 }
 
 html,
