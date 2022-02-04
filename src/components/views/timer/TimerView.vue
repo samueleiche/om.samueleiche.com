@@ -89,7 +89,7 @@ export default defineComponent({
 			requestWakeLock('screen')
 			setupCanvas(ctx)
 
-			function draw(circle: Circle, startAngle: number, endAngle: number) {
+			function drawCircle(circle: Circle, startAngle: number, endAngle: number) {
 				ctx.beginPath()
 				ctx.arc(circle.center.x, circle.center.y, circle.radius, startAngle, endAngle)
 				ctx.lineWidth = circle.width
@@ -106,16 +106,16 @@ export default defineComponent({
 				ctx.fillStyle = '#000000'
 				ctx.fillRect(0, 0, canvasRef.value!.width, canvasRef.value!.height)
 
-				// background circle
-				draw({ ...circle, color: '#111827' }, 0, m2PI)
+				// draw background circle
+				drawCircle({ ...circle, color: '#111827' }, 0, m2PI)
 
-				// render progress circle
+				// draw progress circle
 				if (elapsed < runDuration.value - rewindDuration) {
 					const progress = elapsed / (runDuration.value - rewindDuration)
 
 					const startAngle = -mPI2
 					const endAngle = m2PI * progress + startAngle
-					draw(circle, startAngle, endAngle)
+					drawCircle(circle, startAngle, endAngle)
 				} else {
 					// play sound and begin rewinding phase
 					if (!isRewinding) {
@@ -126,14 +126,15 @@ export default defineComponent({
 					const elapsedRewind = elapsed - runDuration.value + rewindDuration
 					const reverseProgress = 1 - elapsedRewind / rewindDuration
 
-					// render progress rewind
+					// draw progress rewind circle
 					if (reverseProgress > 0) {
 						const reverseProgressEase = Math.max(easeInOutQuint(reverseProgress), MIN_VISIBLE_PROGRESS)
 						const endAngle = -mPI2
 						const startAngle = -m2PI * reverseProgressEase + endAngle
 
-						draw(circle, startAngle, endAngle)
+						drawCircle(circle, startAngle, endAngle)
 					} else {
+						// rewinding phase is done, now restart
 						isRewinding = false
 						stop()
 						start()
