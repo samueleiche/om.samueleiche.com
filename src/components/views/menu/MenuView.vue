@@ -93,7 +93,7 @@ export default defineComponent({
 }
 
 .fade-out {
-	animation: fade-out 8000ms ease-out; // view in transiton + countDown time
+	animation: fade-out 12s ease-out; // view in transiton + countDown time
 }
 
 @keyframes fade-out {
@@ -101,7 +101,7 @@ export default defineComponent({
 		opacity: 1;
 	}
 
-	70%,
+	50%,
 	100% {
 		opacity: 0;
 	}

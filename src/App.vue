@@ -65,11 +65,11 @@ h4 {
 }
 
 .v-fade-in-slow-enter-active {
-	animation: fade-in 4000ms ease-out;
+	animation: fade-in 8s ease-out;
 }
 
 .v-fade-in-slow-leave-active {
-	animation: fade-in 4000ms ease-out reverse;
+	animation: fade-in 8s ease-out reverse;
 }
 
 .v-fade-in-enter-active {

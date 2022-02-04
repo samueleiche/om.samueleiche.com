@@ -28,7 +28,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .count-down-time {
-	font-size: 52px;
+	font-size: 56px;
 	font-weight: 700;
 }
 </style>
