@@ -27,7 +27,7 @@ const MIN_FONT_SIZE = 12
 const FONT_SIZE_RATIO = MIN_ELEM_SIZE / MIN_FONT_SIZE
 
 export interface MenuOption {
-	id: string
+	id: number
 	text: string
 	style?: {
 		position: string

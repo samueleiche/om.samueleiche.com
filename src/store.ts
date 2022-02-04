@@ -1,12 +1,12 @@
 import { reactive, readonly } from 'vue'
 
 const state = reactive({
-	activeIntervalId: '20',
+	timerInterval: 1200000, // TODO: or get from localStorage
 })
 
 const actions = {
-	setActiveIntervalId(value: string) {
-		state.activeIntervalId = value
+	setTimerInterval(value: number) {
+		state.timerInterval = value
 	},
 }
 

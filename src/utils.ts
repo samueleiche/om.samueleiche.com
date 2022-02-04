@@ -6,7 +6,6 @@ export const mPI2 = Math.PI / 2
 export const easeInOutQuint = (t: number) => (t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t)
 
 export const toPx = (value: string | number) => value + 'px'
-export const minsToMs = (minutes: number) => minutes * 60 * 1000
 export const isDocumentVisible = () => document.visibilityState === 'visible'
 
 export function noop() {

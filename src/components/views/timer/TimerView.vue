@@ -14,7 +14,7 @@ import { useWindowSize } from '../../../composables/useWindowSize'
 import { useRaf } from '../../../composables/useRaf'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useEventListener } from '../../../composables/useEventListener'
-import { minsToMs, easeInOutQuint, m2PI, mPI2 } from '../../../utils'
+import { easeInOutQuint, m2PI, mPI2 } from '../../../utils'
 import { store } from '../../../store'
 
 import AppLayout from '../../app/AppLayout.vue'
@@ -39,7 +39,7 @@ export default defineComponent({
 		const canvasRef = ref<HTMLCanvasElement | undefined>()
 		const audioRef = ref<HTMLAudioElement | undefined>()
 
-		const runDuration = computed(() => minsToMs(Number(store.state.activeIntervalId)))
+		const runDuration = computed(() => store.state.timerInterval)
 		const rewindDuration = 2000
 		const circle = {
 			baseRadius: 100,
