@@ -1,16 +1,20 @@
 <template>
-	<Component :is="activeView.component" />
+	<Transition :name="isTimerViewActive ? 'v-fade-in-slow' : 'v-fade-in'">
+		<Component :is="activeView.component" />
+	</Transition>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useViewController } from './composables/global/useViewController'
 
 export default defineComponent({
 	setup() {
-		const { activeView } = useViewController()
+		const { activeView, AppView } = useViewController()
 
-		return { activeView }
+		const isTimerViewActive = computed(() => activeView.value.name === AppView.TIMER)
+
+		return { activeView, isTimerViewActive }
 	},
 })
 </script>
@@ -41,6 +45,7 @@ body {
 	background: #fef9f8;
 	font-family: 'Inter', sans-serif;
 	color: #000;
+	background-color: #000;
 	margin: 0;
 	padding: 0;
 }
@@ -57,5 +62,38 @@ h4 {
 
 #app {
 	height: 100%;
+}
+
+.v-fade-in-slow-enter-active {
+	animation: fade-in 4000ms ease-out;
+}
+
+.v-fade-in-slow-leave-active {
+	animation: fade-in 4000ms ease-out reverse;
+}
+
+.v-fade-in-enter-active {
+	animation: fade-in 300ms ease-out;
+}
+
+.v-fade-in-leave-active {
+	animation: fade-in 300ms ease-out reverse;
+}
+
+.v-fade-in-slow-enter-from,
+.v-fade-in-slow-leave-to,
+.v-fade-in-enter-from,
+.v-fade-in-leave-to {
+	position: absolute;
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
 </style>

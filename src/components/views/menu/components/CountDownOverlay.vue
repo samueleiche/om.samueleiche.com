@@ -1,6 +1,8 @@
 <template>
 	<AppOverlay @click="clearTimer">
-		<div class="count-down-time">{{ countDownTime }}</div>
+		<div class="count-down-time">
+			{{ countDownTime > -1 ? countDownTime : '' }}
+		</div>
 	</AppOverlay>
 </template>
 

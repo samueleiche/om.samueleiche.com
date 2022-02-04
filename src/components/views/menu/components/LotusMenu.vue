@@ -95,6 +95,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .lotus-menu {
+	position: relative;
 	height: 100%;
 	width: 100%;
 }

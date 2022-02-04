@@ -1,12 +1,15 @@
 <template>
 	<AppLayout>
-		<LotusMenu :options="timerOptions" :modelValue="activeIntervalId" @update:modelValue="onChange" />
+		<LotusMenu
+			:options="timerOptions"
+			:modelValue="timerInterval"
+			:class="{ 'fade-out': countDownTime > -1 }"
+			@update:modelValue="onChange"
+		/>
 
-		<Teleport to="#app-overlays">
-			<AppOverlayTransition>
-				<CountDownOverlay v-if="isOverlayActive(OverlayName.CountDown)" />
-			</AppOverlayTransition>
-		</Teleport>
+		<AppOverlayTransition>
+			<CountDownOverlay v-if="isOverlayActive(OverlayName.CountDown)" />
+		</AppOverlayTransition>
 	</AppLayout>
 </template>
 
@@ -17,6 +20,7 @@ import { store } from '../../../store'
 import { useCountDown } from '../../../composables/global/useCountDown'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useOverlay, OverlayName } from '../../../composables/global/useOverlay'
+
 import LotusMenu, { MenuOption } from './components/LotusMenu.vue'
 import AppLayout from '../../app/AppLayout.vue'
 import AppOverlayTransition from '../../app/AppOverlayTransition.vue'
@@ -42,11 +46,11 @@ export default defineComponent({
 		CountDownOverlay,
 	},
 	setup() {
-		const { time: countDownTime, startTimer } = useCountDown()
-		const { setActiveView, AppView } = useViewController()
 		const { addOverlay, removeOverlay, isOverlayActive } = useOverlay()
+		const { time: countDownTime, startTimer } = useCountDown()
+		const { activeView, setActiveView, AppView } = useViewController()
 
-		const activeIntervalId = computed(() => store.state.timerInterval)
+		const timerInterval = computed(() => store.state.timerInterval)
 
 		function onChange(id: number) {
 			store.actions.setTimerInterval(id)
@@ -59,23 +63,47 @@ export default defineComponent({
 		watch(
 			() => countDownTime.value,
 			() => {
-				if (countDownTime.value > -1) {
+				if (countDownTime.value > -1 && !isOverlayActive(OverlayName.CountDown)) {
 					addOverlay(OverlayName.CountDown)
-				} else {
+				}
+
+				if (countDownTime.value < 0) {
 					removeOverlay(OverlayName.CountDown)
 				}
 			},
 		)
 
 		return {
-			activeIntervalId,
+			timerInterval,
 			timerOptions,
 			onChange,
 			OverlayName,
+			AppView,
+			activeView,
 			isOverlayActive,
+			countDownTime,
 		}
 	},
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.app-layout {
+	background-color: #ffffff;
+}
+
+.fade-out {
+	animation: fade-out 8000ms ease-out; // view in transiton + countDown time
+}
+
+@keyframes fade-out {
+	0% {
+		opacity: 1;
+	}
+
+	70%,
+	100% {
+		opacity: 0;
+	}
+}
+</style>
