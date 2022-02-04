@@ -8,12 +8,13 @@
 </template>
 
 <script lang="ts">
-import { onMounted, watchEffect, ref, computed, defineComponent } from 'vue'
+import { onMounted, onBeforeUnmount, watchEffect, ref, computed, defineComponent } from 'vue'
 
 import { useWindowSize } from '../../../composables/useWindowSize'
 import { useRaf } from '../../../composables/useRaf'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useEventListener } from '../../../composables/useEventListener'
+import { useWakeLock } from '../../../composables/useWakeLock'
 import { easeInOutQuint, m2PI, mPI2 } from '../../../utils'
 import { store } from '../../../store'
 
@@ -35,6 +36,7 @@ export default defineComponent({
 	setup() {
 		const { width: windowWidth, height: windowHeight } = useWindowSize()
 		const { setActiveView, AppView } = useViewController()
+		const { request: requestWakeLock, release: releaseWakeLock } = useWakeLock()
 
 		const canvasRef = ref<HTMLCanvasElement | undefined>()
 		const audioRef = ref<HTMLAudioElement | undefined>()
@@ -84,6 +86,7 @@ export default defineComponent({
 			const ctx = canvasRef.value.getContext('2d')!
 			let isRewinding = false
 
+			requestWakeLock('screen')
 			setupCanvas(ctx)
 
 			function draw(circle: Circle, startAngle: number, endAngle: number) {
@@ -148,6 +151,10 @@ export default defineComponent({
 			})
 
 			playSound()
+		})
+
+		onBeforeUnmount(() => {
+			releaseWakeLock()
 		})
 
 		return {
