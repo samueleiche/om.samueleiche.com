@@ -41,9 +41,7 @@ export interface MenuOption {
 export default defineComponent({
 	emits: ['update:modelValue'],
 	props: {
-		modelValue: {
-			type: String,
-		},
+		modelValue: Number,
 		options: {
 			type: Array as PropType<MenuOption[]>,
 			required: true,
