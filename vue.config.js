@@ -1,8 +1,6 @@
 module.exports = {
 	pwa: {
 		workboxOptions: {
-			skipWaiting: true,
-			clientsClaim: true,
 			runtimeCaching: [
 				{
 					urlPattern: /^https:\/\/assets.samueleiche.com/,
