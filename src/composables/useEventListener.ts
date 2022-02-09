@@ -4,7 +4,7 @@ import { tryOnScopeDispose, noop } from '../utils'
 export function useEventListener(
 	target: EventTarget | undefined,
 	event: string,
-	listener: () => void,
+	listener: (event: any) => void,
 	options?: AddEventListenerOptions,
 ) {
 	if (!target) {
