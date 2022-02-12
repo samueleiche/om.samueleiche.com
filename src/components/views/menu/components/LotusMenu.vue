@@ -99,6 +99,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+$ease-out-quad: cubic-bezier(0.5, 1, 0.89, 1);
+
 .lotus-menu {
 	position: relative;
 	height: 100%;
@@ -130,7 +132,7 @@ export default defineComponent({
 .v-lotus-menu-option-enter-active,
 .v-lotus-menu-option-leave-active {
 	transition-duration: 900ms;
-	transition-timing-function: cubic-bezier(0.5, 1, 0.89, 1);
+	transition-timing-function: $ease-out-quad;
 	transition-property: opacity, transform;
 	transition-delay: var(--transition-delay, 0ms);
 }

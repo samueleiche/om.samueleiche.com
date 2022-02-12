@@ -43,8 +43,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$easeInQuint: cubic-bezier(0.64, 0, 0.78, 0);
-$easeOutQuint: cubic-bezier(0.22, 1, 0.36, 1);
+$ease-in-quint: cubic-bezier(0.64, 0, 0.78, 0);
+$ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 
 .sw-update-popup {
 	transform: translate3d(-50%, 16px, 0);
@@ -84,11 +84,11 @@ $easeOutQuint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .v-sw-popup-enter-active {
-	animation: sw-popup-slide-in 300ms $easeOutQuint;
+	animation: sw-popup-slide-in 300ms $ease-out-quint;
 }
 
 .v-sw-popup-leave-active {
-	animation: sw-popup-slide-in 300ms $easeInQuint reverse;
+	animation: sw-popup-slide-in 300ms $ease-in-quint reverse;
 }
 
 @keyframes sw-popup-slide-in {
