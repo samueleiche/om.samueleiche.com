@@ -12,6 +12,8 @@
 		</AppOverlayTransition>
 
 		<SWUpdatePopup />
+
+		<div class="app-version">version {{ appVersion }}</div>
 	</AppLayout>
 </template>
 
@@ -54,6 +56,7 @@ export default defineComponent({
 		const { time: countDownTime, startTimer } = useCountDown()
 		const { activeView, setActiveView, AppView } = useViewController()
 
+		const appVersion: string = process.env.VUE_APP_VERSION
 		const timerInterval = computed(() => store.state.timerInterval)
 
 		function onChange(id: number) {
@@ -86,6 +89,7 @@ export default defineComponent({
 			activeView,
 			isOverlayActive,
 			countDownTime,
+			appVersion,
 		}
 	},
 })
@@ -94,6 +98,16 @@ export default defineComponent({
 <style lang="scss" scoped>
 .app-layout {
 	background-color: #ffffff;
+}
+
+.app-version {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	text-align: center;
+	font-size: 12px;
+	opacity: 0.5;
 }
 
 .fade-out {
