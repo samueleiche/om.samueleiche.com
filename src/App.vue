@@ -20,6 +20,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+:root {
+	--ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+	--ease-out-quad: cubic-bezier(0.5, 1, 0.89, 1);
+	--ease-in-quint: cubic-bezier(0.64, 0, 0.78, 0);
+	--ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 *,
 *::before,
 *::after {

@@ -3,7 +3,7 @@
 		<LotusMenu
 			:options="timerOptions"
 			:modelValue="timerInterval"
-			:class="{ 'fade-out': countDownTime > -1 }"
+			:disabled="countDownTime > -1"
 			@update:modelValue="onChange"
 		/>
 
@@ -108,20 +108,5 @@ export default defineComponent({
 	text-align: center;
 	font-size: 12px;
 	opacity: 0.5;
-}
-
-.fade-out {
-	animation: fade-out 12s ease-out; // view in transiton + countDown time
-}
-
-@keyframes fade-out {
-	0% {
-		opacity: 1;
-	}
-
-	50%,
-	100% {
-		opacity: 0;
-	}
 }
 </style>

@@ -1,16 +1,16 @@
 <template>
-	<Transition name="v-overlay-fade-in">
+	<Transition name="v-overlay">
 		<slot />
 	</Transition>
 </template>
 
 <style lang="scss" scoped>
-.v-overlay-fade-in-enter-active {
-	animation: fade-in 160ms ease-out;
+.v-overlay-enter-active {
+	animation: fade-in 300ms var(--ease-out-cubic);
 }
 
-.v-overlay-fade-in-leave-active {
-	animation: fade-in 160ms ease-out reverse;
+.v-overlay-leave-active {
+	animation: fade-in 300ms var(--ease-out-cubic) reverse;
 }
 
 @keyframes fade-in {

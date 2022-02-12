@@ -1,5 +1,10 @@
 <template>
-	<TransitionGroup appear name="v-lotus-menu-option" tag="div" class="lotus-menu">
+	<TransitionGroup
+		appear
+		tag="div"
+		name="v-lotus-menu-option"
+		:class="['lotus-menu', { 'lotus-menu-disabled': disabled }]"
+	>
 		<div
 			v-for="option of computedOptions"
 			:key="`´menu-option-${option.id}`"
@@ -41,7 +46,12 @@ export interface MenuOption {
 export default defineComponent({
 	emits: ['update:modelValue'],
 	props: {
-		modelValue: Number,
+		modelValue: {
+			type: Number,
+		},
+		disabled: {
+			type: Boolean,
+		},
 		options: {
 			type: Array as PropType<MenuOption[]>,
 			required: true,
@@ -99,12 +109,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$ease-out-quad: cubic-bezier(0.5, 1, 0.89, 1);
-
 .lotus-menu {
 	position: relative;
 	height: 100%;
 	width: 100%;
+	transition: opacity 1500ms var(--ease-out-cubic);
+}
+
+.lotus-menu-disabled {
+	opacity: 0.25;
 }
 
 .lotus-menu-option {
@@ -132,7 +145,7 @@ $ease-out-quad: cubic-bezier(0.5, 1, 0.89, 1);
 .v-lotus-menu-option-enter-active,
 .v-lotus-menu-option-leave-active {
 	transition-duration: 900ms;
-	transition-timing-function: $ease-out-quad;
+	transition-timing-function: var(--ease-out-quad);
 	transition-property: opacity, transform;
 	transition-delay: var(--transition-delay, 0ms);
 }
