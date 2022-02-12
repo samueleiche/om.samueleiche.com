@@ -60,6 +60,15 @@ h4 {
 	font-weight: inherit;
 }
 
+button {
+	padding: 0;
+	border: none;
+	outline: none;
+	font: inherit;
+	color: inherit;
+	background: none;
+}
+
 #app {
 	height: 100%;
 }
