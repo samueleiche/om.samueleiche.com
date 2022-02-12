@@ -1,15 +1,15 @@
 <template>
-	<div class="lotus-menu">
+	<TransitionGroup appear name="v-lotus-menu-option" tag="div" class="lotus-menu">
 		<div
 			v-for="option of computedOptions"
-			:key="option.id"
+			:key="`´menu-option-${option.id}`"
 			:style="option.style"
 			:class="['lotus-menu-option', { 'lotus-menu-option-active': modelValue === option.id }]"
 			@click="onClick(option)"
 		>
 			<span>{{ option.text }}</span>
 		</div>
-	</div>
+	</TransitionGroup>
 </template>
 
 <script lang="ts">
@@ -60,11 +60,16 @@ export default defineComponent({
 			const step = m2PI / props.options.length
 			let angle = PI * 3.5
 
-			for (const entry of props.options) {
-				const x = round(windowWidth.value / 2 + radius * cos(angle) - elemSize / 2)
-				const y = round(windowHeight.value / 2 + radius * sin(angle) - elemSize / 2)
+			for (const [i, entry] of props.options.entries()) {
+				const cosθ = cos(angle)
+				const sinθ = sin(angle)
+				const x = round(windowWidth.value / 2 + radius * cosθ - elemSize / 2)
+				const y = round(windowHeight.value / 2 + radius * sinθ - elemSize / 2)
 
 				const style = {
+					'--transition-transform-x': toPx(Math.floor((radius / 10) * -cosθ)),
+					'--transition-transform-y': toPx(Math.floor((radius / 10) * -sinθ)),
+					'--transition-delay': 200 + i * 90 + 'ms',
 					position: 'absolute',
 					fontSize: toPx(fontSize),
 					height: toPx(elemSize),
@@ -120,5 +125,18 @@ export default defineComponent({
 
 .lotus-menu-option span {
 	max-width: 2em;
+}
+
+.v-lotus-menu-option-enter-active,
+.v-lotus-menu-option-leave-active {
+	transition-duration: 900ms;
+	transition-timing-function: cubic-bezier(0.5, 1, 0.89, 1);
+	transition-property: opacity, transform;
+	transition-delay: var(--transition-delay, 0ms);
+}
+.v-lotus-menu-option-enter-from,
+.v-lotus-menu-option-leave-to {
+	opacity: 0;
+	transform: translate3d(var(--transition-transform-x, 0), var(--transition-transform-y, 0), 0);
 }
 </style>
