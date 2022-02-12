@@ -10,6 +10,8 @@
 		<AppOverlayTransition>
 			<CountDownOverlay v-if="isOverlayActive(OverlayName.CountDown)" />
 		</AppOverlayTransition>
+
+		<SWUpdatePopup />
 	</AppLayout>
 </template>
 
@@ -25,6 +27,7 @@ import LotusMenu, { MenuOption } from './components/LotusMenu.vue'
 import AppLayout from '../../app/AppLayout.vue'
 import AppOverlayTransition from '../../app/AppOverlayTransition.vue'
 import CountDownOverlay from './components/CountDownOverlay.vue'
+import SWUpdatePopup from './components/SWUpdatePopup.vue'
 
 export const timerOptions: MenuOption[] = [
 	{ id: 60000, text: '1 min' },
@@ -44,6 +47,7 @@ export default defineComponent({
 		AppOverlayTransition,
 		LotusMenu,
 		CountDownOverlay,
+		SWUpdatePopup,
 	},
 	setup() {
 		const { addOverlay, removeOverlay, isOverlayActive } = useOverlay()
