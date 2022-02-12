@@ -74,6 +74,7 @@ button {
 	font: inherit;
 	color: inherit;
 	background: none;
+	cursor: pointer;
 }
 
 #app {
