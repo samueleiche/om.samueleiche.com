@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from 'vue'
-import { toPx, m2PI } from '../../../../utils'
+import { toPx, m2PI } from '../../../../support/utils'
 import { useWindowSize } from '../../../../composables/useWindowSize'
 
 const MAX_RADIUS = 150

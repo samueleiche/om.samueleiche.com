@@ -1,5 +1,6 @@
 import { ref, readonly } from 'vue'
-import { isDocumentVisible, tryOnScopeDispose } from '../utils'
+import { tryOnScopeDispose } from '../support/tryOnScopeDispose'
+import { isDocumentVisible } from '../support/utils'
 import { useEventListener } from './useEventListener'
 
 type TickerFn = (fn: () => void) => number

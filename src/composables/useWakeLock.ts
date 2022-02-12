@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { useEventListener } from './useEventListener'
-import { isDocumentVisible } from '../utils'
+import { isDocumentVisible } from '../support/utils'
 
 type WakeLockType = 'screen'
 

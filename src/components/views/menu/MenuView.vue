@@ -18,7 +18,7 @@
 <script lang="ts">
 import { computed, watch, defineComponent } from 'vue'
 
-import { store } from '../../../store'
+import { store } from '../../../support/store'
 import { useCountDown } from '../../../composables/global/useCountDown'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useOverlay, OverlayName } from '../../../composables/global/useOverlay'

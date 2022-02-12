@@ -1,5 +1,5 @@
 import { reactive, readonly } from 'vue'
-import { storage } from './utils'
+import { storage } from './storage'
 
 const state = reactive({
 	timerInterval: Number(storage.fetch('timerInterval')) || 1200000,

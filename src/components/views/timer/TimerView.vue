@@ -15,8 +15,8 @@ import { useRaf } from '../../../composables/useRaf'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useEventListener } from '../../../composables/useEventListener'
 import { useWakeLock } from '../../../composables/useWakeLock'
-import { easeInOutQuint, m2PI, mPI2 } from '../../../utils'
-import { store } from '../../../store'
+import { easeInOutQuint, m2PI, mPI2 } from '../../../support/utils'
+import { store } from '../../../support/store'
 
 import AppLayout from '../../app/AppLayout.vue'
 

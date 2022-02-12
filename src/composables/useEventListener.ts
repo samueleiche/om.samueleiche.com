@@ -1,5 +1,6 @@
 import { watch, unref } from 'vue'
-import { tryOnScopeDispose, noop } from '../utils'
+import { noop } from '../support/utils'
+import { tryOnScopeDispose } from '../support/tryOnScopeDispose'
 
 export function useEventListener(
 	target: EventTarget | undefined,

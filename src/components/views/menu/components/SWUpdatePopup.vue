@@ -5,7 +5,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useEventListener } from '../../../../composables/useEventListener'
-import { skipWaiting } from '../utils/serviceWorkerUtils'
+import { skipWaiting } from '../../../../support/serviceWorker'
 
 export default defineComponent({
 	setup() {
