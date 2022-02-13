@@ -35,7 +35,7 @@ module.exports = {
 			],
 		},
 		name: 'om',
-		assetsVersion: '1.2.2',
+		assetsVersion: '1.2.3',
 		themeColor: '#000000',
 		msTileColor: '#000000',
 		appleMobileWebAppCapable: 'yes',

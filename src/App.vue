@@ -65,7 +65,7 @@ h1,
 h2,
 h3,
 h4 {
-	font-family: 'PT Serif', serif;
+	font-family: 'Lora', serif;
 	margin: 0;
 	font-size: inherit;
 	font-weight: inherit;
