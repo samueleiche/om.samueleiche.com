@@ -21,6 +21,7 @@
 import { computed, watch, defineComponent } from 'vue'
 
 import { store } from '../../../support/store'
+import { loadAudio } from '../../../support/audio'
 import { useCountDown } from '../../../composables/global/useCountDown'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useOverlay, OverlayName } from '../../../composables/global/useOverlay'
@@ -61,6 +62,10 @@ export default defineComponent({
 
 		function onChange(id: number) {
 			store.actions.setTimerInterval(id)
+
+			loadAudio({
+				defaultBowl: 'https://assets.samueleiche.com/media/bowls/large-bowl-1.mp3',
+			})
 
 			startTimer(3, () => {
 				setActiveView(AppView.TIMER)

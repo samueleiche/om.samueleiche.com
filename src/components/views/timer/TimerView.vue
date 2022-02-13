@@ -1,22 +1,21 @@
 <template>
 	<AppLayout>
 		<canvas ref="canvasRef" class="canvas" />
-		<audio ref="audioRef" preload="auto">
-			<source src="https://assets.samueleiche.com/media/bowls/large-bowl-1.mp3" type="audio/mp3" />
-		</audio>
 	</AppLayout>
 </template>
 
 <script lang="ts">
 import { onMounted, onBeforeUnmount, watchEffect, ref, computed, defineComponent } from 'vue'
 
+import { store } from '../../../support/store'
+import { audio, playAudio, pauseAudio } from '../../../support/audio'
+import { easeInOutQuint, m2PI, mPI2 } from '../../../support/utils'
+
 import { useWindowSize } from '../../../composables/useWindowSize'
 import { useRaf } from '../../../composables/useRaf'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useEventListener } from '../../../composables/useEventListener'
 import { useWakeLock } from '../../../composables/useWakeLock'
-import { easeInOutQuint, m2PI, mPI2 } from '../../../support/utils'
-import { store } from '../../../support/store'
 
 import AppLayout from '../../app/AppLayout.vue'
 
@@ -39,7 +38,6 @@ export default defineComponent({
 		const { request: requestWakeLock, release: releaseWakeLock } = useWakeLock()
 
 		const canvasRef = ref<HTMLCanvasElement | undefined>()
-		const audioRef = ref<HTMLAudioElement | undefined>()
 
 		const runDuration = computed(() => store.state.timerInterval)
 		const rewindDuration = 2000
@@ -98,10 +96,6 @@ export default defineComponent({
 				ctx.stroke()
 			}
 
-			function playSound() {
-				audioRef.value?.play()
-			}
-
 			const { start, stop } = useRaf((elapsed) => {
 				ctx.fillStyle = '#000000'
 				ctx.fillRect(0, 0, canvasRef.value!.width, canvasRef.value!.height)
@@ -119,7 +113,7 @@ export default defineComponent({
 				} else {
 					// play sound and begin rewinding phase
 					if (!isRewinding) {
-						playSound()
+						playAudio(audio.defaultBowl)
 						isRewinding = true
 					}
 
@@ -147,20 +141,18 @@ export default defineComponent({
 				setActiveView(AppView.MENU)
 			})
 
-			useEventListener(audioRef.value, 'canplay', () => {
+			playAudio(audio.defaultBowl).then(() => {
 				start()
 			})
-
-			playSound()
 		})
 
 		onBeforeUnmount(() => {
+			pauseAudio(audio.defaultBowl)
 			releaseWakeLock()
 		})
 
 		return {
 			canvasRef,
-			audioRef,
 			windowWidth,
 			windowHeight,
 		}
