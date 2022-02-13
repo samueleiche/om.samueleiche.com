@@ -5,21 +5,19 @@
 </template>
 
 <style lang="scss" scoped>
-.v-overlay-enter-active {
-	animation: fade-in 300ms var(--ease-out-cubic);
+.v-overlay-enter-active,
+.v-overlay-leave-active {
+	transition-property: opacity;
+	transition-timing-function: var(--ease-out-quint);
+	transition-duration: 800ms;
 }
 
 .v-overlay-leave-active {
-	animation: fade-in 300ms var(--ease-out-cubic) reverse;
+	transition-duration: 200ms;
 }
 
-@keyframes fade-in {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-	}
+.v-overlay-enter-from,
+.v-overlay-leave-to {
+	opacity: 0;
 }
 </style>

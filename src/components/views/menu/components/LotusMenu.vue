@@ -1,10 +1,5 @@
 <template>
-	<TransitionGroup
-		appear
-		tag="div"
-		name="v-lotus-menu-option"
-		:class="['lotus-menu', { 'lotus-menu-disabled': disabled }]"
-	>
+	<TransitionGroup appear tag="div" name="v-lotus-menu-option" class="lotus-menu">
 		<div
 			v-for="option of computedOptions"
 			:key="`´menu-option-${option.id}`"
@@ -48,9 +43,6 @@ export default defineComponent({
 	props: {
 		modelValue: {
 			type: Number,
-		},
-		disabled: {
-			type: Boolean,
 		},
 		options: {
 			type: Array as PropType<MenuOption[]>,
@@ -114,10 +106,6 @@ export default defineComponent({
 	height: 100%;
 	width: 100%;
 	transition: opacity 1500ms var(--ease-out-cubic);
-}
-
-.lotus-menu-disabled {
-	opacity: 0.25;
 }
 
 .lotus-menu-option {

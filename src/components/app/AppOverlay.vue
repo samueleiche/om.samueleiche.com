@@ -29,7 +29,7 @@
 .v-overlay-enter-from,
 .v-overlay-leave-to {
 	.app-overlay-content {
-		transform: translate3d(0, 15px, 0);
+		transform: scale(0.85) translate3d(0, 15px, 0);
 	}
 }
 
@@ -37,8 +37,8 @@
 .v-overlay-leave-active {
 	.app-overlay-content {
 		transition-property: transform;
-		transition-duration: 300ms;
-		transition-timing-function: var(--ease-out-quad);
+		transition-duration: inherit;
+		transition-timing-function: inherit;
 	}
 }
 </style>

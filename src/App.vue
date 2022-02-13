@@ -1,5 +1,5 @@
 <template>
-	<Transition :name="isTimerViewActive ? 'v-fade-in-slow' : 'v-fade-in'">
+	<Transition :name="transitionName">
 		<Component :is="activeView.component" />
 	</Transition>
 </template>
@@ -12,19 +12,23 @@ export default defineComponent({
 	setup() {
 		const { activeView, AppView } = useViewController()
 
-		const isTimerViewActive = computed(() => activeView.value.name === AppView.TIMER)
+		const transitionName = computed(() =>
+			activeView.value.name === AppView.TIMER ? 'v-fade-in-slow' : 'v-fade-in',
+		)
 
-		return { activeView, isTimerViewActive }
+		return { activeView, transitionName }
 	},
 })
 </script>
 
 <style lang="scss">
 :root {
-	--ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+	// https://easings.net
 	--ease-out-quad: cubic-bezier(0.5, 1, 0.89, 1);
+	--ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
 	--ease-in-quint: cubic-bezier(0.64, 0, 0.78, 0);
 	--ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *,
@@ -82,19 +86,19 @@ button {
 }
 
 .v-fade-in-slow-enter-active {
-	animation: fade-in 8s ease-out;
+	animation: fade-in 4s var(--ease-out-expo);
 }
 
 .v-fade-in-slow-leave-active {
-	animation: fade-in 8s ease-out reverse;
+	animation: fade-in 4s var(--ease-out-expo) reverse;
 }
 
 .v-fade-in-enter-active {
-	animation: fade-in 300ms ease-out;
+	animation: fade-in 300ms var(--ease-out-cubic);
 }
 
 .v-fade-in-leave-active {
-	animation: fade-in 300ms ease-out reverse;
+	animation: fade-in 300ms var(--ease-out-cubic) reverse;
 }
 
 .v-fade-in-slow-enter-from,

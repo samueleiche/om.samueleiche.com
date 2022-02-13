@@ -1,11 +1,6 @@
 <template>
 	<AppLayout>
-		<LotusMenu
-			:options="timerOptions"
-			:modelValue="timerInterval"
-			:disabled="countDownTime > -1"
-			@update:modelValue="onChange"
-		/>
+		<LotusMenu :options="timerOptions" :modelValue="timerInterval" @update:modelValue="onChange" />
 
 		<AppOverlayTransition>
 			<CountDownOverlay v-if="isOverlayActive(OverlayName.CountDown)" />
@@ -100,7 +95,6 @@ export default defineComponent({
 			AppView,
 			activeView,
 			isOverlayActive,
-			countDownTime,
 			appVersion,
 		}
 	},
