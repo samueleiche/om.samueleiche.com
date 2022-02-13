@@ -29,7 +29,7 @@
 .v-overlay-enter-from,
 .v-overlay-leave-to {
 	.app-overlay-content {
-		transform: scale(0.85) translate3d(0, 15px, 0);
+		transform: scale(0.96) translate3d(0, 15px, 0);
 	}
 }
 

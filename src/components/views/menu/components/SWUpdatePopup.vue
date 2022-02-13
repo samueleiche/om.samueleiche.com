@@ -63,7 +63,7 @@ export default defineComponent({
 .sw-update-popup-button {
 	padding: 8px 28px;
 	border-radius: 12px;
-	letter-spacing: 0.05em;
+	letter-spacing: 0.02em;
 	font-weight: 700;
 	font-size: 14px;
 	color: #fff;

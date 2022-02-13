@@ -13,7 +13,7 @@
 }
 
 .v-overlay-leave-active {
-	transition-duration: 200ms;
+	transition-duration: 300ms;
 }
 
 .v-overlay-enter-from,

@@ -2,6 +2,7 @@ import { readonly, ref } from 'vue'
 
 export enum OverlayName {
 	CountDown = 'countDown',
+	Timer = 'timer',
 }
 
 const overlays = ref([] as OverlayName[])

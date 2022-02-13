@@ -1,6 +1,10 @@
 <template>
 	<AppLayout>
 		<canvas ref="canvasRef" class="canvas" />
+
+		<AppOverlayTransition>
+			<TimerOverlay v-if="isOverlayActive(OverlayName.Timer)" />
+		</AppOverlayTransition>
 	</AppLayout>
 </template>
 
@@ -14,11 +18,13 @@ import { trackEvent, trackView } from '../../../support/analytics'
 
 import { useWindowSize } from '../../../composables/useWindowSize'
 import { useRaf } from '../../../composables/useRaf'
-import { useViewController } from '../../../composables/global/useViewController'
+import { useOverlay, OverlayName } from '../../../composables/global/useOverlay'
 import { useEventListener } from '../../../composables/useEventListener'
 import { useWakeLock } from '../../../composables/useWakeLock'
 
 import AppLayout from '../../app/AppLayout.vue'
+import AppOverlayTransition from '../../app/AppOverlayTransition.vue'
+import TimerOverlay from './components/TimerOverlay.vue'
 
 const MIN_VISIBLE_PROGRESS = 0.001 // min progress that can render on rewind; avoid flickering when starting progress from 0
 
@@ -32,10 +38,12 @@ interface Circle {
 export default defineComponent({
 	components: {
 		AppLayout,
+		AppOverlayTransition,
+		TimerOverlay,
 	},
 	setup() {
 		const { width: windowWidth, height: windowHeight } = useWindowSize()
-		const { setActiveView, AppView } = useViewController()
+		const { addOverlay, isOverlayActive } = useOverlay()
 		const { request: requestWakeLock, release: releaseWakeLock } = useWakeLock()
 
 		const canvasRef = ref<HTMLCanvasElement | undefined>()
@@ -146,9 +154,7 @@ export default defineComponent({
 			})
 
 			useEventListener(canvasRef.value, 'click', () => {
-				trackEvent('click', { category: 'Timer', label: 'Leave Timer' })
-				stop()
-				setActiveView(AppView.MENU)
+				addOverlay(OverlayName.Timer)
 			})
 
 			playAudio(audio.defaultBowl).then(() => {
@@ -171,6 +177,8 @@ export default defineComponent({
 			canvasRef,
 			windowWidth,
 			windowHeight,
+			isOverlayActive,
+			OverlayName,
 		}
 	},
 })
