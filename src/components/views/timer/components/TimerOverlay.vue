@@ -67,7 +67,7 @@ export default defineComponent({
 .timer-control-button {
 	width: 100%;
 	margin: 8px 0;
-	padding: 12px 28px;
+	padding: 10px 28px;
 	border-radius: 16px;
 	letter-spacing: 0.02em;
 	font-weight: 700;
@@ -75,7 +75,6 @@ export default defineComponent({
 	color: #fff;
 	background-color: #000;
 	border: 2px solid #000;
-	user-select: none;
 	user-select: none;
 	-webkit-tap-highlight-color: transparent;
 
@@ -91,7 +90,7 @@ export default defineComponent({
 
 .timer-control-button-bordered {
 	color: #000;
-	border: 2px solid #000;
+	background-color: transparent;
 
 	&:active,
 	&:focus-visible {
