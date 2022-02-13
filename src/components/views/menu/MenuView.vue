@@ -22,6 +22,7 @@ import { computed, watch, defineComponent } from 'vue'
 
 import { store } from '../../../support/store'
 import { loadAudio } from '../../../support/audio'
+import { trackEvent } from '../../../support/analytics'
 import { useCountDown } from '../../../composables/global/useCountDown'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useOverlay, OverlayName } from '../../../composables/global/useOverlay'
@@ -61,6 +62,12 @@ export default defineComponent({
 		const timerInterval = computed(() => store.state.timerInterval)
 
 		function onChange(id: number) {
+			trackEvent('select', {
+				category: 'Menu',
+				label: timerOptions.find((option) => option.id === id)?.text,
+				value: id / (60 * 1000),
+			})
+
 			store.actions.setTimerInterval(id)
 
 			loadAudio({

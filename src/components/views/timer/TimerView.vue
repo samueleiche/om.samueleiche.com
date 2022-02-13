@@ -10,6 +10,7 @@ import { onMounted, onBeforeUnmount, watchEffect, ref, computed, defineComponent
 import { store } from '../../../support/store'
 import { audio, playAudio, pauseAudio } from '../../../support/audio'
 import { easeInOutQuint, m2PI, mPI2 } from '../../../support/utils'
+import { trackEvent, trackView } from '../../../support/analytics'
 
 import { useWindowSize } from '../../../composables/useWindowSize'
 import { useRaf } from '../../../composables/useRaf'
@@ -81,6 +82,8 @@ export default defineComponent({
 				return
 			}
 
+			trackView('Timer')
+
 			const ctx = canvasRef.value.getContext('2d')!
 			let isRewinding = false
 
@@ -113,6 +116,12 @@ export default defineComponent({
 				} else {
 					// play sound and begin rewinding phase
 					if (!isRewinding) {
+						trackEvent('audio_play', {
+							category: 'Timer',
+							label: 'Bowl Hit',
+							value: runDuration.value / (60 * 1000),
+							nonInteraction: true,
+						})
 						playAudio(audio.defaultBowl)
 						isRewinding = true
 					}
@@ -137,11 +146,18 @@ export default defineComponent({
 			})
 
 			useEventListener(canvasRef.value, 'click', () => {
+				trackEvent('click', { category: 'Timer', label: 'Leave Timer' })
 				stop()
 				setActiveView(AppView.MENU)
 			})
 
 			playAudio(audio.defaultBowl).then(() => {
+				trackEvent('audio_play', {
+					category: 'Timer',
+					label: 'Bowl Hit (initial)',
+					value: runDuration.value / (60 * 1000),
+					nonInteraction: true,
+				})
 				start()
 			})
 		})
