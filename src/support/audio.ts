@@ -6,17 +6,13 @@ export function loadAudio(data: { [key: string]: string }): Promise<void> {
 	return new Promise((resolve, reject) => {
 		try {
 			for (const sourceName in data) {
-				// reset audio if previously loaded
-				if (audio[sourceName]) {
-					audio[sourceName].load()
-					continue
+				if (!audio[sourceName]) {
+					const source = data[sourceName]
+					const audioElement = new Audio(source)
+					audio[sourceName] = audioElement
 				}
 
-				const source = data[sourceName]
-				const audioElement = new Audio(source)
-
-				audioElement.load()
-				audio[sourceName] = audioElement
+				audio[sourceName].load()
 			}
 
 			resolve()
