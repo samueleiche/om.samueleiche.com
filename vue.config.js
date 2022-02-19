@@ -2,7 +2,7 @@ process.env.VUE_APP_VERSION = require('./package.json').version
 
 module.exports = {
 	devServer: {
-		https: true, // required for WakeLock API
+		https: true, // required for WakeLock, Notification
 	},
 	pwa: {
 		workboxOptions: {
