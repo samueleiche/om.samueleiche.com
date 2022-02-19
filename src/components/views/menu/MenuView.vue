@@ -8,16 +8,23 @@
 
 		<SWUpdatePopup />
 
-		<div class="app-version">version {{ appVersion }}</div>
+		<div class="footer">
+			<button v-if="canAskNotificationPermission" type="button" @click="askNotificationPermission">
+				Notifications
+			</button>
+			<div>v{{ appVersion }}</div>
+		</div>
 	</AppLayout>
 </template>
 
 <script lang="ts">
-import { computed, watch, defineComponent } from 'vue'
+import { computed, watch, ref, defineComponent } from 'vue'
 
 import { store } from '../../../support/store'
 import { loadAudio } from '../../../support/audio'
 import { trackEvent } from '../../../support/analytics'
+import { getNotificationPermission, requestNotificationPermission } from '../../../support/notification'
+
 import { useCountDown } from '../../../composables/global/useCountDown'
 import { useViewController } from '../../../composables/global/useViewController'
 import { useOverlay, OverlayName } from '../../../composables/global/useOverlay'
@@ -60,6 +67,14 @@ export default defineComponent({
 		const appVersion: string = process.env.VUE_APP_VERSION
 		const timerInterval = computed(() => store.state.timerInterval)
 
+		const canAskNotificationPermission = ref(!!getNotificationPermission().default)
+
+		function askNotificationPermission() {
+			requestNotificationPermission().then(() => {
+				canAskNotificationPermission.value = !!getNotificationPermission().default
+			})
+		}
+
 		function onChange(id: number) {
 			trackEvent('select', {
 				category: 'Menu',
@@ -100,6 +115,8 @@ export default defineComponent({
 			activeView,
 			isOverlayActive,
 			appVersion,
+			canAskNotificationPermission,
+			askNotificationPermission,
 		}
 	},
 })
@@ -110,13 +127,17 @@ export default defineComponent({
 	background-color: #ffffff;
 }
 
-.app-version {
+.footer {
+	display: flex;
+	justify-content: center;
+	gap: 0.75rem;
 	position: absolute;
 	bottom: 0;
 	right: 0;
 	left: 0;
 	text-align: center;
 	font-size: 12px;
-	opacity: 0.5;
+	line-height: 24px;
+	color: #9ca3af;
 }
 </style>

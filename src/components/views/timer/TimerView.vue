@@ -16,6 +16,7 @@ import { audio, playAudio, pauseAudio } from '../../../support/audio'
 import { easeInOutQuint, m2PI, mPI2 } from '../../../support/utils'
 import { trackEvent, trackView } from '../../../support/analytics'
 import { requestWakeLock, releaseWakeLock } from '../../../support/wakeLock'
+import { sendNotification } from '../../../support/notification'
 
 import { useWindowSize } from '../../../composables/useWindowSize'
 import { useRaf } from '../../../composables/useRaf'
@@ -123,13 +124,18 @@ export default defineComponent({
 				} else {
 					// play sound and begin rewinding phase
 					if (!isRewinding) {
+						const elapsedMins = runDuration.value / (60 * 1000)
+
 						trackEvent('audio_play', {
 							category: 'Timer',
 							label: 'Bowl Hit',
-							value: runDuration.value / (60 * 1000),
+							value: elapsedMins,
 							nonInteraction: true,
 						})
+
 						playAudio(audio.defaultBowl)
+						sendNotification('om says:', `${elapsedMins}min passed`)
+
 						isRewinding = true
 					}
 
