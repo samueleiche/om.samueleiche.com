@@ -15,12 +15,12 @@ import { store } from '../../../support/store'
 import { audio, playAudio, pauseAudio } from '../../../support/audio'
 import { easeInOutQuint, m2PI, mPI2 } from '../../../support/utils'
 import { trackEvent, trackView } from '../../../support/analytics'
+import { requestWakeLock, releaseWakeLock } from '../../../support/wakeLock'
 
 import { useWindowSize } from '../../../composables/useWindowSize'
 import { useRaf } from '../../../composables/useRaf'
 import { useOverlay, OverlayName } from '../../../composables/global/useOverlay'
 import { useEventListener } from '../../../composables/useEventListener'
-import { useWakeLock } from '../../../composables/useWakeLock'
 
 import AppLayout from '../../app/AppLayout.vue'
 import AppOverlayTransition from '../../app/AppOverlayTransition.vue'
@@ -44,7 +44,6 @@ export default defineComponent({
 	setup() {
 		const { width: windowWidth, height: windowHeight } = useWindowSize()
 		const { addOverlay, isOverlayActive } = useOverlay()
-		const { request: requestWakeLock, release: releaseWakeLock } = useWakeLock()
 
 		const canvasRef = ref<HTMLCanvasElement | undefined>()
 
@@ -95,7 +94,7 @@ export default defineComponent({
 			const ctx = canvasRef.value.getContext('2d')!
 			let isRewinding = false
 
-			requestWakeLock('screen')
+			requestWakeLock()
 			setupCanvas(ctx)
 
 			function drawCircle(circle: Circle, startAngle: number, endAngle: number) {
@@ -157,15 +156,22 @@ export default defineComponent({
 				addOverlay(OverlayName.Timer)
 			})
 
-			playAudio(audio.defaultBowl).then(() => {
-				trackEvent('audio_play', {
-					category: 'Timer',
-					label: 'Bowl Hit (initial)',
-					value: runDuration.value / (60 * 1000),
-					nonInteraction: true,
+			playAudio(audio.defaultBowl)
+				.then(() => {
+					trackEvent('audio_play', {
+						category: 'Timer',
+						label: 'Bowl Hit (initial)',
+						value: runDuration.value / (60 * 1000),
+						nonInteraction: true,
+					})
+					start()
 				})
-				start()
-			})
+				.catch((err) => {
+					const msg = '[playAudio] Error: ' + err
+
+					alert(msg)
+					console.error(msg)
+				})
 		})
 
 		onBeforeUnmount(() => {
