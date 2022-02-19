@@ -40,6 +40,10 @@ export const timerOptions: MenuOption[] = [
 	{ id: 3600000, text: '60 min' },
 ]
 
+if (process.env.NODE_ENV === 'development') {
+	timerOptions.unshift({ id: 5000, text: '5 sec' })
+}
+
 export default defineComponent({
 	components: {
 		AppLayout,
