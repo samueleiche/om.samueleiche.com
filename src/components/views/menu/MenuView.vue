@@ -10,7 +10,7 @@
 
 		<div class="footer">
 			<button v-if="canAskNotificationPermission" type="button" @click="askNotificationPermission">
-				Notifications
+				Enable Notifications
 			</button>
 			<div>v{{ appVersion }}</div>
 		</div>
