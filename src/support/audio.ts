@@ -22,13 +22,13 @@ export function loadAudio(data: { [key: string]: string }): Promise<void> {
 	})
 }
 
-export function playAudio(audioElement: HTMLAudioElement) {
+export function playAudio(audioElement: HTMLAudioElement): Promise<void> {
 	return audioElement.play()
 }
 
-export function pauseAudio(audioElement: HTMLAudioElement): Promise<HTMLAudioElement> {
+export function pauseAudio(audioElement: HTMLAudioElement): Promise<void> {
 	return new Promise((resolve) => {
 		audioElement.pause()
-		resolve(audioElement)
+		resolve()
 	})
 }
