@@ -2,7 +2,7 @@ import { reactive, readonly } from 'vue'
 import { storage } from './storage'
 
 const state = reactive({
-	timerInterval: Number(storage.fetch('timerInterval')) || 1200000,
+	timerInterval: Number(storage.fetch('timerInterval')) || 60000,
 })
 
 const actions = {
