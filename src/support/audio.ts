@@ -22,22 +22,8 @@ export function loadAudio(data: { [key: string]: string }): Promise<void> {
 	})
 }
 
-export function playAudio(audioElement: HTMLAudioElement): Promise<HTMLAudioElement> {
-	return new Promise((resolve) => {
-		if (audioElement.readyState > audioElement.HAVE_CURRENT_DATA) {
-			audioElement.play()
-			resolve(audioElement)
-		} else {
-			audioElement.addEventListener(
-				'canplay',
-				() => {
-					audioElement.play()
-					resolve(audioElement)
-				},
-				{ once: true },
-			)
-		}
-	})
+export function playAudio(audioElement: HTMLAudioElement) {
+	return audioElement.play()
 }
 
 export function pauseAudio(audioElement: HTMLAudioElement): Promise<HTMLAudioElement> {
