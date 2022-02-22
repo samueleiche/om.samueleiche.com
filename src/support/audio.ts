@@ -17,7 +17,7 @@ export function loadAudio(data: { [key: string]: string }): Promise<void> {
 
 			resolve()
 		} catch (error) {
-			reject()
+			reject(error)
 		}
 	})
 }

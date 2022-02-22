@@ -86,6 +86,11 @@ export default defineComponent({
 
 			loadAudio({
 				defaultBowl: 'https://assets.samueleiche.com/media/bowls/large-bowl-1.mp3',
+			}).catch((err) => {
+				const msg = '[loadAudio]:' + err
+
+				alert(msg)
+				console.error(msg)
 			})
 
 			startTimer(3, () => {

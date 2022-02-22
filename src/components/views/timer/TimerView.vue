@@ -173,7 +173,7 @@ export default defineComponent({
 					start()
 				})
 				.catch((err) => {
-					const msg = '[playAudio] Error: ' + err
+					const msg = '[playAudio]: ' + err
 
 					alert(msg)
 					console.error(msg)
