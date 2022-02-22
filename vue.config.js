@@ -5,11 +5,14 @@ module.exports = {
 		https: true, // required for WakeLock, Notification
 	},
 	pwa: {
+		// https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-webpack-plugin.GenerateSW
 		workboxOptions: {
 			runtimeCaching: [
+				//https://developers.google.com/web/tools/workbox/guides/advanced-recipes?authuser=0#cached-av
 				{
 					urlPattern: /^https:\/\/assets.samueleiche.com/,
-					handler: 'StaleWhileRevalidate',
+					// StaleWhileRevalidate can cause audio source errors sometimes for reasons unknown
+					handler: 'NetworkFirst',
 					options: {
 						cacheName: 'audio',
 					},
