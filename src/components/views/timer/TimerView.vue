@@ -48,8 +48,9 @@ export default defineComponent({
 
 		const canvasRef = ref<HTMLCanvasElement | undefined>()
 
-		const runDuration = computed(() => store.state.timerInterval)
+		const timerInterval = computed(() => store.state.timerInterval)
 		const rewindDuration = 2000
+
 		const circle = {
 			baseRadius: 100,
 			radius: 0,
@@ -108,6 +109,10 @@ export default defineComponent({
 			}
 
 			const { start, stop } = useRaf((elapsed) => {
+				if (!store.state.timerStart) {
+					store.actions.setTimerStart(Date.now())
+				}
+
 				ctx.fillStyle = '#000000'
 				ctx.fillRect(0, 0, canvasRef.value!.width, canvasRef.value!.height)
 
@@ -115,8 +120,8 @@ export default defineComponent({
 				drawCircle({ ...circle, color: '#111827' }, 0, m2PI)
 
 				// draw progress circle
-				if (elapsed < runDuration.value - rewindDuration) {
-					const progress = elapsed / (runDuration.value - rewindDuration)
+				if (elapsed < timerInterval.value - rewindDuration) {
+					const progress = elapsed / (timerInterval.value - rewindDuration)
 
 					const startAngle = -mPI2
 					const endAngle = m2PI * progress + startAngle
@@ -124,7 +129,7 @@ export default defineComponent({
 				} else {
 					// play sound and begin rewinding phase
 					if (!isRewinding) {
-						const elapsedMins = runDuration.value / (60 * 1000)
+						const elapsedMins = timerInterval.value / (60 * 1000)
 
 						trackEvent('audio_play', {
 							category: 'Timer',
@@ -139,7 +144,7 @@ export default defineComponent({
 						isRewinding = true
 					}
 
-					const elapsedRewind = elapsed - runDuration.value + rewindDuration
+					const elapsedRewind = elapsed - timerInterval.value + rewindDuration
 					const reverseProgress = 1 - elapsedRewind / rewindDuration
 
 					// draw progress rewind circle
@@ -167,7 +172,7 @@ export default defineComponent({
 					trackEvent('audio_play', {
 						category: 'Timer',
 						label: 'Bowl Hit (initial)',
-						value: runDuration.value / (60 * 1000),
+						value: timerInterval.value / (60 * 1000),
 						nonInteraction: true,
 					})
 					start()
@@ -183,6 +188,7 @@ export default defineComponent({
 		onBeforeUnmount(() => {
 			pauseAudio(audio.defaultBowl)
 			releaseWakeLock()
+			store.actions.setTimerStart(0)
 		})
 
 		return {

@@ -1,12 +1,30 @@
 <template>
 	<AppOverlay>
 		<div class="timer-control">
-			<h2 class="timer-control-message">
-				Would you like
-				<br />
-				to finish?
-			</h2>
-			<button class="timer-control-button" type="button" @click="finish">Finish</button>
+			<h2 class="timer-control-message">Stop Timer?</h2>
+
+			<table class="table">
+				<tr>
+					<td>Time</td>
+					<td class="table-value">
+						{{ timerInfo.time }}
+					</td>
+				</tr>
+				<tr>
+					<td>Laps</td>
+					<td class="table-value">
+						{{ timerInfo.laps }}
+					</td>
+				</tr>
+				<tr>
+					<td>Total Time</td>
+					<td class="table-value">
+						{{ timerInfo.totalTime }}
+					</td>
+				</tr>
+			</table>
+
+			<button class="timer-control-button" type="button" @click="stop">Stop</button>
 			<button class="timer-control-button timer-control-button-bordered" type="button" @click="close">
 				Resume
 			</button>
@@ -15,11 +33,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 
+import { store } from '../../../../support/store'
 import { trackEvent } from '../../../../support/analytics'
+import { timerOptions } from '../../../../support/settings'
+
 import { useOverlay, OverlayName } from '../../../../composables/global/useOverlay'
 import { useViewController } from '../../../../composables/global/useViewController'
+
 import AppOverlay from '../../../app/AppOverlay.vue'
 
 export default defineComponent({
@@ -30,7 +52,19 @@ export default defineComponent({
 		const { setActiveView, AppView } = useViewController()
 		const { removeOverlay } = useOverlay()
 
-		function finish() {
+		const timerInfo = computed(() => {
+			const intervalTime = store.state.timerInterval
+			const intervalLabel = timerOptions.find((o) => o.id === intervalTime)
+			const elapsedTime = Date.now() - store.state.timerStart
+
+			return {
+				time: intervalLabel?.text || '',
+				laps: Math.floor(elapsedTime / intervalTime),
+				totalTime: new Date(elapsedTime).toISOString().substr(11, 8),
+			}
+		})
+
+		function stop() {
 			trackEvent('click', { category: 'Timer', label: 'Leave Timer' })
 			setActiveView(AppView.MENU)
 			close()
@@ -41,8 +75,9 @@ export default defineComponent({
 		}
 
 		return {
-			finish,
+			stop,
 			close,
+			timerInfo,
 		}
 	},
 })
@@ -61,7 +96,7 @@ export default defineComponent({
 .timer-control-message {
 	font-size: 24px;
 	font-weight: 500;
-	margin: 8px 0;
+	margin: 8px 0 12px;
 }
 
 .timer-control-button {
@@ -96,5 +131,19 @@ export default defineComponent({
 	&:focus-visible {
 		background-color: rgba(#000, 0.15);
 	}
+}
+
+.table {
+	width: 100%;
+	margin: 8px 0;
+	font-size: 14px;
+
+	td {
+		text-align: left;
+	}
+}
+
+.table-value {
+	font-weight: 700;
 }
 </style>
