@@ -13,7 +13,7 @@ module.exports = {
 		ecmaVersion: 2020,
 	},
 	rules: {
-		'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+		'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 		'@typescript-eslint/explicit-module-boundary-types': 'off',
 		'@typescript-eslint/no-non-null-assertion': 'off',
