@@ -1,0 +1,30 @@
+name: Build test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        
+    - name: Use cache
+      id: cache
+      uses: actions/cache@v2
+      with:
+          path: '**/node_modules'
+          key: cache-${{ hashFiles('package-lock.json') }}
+
+    - name: Install
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npm install
+      
+    - name: Build
+      run: |
+        npm run build
+        npm run lint
