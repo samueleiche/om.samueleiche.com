@@ -2,7 +2,7 @@ process.env.VUE_APP_VERSION = require('./package.json').version
 
 module.exports = {
 	devServer: {
-		https: true, // required for WakeLock, Notification
+		server: 'https', // required for WakeLock, Notification
 	},
 	pwa: {
 		// https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-webpack-plugin.GenerateSW
