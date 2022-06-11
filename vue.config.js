@@ -7,6 +7,12 @@ module.exports = defineConfig({
 	devServer: {
 		server: 'https', // required for WakeLock, Notification
 	},
+	chainWebpack: (config) => {
+		config.plugin('html').tap((args) => {
+			args[0].title = 'Om'
+			return args
+		})
+	},
 	pwa: {
 		// https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-webpack-plugin.GenerateSW
 		workboxOptions: {
@@ -43,7 +49,7 @@ module.exports = defineConfig({
 				},
 			],
 		},
-		name: 'om',
+		name: 'Om',
 		assetsVersion: '2.0.2',
 		themeColor: '#ffffff',
 		msTileColor: '#ffffff',

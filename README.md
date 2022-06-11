@@ -1,4 +1,4 @@
-# om
+# Om
 
 ## Project setup
 
