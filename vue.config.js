@@ -50,24 +50,24 @@ module.exports = defineConfig({
 		appleMobileWebAppCapable: 'yes',
 		appleMobileWebAppStatusBarStyle: 'black',
 		iconPaths: {
-			favicon32: 'img/favicon-32x32.png',
-			favicon16: 'img/favicon-16x16.png',
-			appleTouchIcon: 'img/apple-touch-icon.png',
-			maskIcon: 'img/safari-pinned-tab.svg',
-			msTileImage: 'img/mstile-150x150.png',
+			favicon32: 'img/icons/favicon-32x32.png',
+			favicon16: 'img/icons/favicon-16x16.png',
+			appleTouchIcon: 'img/icons/apple-touch-icon.png',
+			maskIcon: 'img/icons/safari-pinned-tab.svg',
+			msTileImage: 'img/icons/mstile-150x150.png',
 		},
 		manifestOptions: {
 			icons: [
-				{ src: './img/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-				{ src: './img/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+				{ src: './img/icons/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+				{ src: './img/icons/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
 				{
-					src: './img/android-chrome-192x192.png',
+					src: './img/icons/android-chrome-192x192.png',
 					sizes: '192x192',
 					type: 'image/png',
 					purpose: 'maskable',
 				},
 				{
-					src: './img/android-chrome-512x512.png',
+					src: './img/icons/android-chrome-512x512.png',
 					sizes: '512x512',
 					type: 'image/png',
 					purpose: 'maskable',
