@@ -44,9 +44,9 @@ module.exports = defineConfig({
 			],
 		},
 		name: 'om',
-		assetsVersion: '1.2.3',
-		themeColor: '#000000',
-		msTileColor: '#000000',
+		assetsVersion: '2.0.1',
+		themeColor: '#ffffff',
+		msTileColor: '#ffffff',
 		appleMobileWebAppCapable: 'yes',
 		appleMobileWebAppStatusBarStyle: 'black',
 		iconPaths: {
@@ -73,6 +73,7 @@ module.exports = defineConfig({
 					purpose: 'maskable',
 				},
 			],
+			background_color: '#ffffff',
 		},
 	},
 })
