@@ -1,11 +1,11 @@
 <template>
-	<TransitionGroup appear tag="div" name="v-lotus-menu-option" class="lotus-menu">
+	<TransitionGroup appear tag="div" name="lotus-menu-option-transition" class="lotus-menu">
 		<div
 			v-for="option of computedOptions"
-			:key="`´menu-option-${option.id}`"
+			:key="`menu-option-${option.id}`"
 			:style="option.style"
 			:class="['lotus-menu-option', { 'lotus-menu-option-active': modelValue === option.id }]"
-			@click="onClick(option)"
+			@click="onClick(option, $event)"
 		>
 			<span>{{ option.text }}</span>
 		</div>
@@ -88,8 +88,8 @@ export default defineComponent({
 			return result
 		})
 
-		function onClick(option: MenuOption) {
-			emit('update:modelValue', option.id)
+		function onClick(option: MenuOption, event: PointerEvent) {
+			emit('update:modelValue', option.id, event)
 		}
 
 		return {
@@ -130,15 +130,15 @@ export default defineComponent({
 	max-width: 2em;
 }
 
-.v-lotus-menu-option-enter-active,
-.v-lotus-menu-option-leave-active {
+.lotus-menu-option-transition-enter-active,
+.lotus-menu-option-transition-leave-active {
 	transition-duration: 900ms;
 	transition-timing-function: var(--ease-out-quad);
 	transition-property: opacity, transform;
 	transition-delay: var(--transition-delay, 0ms);
 }
-.v-lotus-menu-option-enter-from,
-.v-lotus-menu-option-leave-to {
+.lotus-menu-option-transition-enter-from,
+.lotus-menu-option-transition-leave-to {
 	opacity: 0;
 	transform: translate3d(var(--transition-transform-x, 0), var(--transition-transform-y, 0), 0);
 }

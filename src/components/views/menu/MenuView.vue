@@ -1,12 +1,6 @@
 <template>
 	<AppLayout>
-		<LotusMenu :options="timerOptions" :modelValue="timerInterval" @update:modelValue="onChange" />
-
-		<AppOverlayTransition>
-			<CountDownOverlay v-if="isOverlayActive(OverlayName.CountDown)" />
-		</AppOverlayTransition>
-
-		<SWUpdatePopup />
+		<LotusMenu :options="timerOptions" :modelValue="timerInterval" @update:modelValue="onSelect" />
 
 		<div class="footer">
 			<button v-if="canAskNotificationPermission" type="button" @click="askNotificationPermission">
@@ -14,39 +8,34 @@
 			</button>
 			<div>v{{ appVersion }}</div>
 		</div>
+
+		<SWUpdatePopup />
 	</AppLayout>
 </template>
 
 <script lang="ts">
-import { computed, watch, ref, defineComponent } from 'vue'
+import { computed, ref, defineComponent } from 'vue'
 
 import { store } from '../../../support/store'
 import { loadAudio } from '../../../support/audio'
 import { trackEvent } from '../../../support/analytics'
 import { getNotificationPermission, requestNotificationPermission } from '../../../support/notification'
 import { timerOptions } from '../../../support/settings'
+import { getCircle, setCircleStyle } from '../../../support/transition'
 
-import { useCountDown } from '../../../composables/global/useCountDown'
 import { useViewController } from '../../../composables/global/useViewController'
-import { useOverlay, OverlayName } from '../../../composables/global/useOverlay'
 
 import LotusMenu from './components/LotusMenu.vue'
 import AppLayout from '../../app/AppLayout.vue'
-import AppOverlayTransition from '../../app/AppOverlayTransition.vue'
-import CountDownOverlay from './components/CountDownOverlay.vue'
 import SWUpdatePopup from './components/SWUpdatePopup.vue'
 
 export default defineComponent({
 	components: {
 		AppLayout,
-		AppOverlayTransition,
 		LotusMenu,
-		CountDownOverlay,
 		SWUpdatePopup,
 	},
 	setup() {
-		const { addOverlay, removeOverlay, isOverlayActive } = useOverlay()
-		const { time: countDownTime, startTimer } = useCountDown()
 		const { activeView, setActiveView, AppView } = useViewController()
 
 		const appVersion: string = process.env.VUE_APP_VERSION
@@ -60,7 +49,9 @@ export default defineComponent({
 			})
 		}
 
-		function onChange(id: number) {
+		function onSelect(id: number, event: PointerEvent) {
+			const button = event.target as HTMLElement
+
 			trackEvent('select', {
 				category: 'Menu',
 				label: timerOptions.find((option) => option.id === id)?.text,
@@ -78,32 +69,18 @@ export default defineComponent({
 				console.error(msg)
 			})
 
-			startTimer(3, () => {
-				setActiveView(AppView.TIMER)
-			})
+			const circle = getCircle(button)
+			setCircleStyle(circle)
+
+			setActiveView(AppView.TIMER)
 		}
-
-		watch(
-			() => countDownTime.value,
-			() => {
-				if (countDownTime.value > -1 && !isOverlayActive(OverlayName.CountDown)) {
-					addOverlay(OverlayName.CountDown)
-				}
-
-				if (countDownTime.value < 0) {
-					removeOverlay(OverlayName.CountDown)
-				}
-			},
-		)
 
 		return {
 			timerInterval,
 			timerOptions,
-			onChange,
-			OverlayName,
+			onSelect,
 			AppView,
 			activeView,
-			isOverlayActive,
 			appVersion,
 			canAskNotificationPermission,
 			askNotificationPermission,

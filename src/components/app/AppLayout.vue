@@ -6,7 +6,10 @@
 
 <style lang="scss" scoped>
 .app-layout {
-	height: 100%;
+	position: fixed;
+	top: 0;
+	height: 100vh;
 	width: 100%;
+	overflow: hidden;
 }
 </style>
