@@ -1,13 +1,17 @@
 <template>
 	<AppOverlay @click="onCancel" class="count-down-overlay">
-		<div class="count-down-time">
-			{{ countDownTime > -1 ? countDownTime : '' }}
+		<div class="count-down-overlay-content">
+			<Transition name="count-down">
+				<div class="count-down-time" :key="countDownTime">
+					{{ countDownTime }}
+				</div>
+			</Transition>
 		</div>
 	</AppOverlay>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useCountDown } from '../../../../composables/global/useCountDown'
 import AppOverlay from '../../../app/AppOverlay.vue'
 import { useViewController } from '../../../../composables/global/useViewController'
@@ -17,12 +21,16 @@ export default defineComponent({
 		AppOverlay,
 	},
 	setup() {
-		const { time: countDownTime, clearTimer } = useCountDown()
+		const { time, clearTimer } = useCountDown()
 		const { setActiveView, AppView } = useViewController()
+
+		const countDownTime = computed(() => {
+			return time.value > -1 ? String(time.value) : ''
+		})
 
 		const onCancel = () => {
 			// avoid cancelling before animation is finished
-			if (countDownTime.value > 2) {
+			if (time.value > 2) {
 				return
 			}
 			setActiveView(AppView.MENU)
@@ -42,9 +50,34 @@ export default defineComponent({
 	-webkit-tap-highlight-color: transparent;
 }
 
+.count-down-overlay-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .count-down-time {
-	font-size: 56px;
+	position: absolute;
+	font-size: 52px;
 	font-weight: 700;
 	color: #ffffff;
+}
+
+.count-down-enter-active,
+.count-down-leave-active {
+	transition: all 250ms var(--ease-in-out-cubic);
+}
+
+.count-down-enter-from {
+	transform: translateY(30px);
+}
+
+.count-down-leave-to {
+	transform: translateY(-30px);
+}
+
+.count-down-enter-from,
+.count-down-leave-to {
+	opacity: 0;
 }
 </style>

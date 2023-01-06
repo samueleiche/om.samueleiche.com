@@ -6,7 +6,9 @@
 			<TimerOverlay v-if="isOverlayActive(OverlayName.Timer)" />
 		</AppOverlayTransition>
 
-		<CountDownOverlay v-if="isOverlayActive(OverlayName.CountDown)" />
+		<AppOverlayTransition>
+			<CountDownOverlay v-if="isOverlayActive(OverlayName.CountDown)" />
+		</AppOverlayTransition>
 	</AppLayout>
 </template>
 
