@@ -1,4 +1,4 @@
-import { m2PI } from '../../../../support/utils'
+import { m2PI, dpr } from '../../../../support/utils'
 
 interface Circle {
 	radius: number
@@ -60,4 +60,41 @@ export function drawPoint({ circle, angle, ctx }: { circle: Circle; angle: numbe
 		endAngle: m2PI,
 		ctx,
 	})
+}
+
+function drawGradient({ ctx }: { ctx: CanvasRenderingContext2D }) {
+	const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height / dpr)
+	gradient.addColorStop(0.3, 'rgba(0, 0, 0, 0.68)')
+	gradient.addColorStop(0.4, 'rgba(0, 0, 0, 0.76)')
+	gradient.addColorStop(0.5, 'rgba(0, 0, 0, 0.84)')
+	gradient.addColorStop(0.6, 'rgba(0, 0, 0, 0.92)')
+	gradient.addColorStop(0.7, 'rgba(0, 0, 0, 1)')
+	gradient.addColorStop(1, 'rgba(0, 0, 0, 1)')
+
+	ctx.fillStyle = gradient
+	ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+}
+
+function drawBackgroundImage({ img, ctx }: { img: HTMLImageElement; ctx: CanvasRenderingContext2D }) {
+	const screenWidth = window.innerWidth
+	const screenHeight = window.innerHeight
+	const imgRatio = img.height / img.width
+	const winRatio = screenHeight / screenWidth
+
+	if (imgRatio > winRatio) {
+		const height = screenWidth * imgRatio
+		ctx.drawImage(img, 0, (screenHeight - height) / 2, screenWidth, height)
+	} else {
+		const width = (screenWidth * winRatio) / imgRatio
+		ctx.drawImage(img, (screenWidth - width) / 2, 0, width, screenHeight)
+	}
+}
+
+export function drawBackground({ ctx, img }: { ctx: CanvasRenderingContext2D; img: HTMLImageElement }) {
+	if (!img.complete) {
+		return
+	}
+
+	drawBackgroundImage({ ctx, img })
+	drawGradient({ ctx })
 }

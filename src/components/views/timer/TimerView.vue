@@ -33,14 +33,14 @@ import AppOverlayTransition from '../../app/AppOverlayTransition.vue'
 import TimerOverlay from './components/TimerOverlay.vue'
 import CountDownOverlay from './components/CountDownOverlay.vue'
 
-import { drawCircle, drawPoint } from './utils/canvas'
+import { drawCircle, drawPoint, drawBackground } from './utils/canvas'
 import {
 	MIN_VISIBLE_PROGRESS,
 	TRANSITION_IN_MS,
 	REWIND_DURATION_MS,
 	CIRCLE_COLOR,
 	CIRCLE_BACKGROUND_COLOR,
-	BACKGROUND_COLOR,
+	backgroundImage,
 } from './utils/config'
 
 const circle = {
@@ -98,6 +98,7 @@ export default defineComponent({
 
 			const ctx = setupCanvas(canvasRef.value)
 
+			drawBackground({ ctx, img: backgroundImage })
 			drawCircle({
 				circle: { ...circle, opacity: 1, color: CIRCLE_BACKGROUND_COLOR },
 				startAngle: 0,
@@ -112,9 +113,7 @@ export default defineComponent({
 					store.actions.setTimerStart(Date.now())
 				}
 
-				ctx.fillStyle = BACKGROUND_COLOR
-				ctx.fillRect(0, 0, canvasRef.value!.width, canvasRef.value!.height)
-
+				drawBackground({ ctx, img: backgroundImage })
 				drawCircle({
 					circle: { ...circle, opacity: 1, color: CIRCLE_BACKGROUND_COLOR },
 					startAngle: 0,
@@ -172,7 +171,7 @@ export default defineComponent({
 				}
 			})
 
-			useEventListener(canvasRef.value!, 'click', () => {
+			useEventListener(ctx.canvas, 'click', () => {
 				addOverlay(OverlayName.Timer)
 			})
 
@@ -204,6 +203,7 @@ export default defineComponent({
 
 			const ctx = setupCanvas(canvasRef.value)
 
+			drawBackground({ ctx, img: backgroundImage })
 			drawCircle({
 				circle: { ...circle, opacity: 1, color: CIRCLE_BACKGROUND_COLOR },
 				startAngle: 0,
