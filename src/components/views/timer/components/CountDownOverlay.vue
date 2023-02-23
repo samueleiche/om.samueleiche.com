@@ -60,7 +60,7 @@ export default defineComponent({
 	position: absolute;
 	font-size: 52px;
 	font-weight: 700;
-	color: #ffffff;
+	color: var(--primary-light);
 }
 
 .count-down-enter-active,

@@ -1,6 +1,6 @@
 <template>
 	<TransitionGroup appear tag="div" name="lotus-menu-option-transition" class="lotus-menu">
-		<div
+		<button
 			v-for="option of computedOptions"
 			:key="`menu-option-${option.id}`"
 			:style="option.style"
@@ -8,7 +8,7 @@
 			@click="onClick(option, $event)"
 		>
 			<span>{{ option.text }}</span>
-		</div>
+		</button>
 	</TransitionGroup>
 </template>
 
@@ -36,6 +36,12 @@ export interface MenuOption {
 		left: string
 		top: string
 	}
+}
+
+function getBorderGradient(angle: number, active: boolean) {
+	const deg = (angle + 55) * (180 / Math.PI)
+
+	return `linear-gradient(${deg}deg, #f5f1ee, #f5f1ee) padding-box, linear-gradient(${deg}deg, #72664d, #997b3e 60%) border-box`
 }
 
 export default defineComponent({
@@ -67,6 +73,8 @@ export default defineComponent({
 				const sinθ = sin(angle)
 				const x = round(windowWidth.value / 2 + radius * cosθ - elemSize / 2)
 				const y = round(windowHeight.value / 2 + radius * sinθ - elemSize / 2)
+				const isActive = props.modelValue === entry.id
+				const background = getBorderGradient(angle, isActive)
 
 				const style = {
 					'--transition-transform-x': toPx(Math.floor((radius / 10) * -cosθ)),
@@ -78,6 +86,7 @@ export default defineComponent({
 					width: toPx(elemSize),
 					left: toPx(x),
 					top: toPx(y),
+					background,
 				}
 
 				angle += step
@@ -109,21 +118,25 @@ export default defineComponent({
 }
 
 .lotus-menu-option {
+	position: relative;
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
 	border-radius: 50%;
-	border: 2px solid #000;
+	color: var(--primary-dark);
+	border: 2px solid transparent;
 	font-weight: 700;
 	line-height: 1.2;
 	cursor: pointer;
 	user-select: none;
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%), 0 8px 10px -6px rgb(0 0 0 / 30%);
 	-webkit-tap-highlight-color: transparent;
 }
 
 .lotus-menu-option-active {
-	background-color: #d1d5db;
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%), 0 8px 10px -6px rgb(0 0 0 / 30%), 0 0 0 4px var(--primary-light),
+		0 0 0 7px #f2b04d;
 }
 
 .lotus-menu-option span {

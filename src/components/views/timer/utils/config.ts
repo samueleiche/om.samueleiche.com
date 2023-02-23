@@ -6,4 +6,4 @@ export const CIRCLE_COLOR = 'rgb(245, 240, 227)'
 export const CIRCLE_BACKGROUND_COLOR = 'rgb(17, 24, 39)'
 
 export const backgroundImage = new Image()
-backgroundImage.src = require('../../../../assets/background.jpg')
+backgroundImage.src = require('../../../../assets/timer-background.jpg')

@@ -1,7 +1,7 @@
 <template>
 	<Transition name="v-sw-popup">
 		<div v-if="showPopup" class="sw-update-popup">
-			<div class="sw-update-popup-message">A new version is available.</div>
+			<div class="sw-update-popup-message">A new version is available</div>
 			<button class="sw-update-popup-button" type="button" @click="onConfirm">Update</button>
 		</div>
 	</Transition>
@@ -52,8 +52,8 @@ export default defineComponent({
 	min-width: 280px;
 	border-radius: 16px;
 	text-align: center;
-	background-color: #fff;
-	box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+	background-color: var(--primary-light);
+	box-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
 }
 
 .sw-update-popup-message {
@@ -66,17 +66,12 @@ export default defineComponent({
 	letter-spacing: 0.02em;
 	font-weight: 700;
 	font-size: 14px;
-	color: #fff;
-	background-color: #000;
+	color: var(--primary-light);
+	background-color: var(--primary-dark);
 	user-select: none;
 
 	&:focus {
 		outline: none;
-	}
-
-	&:active,
-	&:focus-visible {
-		background-color: rgba(#000, 0.75);
 	}
 }
 

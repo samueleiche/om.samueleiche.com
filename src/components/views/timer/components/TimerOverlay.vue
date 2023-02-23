@@ -89,7 +89,7 @@ export default defineComponent({
 	min-width: 280px;
 	border-radius: 24px;
 	text-align: center;
-	background-color: #fff;
+	background-color: var(--primary-light);
 	box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
@@ -107,30 +107,20 @@ export default defineComponent({
 	letter-spacing: 0.02em;
 	font-weight: 700;
 	font-size: 14px;
-	color: #fff;
-	background-color: #000;
-	border: 2px solid #000;
+	color: var(--primary-light);
+	background-color: var(--primary-dark);
+	border: 2px solid var(--primary-dark);
 	user-select: none;
 	-webkit-tap-highlight-color: transparent;
 
 	&:focus {
 		outline: none;
 	}
-
-	&:active,
-	&:focus-visible {
-		background-color: rgba(#000, 0.75);
-	}
 }
 
 .timer-control-button-bordered {
-	color: #000;
+	color: var(--primary-dark);
 	background-color: transparent;
-
-	&:active,
-	&:focus-visible {
-		background-color: rgba(#000, 0.15);
-	}
 }
 
 .table {

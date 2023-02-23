@@ -25,10 +25,15 @@ export default defineComponent({
 :root {
 	--ease-out-quad: cubic-bezier(0.5, 1, 0.89, 1);
 	--ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+	--ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
 	--ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+
 	--circle-x: 50%;
 	--circle-y: 50%;
 	--circle-radius: 71%;
+
+	--primary-light: #f5f1ee;
+	--primary-dark: #48402e;
 }
 
 *,
@@ -54,8 +59,7 @@ body {
 body {
 	background: #fef9f8;
 	font-family: 'Inter', sans-serif;
-	color: #000;
-	background-color: #000;
+	color: var(--primary-dark);
 	margin: 0;
 	padding: 0;
 }

@@ -1,13 +1,18 @@
 <template>
 	<AppLayout>
+		<div class="background"></div>
+
 		<LotusMenu :options="timerOptions" :modelValue="timerInterval" @update:modelValue="onSelect" />
 
 		<div class="footer">
 			<button v-if="canAskNotificationPermission" type="button" @click="askNotificationPermission">
-				Enable Notifications
+				Send Notifications
 			</button>
-			<div>v{{ appVersion }}</div>
+			<button v-if="false" type="button" @click="setReducedMotionMode">Reduced Motion Off</button>
+			<span>v{{ appVersion }}</span>
 		</div>
+
+		<img class="active-sound-img" src="../../../assets/large-bowl.png" alt="" />
 
 		<SWUpdatePopup />
 	</AppLayout>
@@ -49,6 +54,10 @@ export default defineComponent({
 			})
 		}
 
+		function setReducedMotionMode() {
+			// noop
+		}
+
 		function onSelect(id: number, event: PointerEvent) {
 			const button = event.target as HTMLElement
 
@@ -84,6 +93,7 @@ export default defineComponent({
 			appVersion,
 			canAskNotificationPermission,
 			askNotificationPermission,
+			setReducedMotionMode,
 		}
 	},
 })
@@ -91,13 +101,28 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .app-layout {
-	background-color: #ffffff;
+	background-color: var(--primary-light);
+}
+
+.background {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: url('../../../assets/menu-background.jpg');
+	background-size: cover;
+	background-position: center center;
+	opacity: 0.2;
 }
 
 .footer {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
-	gap: 0.75rem;
+	align-items: center;
+	padding: 0 16px;
+	gap: 0 0.75rem;
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -105,6 +130,15 @@ export default defineComponent({
 	text-align: center;
 	font-size: 12px;
 	line-height: 24px;
-	color: #9ca3af;
+	color: var(--primary-dark);
+}
+
+.active-sound-img {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	width: 120px;
+	border-radius: 50%;
 }
 </style>
