@@ -15,6 +15,7 @@
 <script lang="ts">
 import { defineComponent, PropType, computed } from 'vue'
 import { toPx, m2PI } from '../../../../support/utils'
+import { store } from '../../../../support/store'
 import { useWindowSize } from '../../../../composables/useWindowSize'
 
 const MAX_RADIUS = 150
@@ -38,7 +39,7 @@ export interface MenuOption {
 	}
 }
 
-function getBorderGradient(angle: number, active: boolean) {
+function getBorderGradient(angle: number) {
 	const deg = (angle + 55) * (180 / Math.PI)
 
 	return `linear-gradient(${deg}deg, #f5f1ee, #f5f1ee) padding-box, linear-gradient(${deg}deg, #72664d, #997b3e 60%) border-box`
@@ -59,6 +60,8 @@ export default defineComponent({
 		const { width: windowWidth, height: windowHeight } = useWindowSize()
 		const { round, max, min, cos, sin, PI } = Math
 
+		const isReducedMotionMode = computed(() => store.state.reducedMotion)
+
 		const computedOptions = computed(() => {
 			const radius = max(min(windowWidth.value / 3, MAX_RADIUS), MIN_RADIUS)
 			const elemSize = radius / ELEM_SIZE_RATIO
@@ -73,13 +76,13 @@ export default defineComponent({
 				const sinθ = sin(angle)
 				const x = round(windowWidth.value / 2 + radius * cosθ - elemSize / 2)
 				const y = round(windowHeight.value / 2 + radius * sinθ - elemSize / 2)
-				const isActive = props.modelValue === entry.id
-				const background = getBorderGradient(angle, isActive)
+				const background = getBorderGradient(angle)
 
 				const style = {
 					'--transition-transform-x': toPx(Math.floor((radius / 10) * -cosθ)),
 					'--transition-transform-y': toPx(Math.floor((radius / 10) * -sinθ)),
 					'--transition-delay': 200 + i * 90 + 'ms',
+					'--transition-property': isReducedMotionMode.value ? 'opacity' : 'opacity, transform',
 					position: 'absolute',
 					fontSize: toPx(fontSize),
 					height: toPx(elemSize),
@@ -147,7 +150,7 @@ export default defineComponent({
 .lotus-menu-option-transition-leave-active {
 	transition-duration: 900ms;
 	transition-timing-function: var(--ease-out-quad);
-	transition-property: opacity, transform;
+	transition-property: var(--transition-property);
 	transition-delay: var(--transition-delay, 0ms);
 }
 .lotus-menu-option-transition-enter-from,

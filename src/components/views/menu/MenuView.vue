@@ -8,7 +8,15 @@
 			<button v-if="canAskNotificationPermission" type="button" @click="askNotificationPermission">
 				Send Notifications
 			</button>
-			<button v-if="false" type="button" @click="setReducedMotionMode">Reduced Motion Off</button>
+
+			<button
+				type="button"
+				:style="{ fontWeight: isReducedMotionMode ? 700 : 400 }"
+				@click="toggleReducedMotionMode"
+			>
+				{{ isReducedMotionMode ? 'Reduce Motion On' : 'Reduce Motion Off' }}
+			</button>
+
 			<span>v{{ appVersion }}</span>
 		</div>
 
@@ -45,6 +53,7 @@ export default defineComponent({
 
 		const appVersion: string = process.env.VUE_APP_VERSION
 		const timerInterval = computed(() => store.state.timerInterval)
+		const isReducedMotionMode = computed(() => store.state.reducedMotion)
 
 		const canAskNotificationPermission = ref(!!getNotificationPermission().default)
 
@@ -54,8 +63,8 @@ export default defineComponent({
 			})
 		}
 
-		function setReducedMotionMode() {
-			// noop
+		function toggleReducedMotionMode() {
+			store.actions.toggleReducedMotion()
 		}
 
 		function onSelect(id: number, event: PointerEvent) {
@@ -93,7 +102,8 @@ export default defineComponent({
 			appVersion,
 			canAskNotificationPermission,
 			askNotificationPermission,
-			setReducedMotionMode,
+			toggleReducedMotionMode,
+			isReducedMotionMode,
 		}
 	},
 })

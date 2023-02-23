@@ -1,43 +1,58 @@
 <template>
-	<Transition name="view-transition" mode="in-out" @afterEnter="onAfterEnter">
+	<Transition :name="transitionName" mode="in-out" @afterEnter="onAfterEnter">
 		<slot />
 	</Transition>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { setCircleStyle } from '../../support/transition'
+import { store } from '../../support/store'
 
 export default defineComponent({
 	setup() {
+		const transitionName = computed(() => {
+			return store.state.reducedMotion ? 'view-fade-transition' : 'view-circle-transition'
+		})
+
 		function onAfterEnter() {
 			setCircleStyle({ x: null, y: null, r: null })
 		}
 
 		return {
 			onAfterEnter,
+			transitionName,
 		}
 	},
 })
 </script>
 
 <style lang="scss" scoped>
-.view-transition-enter-active {
+.view-fade-transition-enter-active {
+	opacity: 1;
+	transition: opacity 400ms var(--ease-out-cubic);
+}
+
+.view-fade-transition-leave-active {
+	transition: opacity 400ms var(--ease-out-cubic);
+}
+
+.view-fade-transition-enter-from,
+.view-fade-transition-leave-to {
+	opacity: 0;
+}
+
+.view-circle-transition-enter-active {
 	clip-path: circle(var(--circle-radius) at var(--circle-x) var(--circle-y));
 	transition: clip-path 1000ms var(--ease-in-out-cubic);
-	// TODO: reduced motion mode
-	// opacity: 1;
-	// transition: opacity 600ms var(--ease-out-cubic);
 }
 
-.view-transition-leave-active {
+.view-circle-transition-leave-active {
 	transition: clip-path 1000ms var(--ease-in-out-cubic);
-	// transition: opacity 600ms var(--ease-out-cubic);
 }
 
-.view-transition-enter-from,
-.view-transition-leave-to {
+.view-circle-transition-enter-from,
+.view-circle-transition-leave-to {
 	clip-path: circle(0px at var(--circle-x) var(--circle-y));
-	// opacity: 0;
 }
 </style>
