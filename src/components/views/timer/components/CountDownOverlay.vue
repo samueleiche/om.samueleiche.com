@@ -15,6 +15,7 @@ import { defineComponent, computed } from 'vue'
 import { useCountDown } from '../../../../composables/global/useCountDown'
 import AppOverlay from '../../../app/AppOverlay.vue'
 import { useViewController } from '../../../../composables/global/useViewController'
+import { setCircleStyle } from '../../../../support/transition'
 
 export default defineComponent({
 	components: {
@@ -32,6 +33,8 @@ export default defineComponent({
 			if (time.value > 2) {
 				return // avoid cancelling before animation is finished
 			}
+
+			setCircleStyle({ x: null, y: null, r: null })
 			setActiveView(AppView.MENU)
 			clearTimer()
 		}
