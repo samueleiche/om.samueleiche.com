@@ -7,7 +7,7 @@ const state = reactive({
 	timerInterval: Number(storage.fetch('timerInterval')) || 60000,
 	timerStart: 0,
 
-	reducedMotion: storage.fetch('reducedMotion') === 'true' || prefersReducedMotion,
+	reducedMotion: storage.fetch('reducedMotion') ? storage.fetch('reducedMotion') === 'true' : prefersReducedMotion,
 })
 
 const actions = {
