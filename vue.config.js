@@ -50,7 +50,7 @@ module.exports = defineConfig({
 			],
 		},
 		name: 'Om',
-		assetsVersion: '2.0.3',
+		assetsVersion: '2.0.4',
 		themeColor: '#f5f1ee',
 		msTileColor: '#f5f1ee',
 		appleMobileWebAppCapable: 'yes',
