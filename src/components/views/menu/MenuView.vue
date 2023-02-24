@@ -6,7 +6,7 @@
 
 		<div class="footer">
 			<button v-if="canAskNotificationPermission" type="button" @click="askNotificationPermission">
-				Send Notifications
+				Enable Notifications
 			</button>
 
 			<button
