@@ -67,6 +67,7 @@ export default defineComponent({
 .timer-overlay {
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
+	user-select: none;
 }
 
 .timer-overlay-content {
@@ -102,7 +103,6 @@ export default defineComponent({
 	font-size: 16px;
 	color: #000;
 	background-color: var(--primary-light);
-	user-select: none;
 	-webkit-tap-highlight-color: transparent;
 	box-shadow: 0 0 0 4px #000, 0 0 0 7px var(--primary-light);
 	transform: translate(0, 174px);
