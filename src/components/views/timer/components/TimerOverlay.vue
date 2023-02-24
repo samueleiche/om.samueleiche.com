@@ -1,33 +1,14 @@
 <template>
-	<AppOverlay>
-		<div class="timer-control">
-			<h2 class="timer-control-message">Stop Timer?</h2>
+	<AppOverlay class="timer-overlay">
+		<div class="timer-overlay-content" @click="close">
+			<div class="active-interval-label">
+				{{ activeIntervalLabel }}
+			</div>
+			<div class="total-elapsed-time">
+				{{ totalElapsedTime }}
+			</div>
 
-			<table class="table">
-				<tr>
-					<td>Time</td>
-					<td class="table-value">
-						{{ timerInfo.time }}
-					</td>
-				</tr>
-				<tr>
-					<td>Laps</td>
-					<td class="table-value">
-						{{ timerInfo.laps }}
-					</td>
-				</tr>
-				<tr>
-					<td>Total Time</td>
-					<td class="table-value">
-						{{ timerInfo.totalTime }}
-					</td>
-				</tr>
-			</table>
-
-			<button class="timer-control-button" type="button" @click="stop">Stop</button>
-			<button class="timer-control-button timer-control-button-bordered" type="button" @click="close">
-				Resume
-			</button>
+			<button class="timer-stop-button" type="button" @click.stop="stop">Back</button>
 		</div>
 	</AppOverlay>
 </template>
@@ -38,6 +19,7 @@ import { defineComponent, computed } from 'vue'
 import { store } from '../../../../support/store'
 import { trackEvent } from '../../../../support/analytics'
 import { timerOptions } from '../../../../support/settings'
+import { getCircle, setCircleStyle } from '../../../../support/transition'
 
 import { useOverlay, OverlayName } from '../../../../composables/global/useOverlay'
 import { useViewController } from '../../../../composables/global/useViewController'
@@ -52,20 +34,24 @@ export default defineComponent({
 		const { setActiveView, AppView } = useViewController()
 		const { removeOverlay } = useOverlay()
 
-		const timerInfo = computed(() => {
-			const intervalTime = store.state.timerInterval
-			const intervalLabel = timerOptions.find((o) => o.id === intervalTime)
-			const elapsedTime = Date.now() - store.state.timerStart
-
-			return {
-				time: intervalLabel?.text || '',
-				laps: Math.floor(elapsedTime / intervalTime),
-				totalTime: new Date(elapsedTime).toISOString().substr(11, 8),
-			}
+		const activeIntervalLabel = computed(() => {
+			const timerInterval = store.state.timerInterval
+			return timerOptions.find((o) => o.id === timerInterval)?.text || ''
 		})
 
-		function stop() {
+		const totalElapsedTime = computed(() => {
+			const elapsedTime = store.state.timerElapsed
+			return new Date(elapsedTime).toISOString().substring(11, 19)
+		})
+
+		function stop(event: PointerEvent) {
+			const button = event.target as HTMLElement
+
 			trackEvent('click', { category: 'Timer', label: 'Leave Timer' })
+
+			const circle = getCircle(button)
+			setCircleStyle(circle)
+
 			setActiveView(AppView.MENU)
 			close()
 		}
@@ -77,73 +63,62 @@ export default defineComponent({
 		return {
 			stop,
 			close,
-			timerInfo,
+			activeIntervalLabel,
+			totalElapsedTime,
 		}
 	},
 })
 </script>
 
 <style lang="scss" scoped>
-.timer-control {
-	padding: 20px 24px;
-	min-width: 280px;
-	border-radius: 24px;
-	text-align: center;
-	background-color: #fff;
-	box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-}
-
-.timer-control-message {
-	font-size: 24px;
-	font-weight: 500;
-	margin: 8px 0 12px;
-}
-
-.timer-control-button {
-	width: 100%;
-	margin: 8px 0;
-	padding: 10px 28px;
-	border-radius: 16px;
-	letter-spacing: 0.02em;
-	font-weight: 700;
-	font-size: 14px;
-	color: #fff;
-	background-color: #000;
-	border: 2px solid #000;
+.timer-overlay {
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
 	user-select: none;
+}
+
+.timer-overlay-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+	color: var(--primary-light);
+}
+
+.total-elapsed-time {
+	position: absolute;
+	font-size: 30px;
+	font-weight: 700;
+}
+
+.active-interval-label {
+	position: absolute;
+	font-weight: 700;
+	font-size: 18px;
+	transform: translate(0, -144px);
+}
+
+.timer-stop-button {
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	border: 2px solid var(--primary-light);
+	border-radius: 50%;
+	font-weight: 700;
+	font-size: 16px;
+	color: #000;
+	background-color: var(--primary-light);
+	box-shadow: 0 0 0 4px #000, 0 0 0 7px var(--primary-light);
+	transform: translate(0, 174px);
+	transition: transform 100ms;
 	-webkit-tap-highlight-color: transparent;
 
-	&:focus {
-		outline: none;
+	&:hover,
+	&:focus,
+	&:active {
+		transform: translate(0, 174px) scale(0.95, 0.95);
 	}
-
-	&:active,
-	&:focus-visible {
-		background-color: rgba(#000, 0.75);
-	}
-}
-
-.timer-control-button-bordered {
-	color: #000;
-	background-color: transparent;
-
-	&:active,
-	&:focus-visible {
-		background-color: rgba(#000, 0.15);
-	}
-}
-
-.table {
-	width: 100%;
-	margin: 8px 0;
-	font-size: 14px;
-
-	td {
-		text-align: left;
-	}
-}
-
-.table-value {
-	font-weight: 700;
 }
 </style>

@@ -1,20 +1,21 @@
 <template>
-	<TransitionGroup appear tag="div" name="v-lotus-menu-option" class="lotus-menu">
-		<div
+	<TransitionGroup appear tag="div" name="lotus-menu-option-transition" class="lotus-menu">
+		<button
 			v-for="option of computedOptions"
-			:key="`´menu-option-${option.id}`"
+			:key="`menu-option-${option.id}`"
 			:style="option.style"
 			:class="['lotus-menu-option', { 'lotus-menu-option-active': modelValue === option.id }]"
-			@click="onClick(option)"
+			@click="onClick(option, $event)"
 		>
 			<span>{{ option.text }}</span>
-		</div>
+		</button>
 	</TransitionGroup>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from 'vue'
 import { toPx, m2PI } from '../../../../support/utils'
+import { store } from '../../../../support/store'
 import { useWindowSize } from '../../../../composables/useWindowSize'
 
 const MAX_RADIUS = 150
@@ -38,6 +39,12 @@ export interface MenuOption {
 	}
 }
 
+function getBorderGradient(angle: number) {
+	const deg = (angle + 55) * (180 / Math.PI)
+
+	return `linear-gradient(${deg}deg, #f5f1ee, #f5f1ee) padding-box, linear-gradient(${deg}deg, #72664d, #997b3e 60%) border-box`
+}
+
 export default defineComponent({
 	emits: ['update:modelValue'],
 	props: {
@@ -53,6 +60,8 @@ export default defineComponent({
 		const { width: windowWidth, height: windowHeight } = useWindowSize()
 		const { round, max, min, cos, sin, PI } = Math
 
+		const isReducedMotionMode = computed(() => store.state.reducedMotion)
+
 		const computedOptions = computed(() => {
 			const radius = max(min(windowWidth.value / 3, MAX_RADIUS), MIN_RADIUS)
 			const elemSize = radius / ELEM_SIZE_RATIO
@@ -67,17 +76,20 @@ export default defineComponent({
 				const sinθ = sin(angle)
 				const x = round(windowWidth.value / 2 + radius * cosθ - elemSize / 2)
 				const y = round(windowHeight.value / 2 + radius * sinθ - elemSize / 2)
+				const background = getBorderGradient(angle)
 
 				const style = {
 					'--transition-transform-x': toPx(Math.floor((radius / 10) * -cosθ)),
 					'--transition-transform-y': toPx(Math.floor((radius / 10) * -sinθ)),
 					'--transition-delay': 200 + i * 90 + 'ms',
+					'--transition-property': isReducedMotionMode.value ? 'opacity' : 'opacity, transform',
 					position: 'absolute',
 					fontSize: toPx(fontSize),
 					height: toPx(elemSize),
 					width: toPx(elemSize),
 					left: toPx(x),
 					top: toPx(y),
+					background,
 				}
 
 				angle += step
@@ -88,8 +100,8 @@ export default defineComponent({
 			return result
 		})
 
-		function onClick(option: MenuOption) {
-			emit('update:modelValue', option.id)
+		function onClick(option: MenuOption, event: PointerEvent) {
+			emit('update:modelValue', option.id, event)
 		}
 
 		return {
@@ -109,36 +121,48 @@ export default defineComponent({
 }
 
 .lotus-menu-option {
+	position: relative;
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
 	border-radius: 50%;
-	border: 2px solid #000;
+	color: var(--primary-dark);
+	border: 2px solid transparent;
 	font-weight: 700;
 	line-height: 1.2;
 	cursor: pointer;
 	user-select: none;
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%), 0 8px 10px -6px rgb(0 0 0 / 30%);
+	transition: box-shadow 160ms;
 	-webkit-tap-highlight-color: transparent;
+
+	&:not(.lotus-menu-option-transition-enter-active) {
+		&:hover,
+		&:focus,
+		&:active {
+			transition: transform 100ms;
+			transform: scale(0.95, 0.95);
+		}
+	}
 }
 
 .lotus-menu-option-active {
-	background-color: #d1d5db;
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%), 0 8px 10px -6px rgb(0 0 0 / 30%), 0 0 0 4px var(--primary-light),
+		0 0 0 7px #f2b04d;
 }
 
 .lotus-menu-option span {
 	max-width: 2em;
 }
 
-.v-lotus-menu-option-enter-active,
-.v-lotus-menu-option-leave-active {
+.lotus-menu-option-transition-enter-active {
 	transition-duration: 900ms;
 	transition-timing-function: var(--ease-out-quad);
-	transition-property: opacity, transform;
+	transition-property: var(--transition-property);
 	transition-delay: var(--transition-delay, 0ms);
 }
-.v-lotus-menu-option-enter-from,
-.v-lotus-menu-option-leave-to {
+.lotus-menu-option-transition-enter-from {
 	opacity: 0;
 	transform: translate3d(var(--transition-transform-x, 0), var(--transition-transform-y, 0), 0);
 }

@@ -14,7 +14,7 @@ function startTimer(startTime: number, onTimerEnd?: () => void) {
 	timerId = setInterval(() => {
 		time.value -= 1
 
-		if (time.value < 0) {
+		if (time.value < 1) {
 			onTimerEnd?.()
 			clearTimer()
 		}
