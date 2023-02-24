@@ -1,12 +1,11 @@
 <template>
-	<Transition :name="transitionName" mode="in-out" @afterEnter="onAfterEnter">
+	<Transition :name="transitionName" mode="in-out">
 		<slot />
 	</Transition>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { setCircleStyle } from '../../support/transition'
 import { store } from '../../support/store'
 
 export default defineComponent({
@@ -15,12 +14,7 @@ export default defineComponent({
 			return store.state.reducedMotion ? 'view-fade-transition' : 'view-circle-transition'
 		})
 
-		function onAfterEnter() {
-			setCircleStyle({ x: null, y: null, r: null })
-		}
-
 		return {
-			onAfterEnter,
 			transitionName,
 		}
 	},

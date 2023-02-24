@@ -141,6 +141,10 @@ export default defineComponent({
 	font-size: 12px;
 	line-height: 24px;
 	color: var(--primary-dark);
+
+	button {
+		-webkit-tap-highlight-color: transparent;
+	}
 }
 
 .active-sound-img {

@@ -134,7 +134,17 @@ export default defineComponent({
 	cursor: pointer;
 	user-select: none;
 	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%), 0 8px 10px -6px rgb(0 0 0 / 30%);
+	transition: box-shadow 160ms;
 	-webkit-tap-highlight-color: transparent;
+
+	&:not(.lotus-menu-option-transition-enter-active) {
+		&:hover,
+		&:focus,
+		&:active {
+			transition: transform 100ms;
+			transform: scale(0.95, 0.95);
+		}
+	}
 }
 
 .lotus-menu-option-active {
@@ -146,15 +156,13 @@ export default defineComponent({
 	max-width: 2em;
 }
 
-.lotus-menu-option-transition-enter-active,
-.lotus-menu-option-transition-leave-active {
+.lotus-menu-option-transition-enter-active {
 	transition-duration: 900ms;
 	transition-timing-function: var(--ease-out-quad);
 	transition-property: var(--transition-property);
 	transition-delay: var(--transition-delay, 0ms);
 }
-.lotus-menu-option-transition-enter-from,
-.lotus-menu-option-transition-leave-to {
+.lotus-menu-option-transition-enter-from {
 	opacity: 0;
 	transform: translate3d(var(--transition-transform-x, 0), var(--transition-transform-y, 0), 0);
 }

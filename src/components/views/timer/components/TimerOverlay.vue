@@ -19,6 +19,7 @@ import { defineComponent, computed } from 'vue'
 import { store } from '../../../../support/store'
 import { trackEvent } from '../../../../support/analytics'
 import { timerOptions } from '../../../../support/settings'
+import { getCircle, setCircleStyle } from '../../../../support/transition'
 
 import { useOverlay, OverlayName } from '../../../../composables/global/useOverlay'
 import { useViewController } from '../../../../composables/global/useViewController'
@@ -43,8 +44,14 @@ export default defineComponent({
 			return new Date(elapsedTime).toISOString().substring(11, 19)
 		})
 
-		function stop() {
+		function stop(event: PointerEvent) {
+			const button = event.target as HTMLElement
+
 			trackEvent('click', { category: 'Timer', label: 'Leave Timer' })
+
+			const circle = getCircle(button)
+			setCircleStyle(circle)
+
 			setActiveView(AppView.MENU)
 			close()
 		}
@@ -103,8 +110,15 @@ export default defineComponent({
 	font-size: 16px;
 	color: #000;
 	background-color: var(--primary-light);
-	-webkit-tap-highlight-color: transparent;
 	box-shadow: 0 0 0 4px #000, 0 0 0 7px var(--primary-light);
 	transform: translate(0, 174px);
+	transition: transform 100ms;
+	-webkit-tap-highlight-color: transparent;
+
+	&:hover,
+	&:focus,
+	&:active {
+		transform: translate(0, 174px) scale(0.95, 0.95);
+	}
 }
 </style>
