@@ -24,25 +24,4 @@
 	display: flex;
 	flex-direction: column;
 }
-
-.overlay-transition-enter-from {
-	.app-overlay-content {
-		transform: scale(0.96) translate3d(0, 15px, 0);
-	}
-}
-
-.overlay-transition-leave-to {
-	.app-overlay-content {
-		transform: scale(0.96) translate3d(0, -15px, 0);
-	}
-}
-
-.overlay-transition-enter-active,
-.overlay-transition-leave-active {
-	.app-overlay-content {
-		transition-property: transform;
-		transition-duration: inherit;
-		transition-timing-function: inherit;
-	}
-}
 </style>

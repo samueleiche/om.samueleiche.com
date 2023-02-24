@@ -5,7 +5,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
 const state = reactive({
 	timerInterval: Number(storage.fetch('timerInterval')) || 60000,
-	timerStart: 0,
+	timerElapsed: 0,
 
 	reducedMotion: storage.fetch('reducedMotion') ? storage.fetch('reducedMotion') === 'true' : prefersReducedMotion,
 })
@@ -15,8 +15,8 @@ const actions = {
 		state.timerInterval = value
 		storage.store('timerInterval', String(value))
 	},
-	setTimerStart(value: number) {
-		state.timerStart = value
+	setTimerElapsed(value: number) {
+		state.timerElapsed = value
 	},
 
 	toggleReducedMotion() {

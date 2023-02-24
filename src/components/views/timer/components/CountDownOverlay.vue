@@ -29,9 +29,8 @@ export default defineComponent({
 		})
 
 		const onCancel = () => {
-			// avoid cancelling before animation is finished
 			if (time.value > 2) {
-				return
+				return // avoid cancelling before animation is finished
 			}
 			setActiveView(AppView.MENU)
 			clearTimer()
@@ -69,11 +68,11 @@ export default defineComponent({
 }
 
 .count-down-enter-from {
-	transform: translateY(30px);
+	transform: translateY(18px);
 }
 
 .count-down-leave-to {
-	transform: translateY(-30px);
+	transform: translateY(-18px);
 }
 
 .count-down-enter-from,

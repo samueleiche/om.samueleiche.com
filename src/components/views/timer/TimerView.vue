@@ -68,7 +68,7 @@ export default defineComponent({
 		const canvasRef = ref<HTMLCanvasElement | null>(null)
 
 		const timerInterval = computed(() => store.state.timerInterval)
-		const timerStart = computed(() => store.state.timerStart)
+		let timerStart = 0
 		let isTimerRewinding = false
 
 		function setupCanvas(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
@@ -109,9 +109,12 @@ export default defineComponent({
 			requestWakeLock()
 
 			const { start, stop } = useRaf((elapsed) => {
-				if (!timerStart.value) {
-					store.actions.setTimerStart(Date.now())
+				if (!timerStart) {
+					timerStart = Date.now()
 				}
+
+				const elapsedTotal = Date.now() - timerStart
+				store.actions.setTimerElapsed(elapsedTotal)
 
 				drawBackground({ ctx, img: backgroundImage })
 				drawCircle({
@@ -124,7 +127,6 @@ export default defineComponent({
 				// draw progress circle
 				if (elapsed < timerInterval.value - REWIND_DURATION_MS) {
 					const progress = elapsed / (timerInterval.value - REWIND_DURATION_MS)
-					const elapsedTotal = Date.now() - timerStart.value
 					const startAngle = -mPI2
 					const endAngle = m2PI * progress + startAngle
 
@@ -225,7 +227,7 @@ export default defineComponent({
 		onBeforeUnmount(() => {
 			pauseAudio(audio.defaultBowl)
 			releaseWakeLock()
-			store.actions.setTimerStart(0)
+			store.actions.setTimerElapsed(0)
 		})
 
 		return {
@@ -241,7 +243,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .canvas {
-	background-color: #000000;
+	background-color: #000;
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
 }
