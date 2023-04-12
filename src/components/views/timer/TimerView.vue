@@ -69,7 +69,6 @@ export default defineComponent({
 
 		const timerInterval = computed(() => store.state.timerInterval)
 		let timerStart = 0
-		let isTimerRewinding = false
 
 		function setupCanvas(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
 			const ctx = canvas.getContext('2d')!
@@ -124,52 +123,43 @@ export default defineComponent({
 					ctx,
 				})
 
-				// draw progress circle
-				if (elapsed < timerInterval.value - REWIND_DURATION_MS) {
-					const progress = elapsed / (timerInterval.value - REWIND_DURATION_MS)
-					const startAngle = -mPI2
-					const endAngle = m2PI * progress + startAngle
+				const progress = elapsed / timerInterval.value
+				// begin arc from top (-Math.PI / 2 = -1.57) and end at the top (Math.PI * 2 - Math.PI / 2 = 4.71)
+				let startAngle = -mPI2
+				const endAngle = m2PI * progress + -mPI2
 
-					circle.opacity = Math.min(elapsedTotal / TRANSITION_IN_MS, 1)
-
-					drawCircle({ circle, startAngle, endAngle, ctx })
-					drawPoint({ circle, angle: endAngle, ctx })
-				} else {
-					// play sound and begin rewinding phase
-					if (!isTimerRewinding) {
-						const elapsedMins = timerInterval.value / (60 * 1000)
-
-						trackEvent('audio_play', {
-							category: 'Timer',
-							label: 'Bowl Hit',
-							value: elapsedMins,
-							nonInteraction: true,
-						})
-
-						playAudio(audio.defaultBowl)
-						sendNotification('om says:', `${elapsedMins}min passed`)
-
-						isTimerRewinding = true
-					}
-
-					const elapsedRewind = elapsed - timerInterval.value + REWIND_DURATION_MS
+				// calc rewinding angle from startAngle
+				if (elapsed > timerInterval.value - REWIND_DURATION_MS) {
+					const elapsedRewind = Math.min(
+						REWIND_DURATION_MS,
+						elapsed - timerInterval.value + REWIND_DURATION_MS,
+					)
 					const reverseProgress = 1 - elapsedRewind / REWIND_DURATION_MS
+					const reverseProgressEase = Math.max(easeInOutQuint(reverseProgress), MIN_VISIBLE_PROGRESS)
 
-					drawPoint({ circle, angle: -mPI2, ctx })
+					startAngle = Math.min(-m2PI * reverseProgressEase - mPI2 + m2PI, endAngle)
+				}
 
-					// draw progress rewind circle
-					if (reverseProgress > 0) {
-						const reverseProgressEase = Math.max(easeInOutQuint(reverseProgress), MIN_VISIBLE_PROGRESS)
-						const endAngle = -mPI2
-						const startAngle = -m2PI * reverseProgressEase + endAngle
+				// draw progress circle
+				circle.opacity = Math.min(elapsedTotal / TRANSITION_IN_MS, 1)
+				drawCircle({ circle, startAngle, endAngle, ctx })
+				drawPoint({ circle, angle: endAngle, ctx })
 
-						drawCircle({ circle, startAngle, endAngle, ctx })
-					} else {
-						// rewinding phase is done, now restart
-						isTimerRewinding = false
-						stop()
-						start()
-					}
+				if (elapsed >= timerInterval.value) {
+					const elapsedMins = timerInterval.value / (60 * 1000)
+
+					trackEvent('audio_play', {
+						category: 'Timer',
+						label: 'Bowl Hit',
+						value: elapsedMins,
+						nonInteraction: true,
+					})
+
+					playAudio(audio.defaultBowl)
+					sendNotification('om says:', `${elapsedMins}min passed`)
+
+					stop()
+					start()
 				}
 			})
 
