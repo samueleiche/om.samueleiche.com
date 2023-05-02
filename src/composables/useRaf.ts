@@ -5,10 +5,10 @@ import { useEventListener } from './useEventListener'
 
 type TickerFn = (fn: () => void) => number
 
-const timeoutFn = (callback: () => void) => setTimeout(callback, 16)
+const timeoutFn = (callback: () => void) => window.setTimeout(callback, 16)
 
 function getTickerFn() {
-	return isDocumentVisible() ? requestAnimationFrame : timeoutFn
+	return isDocumentVisible() ? window.requestAnimationFrame : timeoutFn
 }
 
 export function useRaf(callback: (elapsed: number) => void) {

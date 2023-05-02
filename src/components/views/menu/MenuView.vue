@@ -1,6 +1,6 @@
 <template>
 	<AppLayout>
-		<div class="background"></div>
+		<div class="background" />
 
 		<LotusMenu :options="timerOptions" :modelValue="timerInterval" @update:modelValue="onSelect" />
 
@@ -51,7 +51,7 @@ export default defineComponent({
 	setup() {
 		const { activeView, setActiveView, AppView } = useViewController()
 
-		const appVersion: string = process.env.VUE_APP_VERSION
+		const appVersion = import.meta.env.APP_VERSION
 		const timerInterval = computed(() => store.state.timerInterval)
 		const isReducedMotionMode = computed(() => store.state.reducedMotion)
 

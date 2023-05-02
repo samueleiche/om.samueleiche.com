@@ -18,8 +18,12 @@ export default defineComponent({
 		const showPopup = ref(false)
 
 		function onConfirm() {
+			if (!worker.value) {
+				return
+			}
+
 			showPopup.value = false
-			skipWaiting(worker.value!).then(() => {
+			skipWaiting(worker.value).then(() => {
 				window.location.reload()
 			})
 		}

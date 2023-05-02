@@ -1,8 +1,8 @@
 <template>
-	<AppOverlay @click="onCancel" class="count-down-overlay">
+	<AppOverlay class="count-down-overlay" @click="onCancel">
 		<div class="count-down-overlay-content">
 			<Transition name="count-down">
-				<div class="count-down-time" :key="countDownTime">
+				<div :key="countDownTime" class="count-down-time">
 					{{ countDownTime }}
 				</div>
 			</Transition>

@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed } from 'vue'
+import { defineComponent, PropType, StyleValue, computed } from 'vue'
 import { toPx, m2PI } from '../../../../support/utils'
 import { store } from '../../../../support/store'
 import { useWindowSize } from '../../../../composables/useWindowSize'
@@ -27,16 +27,10 @@ const ELEM_SIZE_RATIO = MIN_RADIUS / MIN_ELEM_SIZE
 const MIN_FONT_SIZE = 12
 const FONT_SIZE_RATIO = MIN_ELEM_SIZE / MIN_FONT_SIZE
 
-export interface MenuOption {
+interface MenuOption {
 	id: number
 	text: string
-	style?: {
-		position: string
-		height: string
-		width: string
-		left: string
-		top: string
-	}
+	style: StyleValue
 }
 
 function getBorderGradient(angle: number) {
@@ -46,28 +40,29 @@ function getBorderGradient(angle: number) {
 }
 
 export default defineComponent({
-	emits: ['update:modelValue'],
 	props: {
 		modelValue: {
 			type: Number,
+			required: true,
 		},
 		options: {
-			type: Array as PropType<MenuOption[]>,
+			type: Array as PropType<Omit<MenuOption, 'style'>[]>,
 			required: true,
 		},
 	},
+	emits: ['update:modelValue'],
 	setup(props, { emit }) {
 		const { width: windowWidth, height: windowHeight } = useWindowSize()
 		const { round, max, min, cos, sin, PI } = Math
 
 		const isReducedMotionMode = computed(() => store.state.reducedMotion)
 
-		const computedOptions = computed(() => {
+		const computedOptions = computed<MenuOption[]>(() => {
 			const radius = max(min(windowWidth.value / 3, MAX_RADIUS), MIN_RADIUS)
 			const elemSize = radius / ELEM_SIZE_RATIO
 			const fontSize = elemSize / FONT_SIZE_RATIO
 
-			const result = []
+			const result: MenuOption[] = []
 			const step = m2PI / props.options.length
 			let angle = PI * 3.5
 
@@ -78,7 +73,7 @@ export default defineComponent({
 				const y = round(windowHeight.value / 2 + radius * sinθ - elemSize / 2)
 				const background = getBorderGradient(angle)
 
-				const style = {
+				const style: StyleValue = {
 					'--transition-transform-x': toPx(Math.floor((radius / 10) * -cosθ)),
 					'--transition-transform-y': toPx(Math.floor((radius / 10) * -sinθ)),
 					'--transition-delay': 200 + i * 90 + 'ms',
@@ -100,7 +95,7 @@ export default defineComponent({
 			return result
 		})
 
-		function onClick(option: MenuOption, event: PointerEvent) {
+		function onClick(option: MenuOption, event: Event) {
 			emit('update:modelValue', option.id, event)
 		}
 
