@@ -4,14 +4,14 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-		<link rel="icon" href="<%= BASE_URL %>img/favicon.ico" />
-		<title><%= htmlWebpackPlugin.options.title %></title>
+		<link rel="icon" href="./img/favicon.ico" />
+		<title>Om</title>
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
 
-		<% if (NODE_ENV === 'production') { %>
+		<% if (env.MODE === 'production') { %>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-CVCCLP2GGP"></script>
 		<script>
@@ -20,18 +20,19 @@
 				dataLayer.push(arguments)
 			}
 			gtag('js', new Date())
-			gtag('config', 'G-CVCCLP2GGP', { app_name: 'om', app_version: '<%= VUE_APP_VERSION %>' }) // sends page view and configures default params
+			gtag('config', 'G-CVCCLP2GGP', { app_name: 'om', app_version: %APP_VERSION% }) // sends page view and configures default params
 		</script>
 		<% } %>
 	</head>
+
 	<body>
 		<noscript>
 			<strong>
-				We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-				Please enable it to continue.
+				We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to continue.
 			</strong>
 		</noscript>
+
 		<div id="app"></div>
-		<!-- built files will be auto injected -->
+		<script type="module" src="./src/main.ts"></script>
 	</body>
 </html>
