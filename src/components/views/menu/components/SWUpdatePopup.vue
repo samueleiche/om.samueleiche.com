@@ -1,6 +1,6 @@
 <template>
 	<Transition name="v-sw-popup">
-		<div v-if="showPopup" class="sw-update-popup">
+		<div v-if="needRefresh" class="sw-update-popup">
 			<div class="sw-update-popup-message">A new version is available</div>
 			<button class="sw-update-popup-button" type="button" @click="onConfirm">Update</button>
 		</div>
@@ -8,38 +8,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { useEventListener } from '../../../../composables/useEventListener'
-import { skipWaiting } from '../../../../support/serviceWorker'
+import { defineComponent } from 'vue'
+import { useRegisterSW } from 'virtual:pwa-register/vue'
 
 export default defineComponent({
 	setup() {
-		const worker = ref<ServiceWorkerRegistration | null>(null)
-		const showPopup = ref(false)
+		const { needRefresh, updateServiceWorker } = useRegisterSW()
 
-		function onConfirm() {
-			if (!worker.value) {
-				return
-			}
-
-			showPopup.value = false
-			skipWaiting(worker.value).then(() => {
-				window.location.reload()
-			})
+		const close = async () => {
+			needRefresh.value = false
 		}
 
-		useEventListener(
-			window,
-			'serviceWorkerUpdated',
-			(event: CustomEvent) => {
-				showPopup.value = true
-				worker.value = event.detail as ServiceWorkerRegistration
-			},
-			{ once: true },
-		)
+		function onConfirm() {
+			updateServiceWorker()
+		}
 
 		return {
-			showPopup,
+			needRefresh,
+			close,
 			onConfirm,
 		}
 	},

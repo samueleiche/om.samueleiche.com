@@ -35,7 +35,7 @@ export function sendNotification(title: string, body: string) {
 	try {
 		new Notification(title, {
 			body: body,
-			icon: 'https://om.samueleiche.com/img/icons/android-chrome-192x192.png',
+			icon: 'https://om.samueleiche.com/icons/android-chrome-192x192.png',
 			silent: true,
 		})
 	} catch (err) {
