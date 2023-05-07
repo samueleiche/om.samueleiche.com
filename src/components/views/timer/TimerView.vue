@@ -89,13 +89,10 @@ export default defineComponent({
 		}
 
 		onMounted(() => {
-			if (!canvasRef.value) {
-				return
-			}
+			const canvas = canvasRef.value!
+			const ctx = setupCanvas(canvas)
 
 			trackView('Timer')
-
-			const ctx = setupCanvas(canvasRef.value)
 
 			drawBackground({ ctx, img: backgroundImage })
 			drawCircle({
