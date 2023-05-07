@@ -1,0 +1,22 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "DEV",
+			"dependsOn": ["dev app"],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "npm",
+			"script": "dev",
+			"isBackground": true,
+			"label": "dev app",
+			"presentation": {
+				"group": "dev"
+			}
+		}
+	]
+}
