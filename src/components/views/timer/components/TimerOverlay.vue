@@ -44,7 +44,7 @@ export default defineComponent({
 			return new Date(elapsedTime).toISOString().substring(11, 19)
 		})
 
-		function stop(event: PointerEvent) {
+		function stop(event: MouseEvent) {
 			const button = event.target as HTMLElement
 
 			trackEvent('click', { category: 'Timer', label: 'Leave Timer' })

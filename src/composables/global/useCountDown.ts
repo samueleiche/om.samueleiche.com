@@ -11,7 +11,7 @@ function clearTimer() {
 function startTimer(startTime: number, onTimerEnd?: () => void) {
 	time.value = startTime
 
-	timerId = setInterval(() => {
+	timerId = window.setInterval(() => {
 		time.value -= 1
 
 		if (time.value < 1) {
