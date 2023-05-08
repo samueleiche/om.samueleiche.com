@@ -38,7 +38,7 @@ export default defineConfig(() => {
 					runtimeCaching: [
 						{
 							urlPattern: /^https:\/\/assets\.samueleiche\.com\/.*/i,
-							handler: 'NetworkFirst',
+							handler: 'CacheFirst',
 							options: {
 								cacheName: 'audio',
 							},
