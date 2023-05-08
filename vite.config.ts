@@ -78,8 +78,5 @@ export default defineConfig(({ mode }) => {
 			}),
 			vue(),
 		],
-		define: {
-			'import.meta.env.APP_VERSION': JSON.stringify(env.npm_package_version),
-		},
 	}
 })

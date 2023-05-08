@@ -2,7 +2,8 @@
 /// <reference types="vite-plugin-pwa/client" />
 
 interface ImportMetaEnv {
-	readonly APP_VERSION: string
+	readonly VITE_APP_VERSION: string
+	readonly VITE_GTM_ID: string
 }
 
 interface ImportMeta {

@@ -22,14 +22,14 @@
 
 		<% if (env.MODE === 'production') { %>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-CVCCLP2GGP"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GTM_ID%"></script>
 		<script>
 			window.dataLayer = window.dataLayer || []
 			function gtag() {
 				dataLayer.push(arguments)
 			}
 			gtag('js', new Date())
-			gtag('config', 'G-CVCCLP2GGP', { app_name: 'om', app_version: %APP_VERSION% }) // sends page view and configures default params
+			gtag('config', '%VITE_GTM_ID%', { app_name: 'om', app_version: '%VITE_APP_VERSION%' }) // sends page view and configures default params
 		</script>
 		<% } %>
 	</head>

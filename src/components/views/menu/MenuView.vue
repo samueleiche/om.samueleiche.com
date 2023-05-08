@@ -51,7 +51,7 @@ export default defineComponent({
 	setup() {
 		const { activeView, setActiveView, AppView } = useViewController()
 
-		const appVersion = import.meta.env.APP_VERSION
+		const appVersion = import.meta.env.VITE_APP_VERSION
 		const timerInterval = computed(() => store.state.timerInterval)
 		const isReducedMotionMode = computed(() => store.state.reducedMotion)
 
