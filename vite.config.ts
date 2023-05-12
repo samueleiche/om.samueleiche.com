@@ -9,6 +9,7 @@ export default defineConfig(() => {
 	return {
 		server: {
 			https: true,
+			host: '0.0.0.0',
 		},
 		plugins: [
 			mkcert(),
