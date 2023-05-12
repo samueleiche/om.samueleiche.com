@@ -108,9 +108,9 @@ export default defineComponent({
 	border-radius: 50%;
 	font-weight: 700;
 	font-size: 16px;
-	color: #000;
+	color: var(--black);
 	background-color: var(--primary-light);
-	box-shadow: 0 0 0 4px #000, 0 0 0 7px var(--primary-light);
+	box-shadow: 0 0 0 4px var(--black), 0 0 0 7px var(--primary-light);
 	transform: translate(0, 174px);
 	transition: transform 100ms;
 	-webkit-tap-highlight-color: transparent;

@@ -36,7 +36,7 @@ interface MenuOption {
 function getBorderGradient(angle: number) {
 	const deg = (angle + 55) * (180 / Math.PI)
 
-	return `linear-gradient(${deg}deg, #f5f1ee, #f5f1ee) padding-box, linear-gradient(${deg}deg, #72664d, #997b3e 60%) border-box`
+	return `linear-gradient(${deg}deg, var(--primary-light), var(--primary-light)) padding-box, linear-gradient(${deg}deg, var(--primary-dark), #997b3e 60%) border-box`
 }
 
 export default defineComponent({
@@ -128,23 +128,23 @@ export default defineComponent({
 	line-height: 1.2;
 	cursor: pointer;
 	user-select: none;
-	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%), 0 8px 10px -6px rgb(0 0 0 / 30%);
+	box-shadow: rgba(0, 0, 0, 0.2) 5px 2px 8px;
 	transition: box-shadow 160ms;
 	-webkit-tap-highlight-color: transparent;
 
 	&:not(.lotus-menu-option-transition-enter-active) {
+		transition: transform 160ms;
+
 		&:hover,
 		&:focus,
 		&:active {
-			transition: transform 100ms;
 			transform: scale(0.95, 0.95);
 		}
 	}
 }
 
 .lotus-menu-option-active {
-	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%), 0 8px 10px -6px rgb(0 0 0 / 30%), 0 0 0 4px var(--primary-light),
-		0 0 0 7px #f2b04d;
+	box-shadow: rgba(0, 0, 0, 0.2) 5px 2px 8px, 0 0 0 4px var(--primary-light), 0 0 0 7px var(--secondary-light);
 }
 
 .lotus-menu-option span {

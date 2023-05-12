@@ -32,8 +32,11 @@ export default defineComponent({
 	--circle-y: 50%;
 	--circle-radius: 71%;
 
-	--primary-light: #f5f1ee;
+	--black: #000;
+	--primary-light: #f9f9f9;
 	--primary-dark: #48402e;
+
+	--secondary-light: #f2b04d;
 }
 
 *,
@@ -57,7 +60,6 @@ body {
 }
 
 body {
-	background: #fef9f8;
 	font-family: 'Inter', sans-serif;
 	color: var(--primary-dark);
 	margin: 0;

@@ -230,7 +230,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .canvas {
-	background-color: #000;
+	background-color: var(--black);
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
 }
