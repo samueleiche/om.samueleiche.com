@@ -34,7 +34,7 @@
 		"prettier": "^2.8.8",
 		"sass": "^1.62.1",
 		"typescript": "~5.0.4",
-		"vite": "^4.3.5",
+		"vite": "^4.3.6",
 		"vite-plugin-ejs": "^1.6.4",
 		"vite-plugin-mkcert": "^1.15.0",
 		"vite-plugin-pwa": "^0.14.7",
