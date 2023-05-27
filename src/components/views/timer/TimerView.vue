@@ -46,7 +46,7 @@ import {
 const circle = {
 	baseRadius: 100,
 	radius: 0,
-	baseWidth: 5,
+	baseWidth: 8,
 	width: 0,
 	color: CIRCLE_COLOR,
 	opacity: 1,

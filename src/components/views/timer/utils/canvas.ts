@@ -41,7 +41,7 @@ export function drawPoint({ circle, angle, ctx }: { circle: Circle; angle: numbe
 			radius: 2,
 			color: circle.color,
 			opacity: circle.opacity,
-			width: 6,
+			width: 12,
 			center: { x, y },
 		},
 		startAngle: 0,
@@ -53,7 +53,7 @@ export function drawPoint({ circle, angle, ctx }: { circle: Circle; angle: numbe
 			radius: 6,
 			color: circle.color,
 			opacity: Math.min(circle.opacity / (1 / 0.15), 0.15),
-			width: 18,
+			width: 20,
 			center: { x, y },
 		},
 		startAngle: 0,
@@ -71,12 +71,12 @@ function drawGradient({ ctx }: { ctx: CanvasRenderingContext2D }) {
 	const innerRadius = 0
 	const gradient = ctx.createRadialGradient(centerX, centerY, innerRadius, centerX, centerY, outerRadius)
 
-	gradient.addColorStop(0, 'rgba(0, 0, 0, 1)')
-	gradient.addColorStop(0.1, 'rgba(0, 0, 0, 1)')
-	gradient.addColorStop(0.2, 'rgba(0, 0, 0, 0.9)')
-	gradient.addColorStop(0.3, 'rgba(0, 0, 0, 0.8)')
-	gradient.addColorStop(0.7, 'rgba(0, 0, 0, 0.7)')
-	gradient.addColorStop(1, 'rgba(0, 0, 0, 0.5)')
+	gradient.addColorStop(0, 'rgba(0, 0, 0, 0.8)')
+	gradient.addColorStop(0.1, 'rgba(0, 0, 0, 0.8)')
+	gradient.addColorStop(0.2, 'rgba(0, 0, 0, 0.7)')
+	gradient.addColorStop(0.3, 'rgba(0, 0, 0, 0.6)')
+	gradient.addColorStop(0.7, 'rgba(0, 0, 0, 0.5)')
+	gradient.addColorStop(1, 'rgba(0, 0, 0, 0.1)')
 
 	ctx.fillStyle = gradient
 	ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
