@@ -1,29 +1,7 @@
-# Om
+**[om.samueleiche.com](https://om.samueleiche.com)**
 
-## Project setup
+This mindfulness app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
 
-```
-npm install
-```
+<br>
 
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+The code is licensed under <a href='./LICENSE'>MIT</a>
