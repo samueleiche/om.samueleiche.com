@@ -35,7 +35,7 @@ export default defineConfig(() => {
 					],
 				},
 				workbox: {
-					globPatterns: ['**/*.{js,css,html,ico,png,jpg,svg}'],
+					globPatterns: ['**/*.{js,css,html,ico,png,jpg}'],
 					runtimeCaching: [
 						{
 							urlPattern: /^https:\/\/assets\.samueleiche\.com\/.*/i,
