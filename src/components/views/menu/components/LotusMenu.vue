@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, StyleValue, computed } from 'vue'
-import { toPx, m2PI } from '../../../../support/utils'
+import { toPx, m2PI, mPI2 } from '../../../../support/utils'
 import { store } from '../../../../support/store'
 import { useWindowSize } from '../../../../composables/useWindowSize'
 
@@ -53,7 +53,7 @@ export default defineComponent({
 	emits: ['update:modelValue'],
 	setup(props, { emit }) {
 		const { width: windowWidth, height: windowHeight } = useWindowSize()
-		const { round, max, min, cos, sin, PI } = Math
+		const { round, max, min, cos, sin } = Math
 
 		const isReducedMotionMode = computed(() => store.state.reducedMotion)
 
@@ -62,11 +62,18 @@ export default defineComponent({
 			const elemSize = radius / ELEM_SIZE_RATIO
 			const fontSize = elemSize / FONT_SIZE_RATIO
 
+			const TOP_SPACE_ELEMENT_STEP = 1.75 // 1 unit is one element size
+			const angleStep = m2PI / (props.options.length + TOP_SPACE_ELEMENT_STEP)
+
+			let startAngle = -mPI2 // top center
+			// align the top spacing to the center of the circle
+			startAngle += angleStep * (TOP_SPACE_ELEMENT_STEP / 2)
+			startAngle += angleStep / 2
+
 			const result: MenuOption[] = []
-			const step = m2PI / props.options.length
-			let angle = PI * 3.5
 
 			for (const [i, entry] of props.options.entries()) {
+				const angle = startAngle + angleStep * i
 				const cosθ = cos(angle)
 				const sinθ = sin(angle)
 				const x = round(windowWidth.value / 2 + radius * cosθ - elemSize / 2)
@@ -86,8 +93,6 @@ export default defineComponent({
 					top: toPx(y),
 					background,
 				}
-
-				angle += step
 
 				result.push({ ...entry, style })
 			}
@@ -144,7 +149,10 @@ export default defineComponent({
 }
 
 .lotus-menu-option-active {
-	box-shadow: rgba(0, 0, 0, 0.2) 5px 2px 8px, 0 0 0 4px var(--primary-light), 0 0 0 7px var(--secondary-light);
+	box-shadow:
+		rgba(0, 0, 0, 0.2) 5px 2px 8px,
+		0 0 0 4px var(--primary-light),
+		0 0 0 7px var(--secondary-light);
 }
 
 .lotus-menu-option span {

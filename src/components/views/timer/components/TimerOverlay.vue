@@ -110,7 +110,9 @@ export default defineComponent({
 	font-size: 16px;
 	color: var(--black);
 	background-color: var(--primary-light);
-	box-shadow: 0 0 0 4px var(--black), 0 0 0 7px var(--primary-light);
+	box-shadow:
+		0 0 0 4px var(--black),
+		0 0 0 7px var(--primary-light);
 	transform: translate(0, 174px);
 	transition: transform 100ms;
 	-webkit-tap-highlight-color: transparent;
