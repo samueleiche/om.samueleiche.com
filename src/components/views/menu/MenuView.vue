@@ -2,6 +2,11 @@
 	<AppLayout>
 		<div class="background" />
 
+		<div class="center-content">
+			<div class="background-border"></div>
+			<img class="active-sound-img" src="../../../assets/large-bowl.png" alt="" />
+		</div>
+
 		<LotusMenu :options="timerOptions" :modelValue="timerInterval" @update:modelValue="onSelect" />
 
 		<div class="footer">
@@ -19,8 +24,6 @@
 
 			<span>v{{ appVersion }}</span>
 		</div>
-
-		<img class="active-sound-img" src="../../../assets/large-bowl.png" alt="" />
 
 		<SWUpdatePopup />
 	</AppLayout>
@@ -126,6 +129,38 @@ export default defineComponent({
 	opacity: 0.2;
 }
 
+.center-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	max-width: 424px;
+	max-height: 424px;
+	width: calc(100vmin - 24px);
+	height: calc(100vmin - 24px);
+}
+
+.background-border {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 800px;
+	border: 2px solid var(--primary-dark);
+	border-top: none;
+	border-bottom-left-radius: 999px;
+	border-bottom-right-radius: 999px;
+}
+
+.active-sound-img {
+	position: absolute;
+	width: max(38%, 120px);
+	margin-top: min(-70%, -200px);
+	border-radius: 50%;
+}
+
 .footer {
 	display: flex;
 	flex-wrap: wrap;
@@ -145,14 +180,5 @@ export default defineComponent({
 	button {
 		-webkit-tap-highlight-color: transparent;
 	}
-}
-
-.active-sound-img {
-	position: absolute;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	top: 50%;
-	width: 120px;
-	border-radius: 50%;
 }
 </style>

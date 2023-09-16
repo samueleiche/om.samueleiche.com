@@ -21,11 +21,11 @@ import { useWindowSize } from '../../../../composables/useWindowSize'
 const MAX_RADIUS = 150
 const MIN_RADIUS = 100
 
-const MIN_ELEM_SIZE = 50
+const MIN_ELEM_SIZE = 52
 const ELEM_SIZE_RATIO = MIN_RADIUS / MIN_ELEM_SIZE
 
 const MIN_FONT_SIZE = 12
-const FONT_SIZE_RATIO = MIN_ELEM_SIZE / MIN_FONT_SIZE
+const FONT_SIZE_RATIO = MIN_ELEM_SIZE / MIN_FONT_SIZE + 0.2
 
 interface MenuOption {
 	id: number
@@ -133,7 +133,6 @@ export default defineComponent({
 	line-height: 1.2;
 	cursor: pointer;
 	user-select: none;
-	box-shadow: rgba(0, 0, 0, 0.2) 5px 2px 8px;
 	transition: box-shadow 160ms;
 	-webkit-tap-highlight-color: transparent;
 
@@ -150,13 +149,8 @@ export default defineComponent({
 
 .lotus-menu-option-active {
 	box-shadow:
-		rgba(0, 0, 0, 0.2) 5px 2px 8px,
 		0 0 0 4px var(--primary-light),
 		0 0 0 7px var(--secondary-light);
-}
-
-.lotus-menu-option span {
-	max-width: 2em;
 }
 
 .lotus-menu-option-transition-enter-active {

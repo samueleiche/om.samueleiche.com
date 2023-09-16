@@ -96,7 +96,7 @@ export default defineComponent({
 .active-interval-label {
 	position: absolute;
 	font-weight: 700;
-	font-size: 18px;
+	font-size: 16px;
 	transform: translate(0, -144px);
 }
 
