@@ -1,6 +1,6 @@
 <template>
 	<AppLayout>
-		<div class="background" />
+		<BackgroundElement />
 
 		<div class="center-content">
 			<div class="background-border"></div>
@@ -44,12 +44,14 @@ import { useViewController } from '../../../composables/global/useViewController
 import LotusMenu from './components/LotusMenu.vue'
 import AppLayout from '../../app/AppLayout.vue'
 import SWUpdatePopup from './components/SWUpdatePopup.vue'
+import BackgroundElement from './components/BackgroundElement.vue'
 
 export default defineComponent({
 	components: {
 		AppLayout,
 		LotusMenu,
 		SWUpdatePopup,
+		BackgroundElement,
 	},
 	setup() {
 		const { activeView, setActiveView, AppView } = useViewController()
@@ -115,18 +117,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .app-layout {
 	background-color: var(--primary-light);
-}
-
-.background {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-image: url('../../../assets/menu-background.jpg');
-	background-size: cover;
-	background-position: center center;
-	opacity: 0.2;
 }
 
 .center-content {
