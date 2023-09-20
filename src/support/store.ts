@@ -4,12 +4,14 @@ import { getRandom } from './utils'
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const prefersReducedMotionCache = storage.fetch('reducedMotion')
+const timerIntervalCache = Number(storage.fetch('timerInterval')) || undefined
+const backgroundIdCache = Number(storage.fetch('backgroundId')) || undefined
 
 const state = reactive({
-	timerInterval: Number(storage.fetch('timerInterval')) || 60000,
+	timerInterval: timerIntervalCache || 60000,
 	timerElapsed: 0,
 	reducedMotion: prefersReducedMotionCache ? prefersReducedMotionCache === 'true' : prefersReducedMotion,
-	backgroundId: 1,
+	backgroundId: backgroundIdCache || 1,
 })
 
 const actions = {
@@ -25,7 +27,17 @@ const actions = {
 		storage.store('reducedMotion', String(state.reducedMotion))
 	},
 	shuffleBackground() {
-		state.backgroundId = getRandom(1, 4)
+		if (backgroundIdCache) {
+			let id: number
+
+			do {
+				id = getRandom(1, 4)
+			} while (id === state.backgroundId)
+
+			state.backgroundId = id
+		}
+
+		storage.store('backgroundId', String(state.backgroundId))
 	},
 }
 
