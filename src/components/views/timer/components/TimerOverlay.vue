@@ -47,7 +47,7 @@ export default defineComponent({
 		function stop(event: MouseEvent) {
 			const button = event.target as HTMLElement
 
-			trackEvent('click', { category: 'Timer', label: 'Leave Timer' })
+			trackEvent('click', { category: 'Timer', label: 'Navigate Back' })
 
 			const circle = getCircle(button)
 			setCircleStyle(circle)
