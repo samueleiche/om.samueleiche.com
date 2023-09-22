@@ -133,24 +133,34 @@ export default defineComponent({
 	line-height: 1.2;
 	cursor: pointer;
 	user-select: none;
-	transition: box-shadow 160ms;
 	-webkit-tap-highlight-color: transparent;
 
-	&:not(.lotus-menu-option-transition-enter-active) {
-		transition: transform 160ms;
+	&::before {
+		content: '';
+		opacity: 0;
+		position: absolute;
+		top: -9px;
+		right: -9px;
+		bottom: -9px;
+		left: -9px;
+		border: 3px solid var(--secondary-light);
+		border-radius: 50%;
+		transition: opacity 120ms;
+	}
 
+	&:not(.lotus-menu-option-transition-enter-active) {
 		&:hover,
 		&:focus,
 		&:active {
-			transform: scale(0.95, 0.95);
+			&::before {
+				opacity: 1;
+			}
 		}
 	}
 }
 
-.lotus-menu-option-active {
-	box-shadow:
-		0 0 0 4px var(--primary-light),
-		0 0 0 7px var(--secondary-light);
+.lotus-menu-option-active::before {
+	opacity: 1;
 }
 
 .lotus-menu-option-transition-enter-active {
