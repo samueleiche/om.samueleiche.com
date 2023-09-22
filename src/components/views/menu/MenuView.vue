@@ -10,8 +10,12 @@
 		<LotusMenu :options="timerOptions" :modelValue="timerInterval" @update:modelValue="onSelect" />
 
 		<div class="footer">
-			<button v-if="canAskNotificationPermission" type="button" @click="askNotificationPermission">
-				Enable Notifications
+			<button
+				type="button"
+				:style="{ fontWeight: isStartSoundEnabled ? 700 : 400 }"
+				@click="toggleStartWithSound"
+			>
+				{{ isStartSoundEnabled ? 'Start with sound (on)' : 'Start with sound (off)' }}
 			</button>
 
 			<button
@@ -19,7 +23,11 @@
 				:style="{ fontWeight: isReducedMotionMode ? 700 : 400 }"
 				@click="toggleReducedMotionMode"
 			>
-				{{ isReducedMotionMode ? 'Reduce Motion On' : 'Reduce Motion Off' }}
+				{{ isReducedMotionMode ? 'Reduce motion (on)' : 'Reduce motion (off)' }}
+			</button>
+
+			<button v-if="canAskNotificationPermission" type="button" @click="askNotificationPermission">
+				Enable web notifications
 			</button>
 
 			<span>v{{ appVersion }}</span>
@@ -38,6 +46,7 @@ import { trackEvent } from '../../../support/analytics'
 import { getNotificationPermission, requestNotificationPermission } from '../../../support/notification'
 import { timerOptions } from '../../../support/settings'
 import { getCircle, setCircleStyle } from '../../../support/transition'
+import { isMobile } from '../../../support/utils'
 
 import { useViewController } from '../../../composables/global/useViewController'
 
@@ -59,8 +68,9 @@ export default defineComponent({
 		const appVersion = import.meta.env.VITE_APP_VERSION
 		const timerInterval = computed(() => store.state.timerInterval)
 		const isReducedMotionMode = computed(() => store.state.reducedMotion)
+		const isStartSoundEnabled = computed(() => store.state.startWithSound)
 
-		const canAskNotificationPermission = ref(!!getNotificationPermission().default)
+		const canAskNotificationPermission = ref(!isMobile() && !!getNotificationPermission().default)
 
 		function askNotificationPermission() {
 			requestNotificationPermission().then(() => {
@@ -70,6 +80,10 @@ export default defineComponent({
 
 		function toggleReducedMotionMode() {
 			store.actions.toggleReducedMotion()
+		}
+
+		function toggleStartWithSound() {
+			store.actions.toggleStartWithSound()
 		}
 
 		function onSelect(id: number, event: PointerEvent) {
@@ -109,6 +123,8 @@ export default defineComponent({
 			askNotificationPermission,
 			toggleReducedMotionMode,
 			isReducedMotionMode,
+			isStartSoundEnabled,
+			toggleStartWithSound,
 		}
 	},
 })
