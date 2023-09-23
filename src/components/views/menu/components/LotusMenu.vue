@@ -24,8 +24,8 @@ const MIN_RADIUS = 100
 const MIN_ELEM_SIZE = 52
 const ELEM_SIZE_RATIO = MIN_RADIUS / MIN_ELEM_SIZE
 
-const MIN_FONT_SIZE = 12
-const FONT_SIZE_RATIO = MIN_ELEM_SIZE / MIN_FONT_SIZE + 0.2
+const MIN_FONT_SIZE = 11.5
+const FONT_SIZE_RATIO = MIN_ELEM_SIZE / MIN_FONT_SIZE
 
 interface MenuOption {
 	id: number
