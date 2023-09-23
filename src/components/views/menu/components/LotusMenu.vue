@@ -139,10 +139,10 @@ export default defineComponent({
 		content: '';
 		opacity: 0;
 		position: absolute;
-		top: -9px;
-		right: -9px;
-		bottom: -9px;
-		left: -9px;
+		top: -8px;
+		right: -8px;
+		bottom: -8px;
+		left: -8px;
 		border: 3px solid var(--secondary-light);
 		border-radius: 50%;
 		transition: opacity 120ms;

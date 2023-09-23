@@ -8,7 +8,9 @@
 				{{ totalElapsedTime }}
 			</div>
 
-			<button class="timer-stop-button" type="button" @click.stop="stop">Back</button>
+			<div class="timer-stop-button-wrapper">
+				<button class="timer-stop-button" type="button" @click.stop="stop">Back</button>
+			</div>
 		</div>
 	</AppOverlay>
 </template>
@@ -100,6 +102,18 @@ export default defineComponent({
 	transform: translate(0, -144px);
 }
 
+.timer-stop-button-wrapper {
+	transform: translate(0, 174px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 83px;
+	height: 83px;
+	overflow: hidden;
+	border-radius: 50%;
+}
+
 .timer-stop-button {
 	position: absolute;
 	width: 70px;
@@ -110,17 +124,51 @@ export default defineComponent({
 	font-size: 16px;
 	color: var(--black);
 	background-color: var(--primary-light);
-	box-shadow:
-		0 0 0 4px var(--black),
-		0 0 0 7px var(--primary-light);
-	transform: translate(0, 174px);
-	transition: transform 100ms;
 	-webkit-tap-highlight-color: transparent;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: -8px;
+		right: -8px;
+		bottom: -8px;
+		left: -8px;
+		border: 3px solid var(--primary-light);
+		border-radius: 50%;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		bottom: 0px;
+		left: 0px;
+		border: 8px solid var(--primary-light);
+		border-radius: 50%;
+		z-index: -1;
+	}
 
 	&:hover,
 	&:focus,
 	&:active {
-		transform: translate(0, 174px) scale(0.95, 0.95);
+		&::after {
+			animation: button 0.5s var(--ease-out-quad);
+		}
+	}
+}
+
+@keyframes button {
+	0% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	70% {
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1.55);
+		opacity: 0;
 	}
 }
 </style>
