@@ -1,5 +1,5 @@
 interface EventParams {
-	category?: string
+	category?: 'Menu' | 'Timer'
 	label?: string
 	value?: number
 	nonInteraction?: boolean
@@ -13,7 +13,7 @@ export function trackEvent(action: string, params: EventParams = {}) {
 	window.gtag('event', action, {
 		event_category: params.category,
 		event_label: params.label,
-		value: params.value,
+		event_value: params.value,
 		non_interaction: !!params.nonInteraction,
 	})
 }

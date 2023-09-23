@@ -67,6 +67,7 @@ export default defineComponent({
 
 		const canvasRef = ref<HTMLCanvasElement | null>(null)
 
+		const isStartSoundEnabled = computed(() => store.state.startWithSound)
 		const timerInterval = computed(() => store.state.timerInterval)
 		let timerStart = 0
 
@@ -147,7 +148,7 @@ export default defineComponent({
 
 					trackEvent('audio_play', {
 						category: 'Timer',
-						label: 'Bowl Hit',
+						label: 'Sound',
 						value: elapsedMins,
 						nonInteraction: true,
 					})
@@ -166,14 +167,16 @@ export default defineComponent({
 
 			startTimer(3, async () => {
 				try {
-					await playAudio(audio.defaultBowl)
+					if (isStartSoundEnabled.value) {
+						await playAudio(audio.defaultBowl)
 
-					trackEvent('audio_play', {
-						category: 'Timer',
-						label: 'Bowl Hit (initial)',
-						value: timerInterval.value / (60 * 1000),
-						nonInteraction: true,
-					})
+						trackEvent('audio_play', {
+							category: 'Timer',
+							label: 'Sound (initial)',
+							value: timerInterval.value / (60 * 1000),
+							nonInteraction: true,
+						})
+					}
 
 					start()
 				} catch (err) {

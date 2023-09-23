@@ -1,12 +1,21 @@
 <template>
 	<AppLayout>
-		<div class="background" />
+		<BackgroundElement />
+
+		<div class="center-content">
+			<div class="background-border"></div>
+			<img class="active-sound-img" src="../../../assets/large-bowl.png" alt="" />
+		</div>
 
 		<LotusMenu :options="timerOptions" :modelValue="timerInterval" @update:modelValue="onSelect" />
 
 		<div class="footer">
-			<button v-if="canAskNotificationPermission" type="button" @click="askNotificationPermission">
-				Enable Notifications
+			<button
+				type="button"
+				:style="{ fontWeight: isStartSoundEnabled ? 700 : 400 }"
+				@click="toggleStartWithSound"
+			>
+				{{ isStartSoundEnabled ? 'Start with sound (on)' : 'Start with sound (off)' }}
 			</button>
 
 			<button
@@ -14,13 +23,15 @@
 				:style="{ fontWeight: isReducedMotionMode ? 700 : 400 }"
 				@click="toggleReducedMotionMode"
 			>
-				{{ isReducedMotionMode ? 'Reduce Motion On' : 'Reduce Motion Off' }}
+				{{ isReducedMotionMode ? 'Reduce motion (on)' : 'Reduce motion (off)' }}
+			</button>
+
+			<button v-if="canAskNotificationPermission" type="button" @click="askNotificationPermission">
+				Enable web notifications
 			</button>
 
 			<span>v{{ appVersion }}</span>
 		</div>
-
-		<img class="active-sound-img" src="../../../assets/large-bowl.png" alt="" />
 
 		<SWUpdatePopup />
 	</AppLayout>
@@ -35,18 +46,21 @@ import { trackEvent } from '../../../support/analytics'
 import { getNotificationPermission, requestNotificationPermission } from '../../../support/notification'
 import { timerOptions } from '../../../support/settings'
 import { getCircle, setCircleStyle } from '../../../support/transition'
+import { isMobile } from '../../../support/utils'
 
 import { useViewController } from '../../../composables/global/useViewController'
 
 import LotusMenu from './components/LotusMenu.vue'
 import AppLayout from '../../app/AppLayout.vue'
 import SWUpdatePopup from './components/SWUpdatePopup.vue'
+import BackgroundElement from './components/BackgroundElement.vue'
 
 export default defineComponent({
 	components: {
 		AppLayout,
 		LotusMenu,
 		SWUpdatePopup,
+		BackgroundElement,
 	},
 	setup() {
 		const { activeView, setActiveView, AppView } = useViewController()
@@ -54,8 +68,9 @@ export default defineComponent({
 		const appVersion = import.meta.env.VITE_APP_VERSION
 		const timerInterval = computed(() => store.state.timerInterval)
 		const isReducedMotionMode = computed(() => store.state.reducedMotion)
+		const isStartSoundEnabled = computed(() => store.state.startWithSound)
 
-		const canAskNotificationPermission = ref(!!getNotificationPermission().default)
+		const canAskNotificationPermission = ref(!isMobile() && !!getNotificationPermission().default)
 
 		function askNotificationPermission() {
 			requestNotificationPermission().then(() => {
@@ -65,6 +80,10 @@ export default defineComponent({
 
 		function toggleReducedMotionMode() {
 			store.actions.toggleReducedMotion()
+		}
+
+		function toggleStartWithSound() {
+			store.actions.toggleStartWithSound()
 		}
 
 		function onSelect(id: number, event: PointerEvent) {
@@ -104,6 +123,8 @@ export default defineComponent({
 			askNotificationPermission,
 			toggleReducedMotionMode,
 			isReducedMotionMode,
+			isStartSoundEnabled,
+			toggleStartWithSound,
 		}
 	},
 })
@@ -114,16 +135,36 @@ export default defineComponent({
 	background-color: var(--primary-light);
 }
 
-.background {
+.center-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: absolute;
-	top: 0;
-	right: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	max-width: 424px;
+	max-height: 424px;
+	width: calc(100vmin - 24px);
+	height: calc(100vmin - 24px);
+}
+
+.background-border {
+	position: absolute;
 	bottom: 0;
-	left: 0;
-	background-image: url('../../../assets/menu-background.jpg');
-	background-size: cover;
-	background-position: center center;
-	opacity: 0.2;
+	width: 100%;
+	height: 100vh;
+	border: 2px solid var(--primary-dark);
+	border-top: none;
+	border-bottom-left-radius: 999px;
+	border-bottom-right-radius: 999px;
+}
+
+.active-sound-img {
+	position: absolute;
+	width: max(38%, 120px);
+	margin-top: min(-70%, -200px);
+	border-radius: 50%;
 }
 
 .footer {
@@ -145,14 +186,5 @@ export default defineComponent({
 	button {
 		-webkit-tap-highlight-color: transparent;
 	}
-}
-
-.active-sound-img {
-	position: absolute;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	top: 50%;
-	width: 120px;
-	border-radius: 50%;
 }
 </style>
