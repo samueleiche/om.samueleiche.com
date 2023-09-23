@@ -49,6 +49,7 @@ export default defineComponent({
 }
 
 .sw-update-popup-message {
+	color: var(--primary-dark);
 	margin-bottom: 12px;
 }
 
@@ -58,9 +59,9 @@ export default defineComponent({
 	letter-spacing: 0.02em;
 	font-weight: 700;
 	font-size: 14px;
-	color: var(--primary-light);
-	background-color: var(--primary-dark);
+	color: var(--primary-dark);
 	user-select: none;
+	border: 2px solid var(--primary-dark);
 
 	&:focus {
 		outline: none;
