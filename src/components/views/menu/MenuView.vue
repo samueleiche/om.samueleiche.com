@@ -10,25 +10,22 @@
 		<LotusMenu :options="timerOptions" :modelValue="timerInterval" @update:modelValue="onSelect" />
 
 		<div class="footer">
-			<button
-				type="button"
-				:style="{ fontWeight: isStartSoundEnabled ? 700 : 400 }"
+			<FooterButton
+				:active="isStartSoundEnabled"
+				:label="isStartSoundEnabled ? 'Start with sound (on)' : 'Start with sound (off)'"
 				@click="toggleStartWithSound"
-			>
-				{{ isStartSoundEnabled ? 'Start with sound (on)' : 'Start with sound (off)' }}
-			</button>
-
-			<button
-				type="button"
-				:style="{ fontWeight: isReducedMotionMode ? 700 : 400 }"
+			/>
+			<FooterButton
+				:active="isReducedMotionMode"
+				:label="isReducedMotionMode ? 'Start with sound (on)' : 'Start with sound (off)'"
 				@click="toggleReducedMotionMode"
-			>
-				{{ isReducedMotionMode ? 'Reduce motion (on)' : 'Reduce motion (off)' }}
-			</button>
-
-			<button v-if="canAskNotificationPermission" type="button" @click="askNotificationPermission">
-				Enable web notifications
-			</button>
+			/>
+			<FooterButton
+				v-if="canAskNotificationPermission"
+				label="Enable web notifications"
+				@click="askNotificationPermission"
+			/>
+			<InstallButton />
 
 			<span>v{{ appVersion }}</span>
 		</div>
@@ -54,6 +51,8 @@ import LotusMenu from './components/LotusMenu.vue'
 import AppLayout from '../../app/AppLayout.vue'
 import SWUpdatePopup from './components/SWUpdatePopup.vue'
 import BackgroundElement from './components/BackgroundElement.vue'
+import FooterButton from './components/FooterButton.vue'
+import InstallButton from './components/InstallButton.vue'
 
 export default defineComponent({
 	components: {
@@ -61,6 +60,8 @@ export default defineComponent({
 		LotusMenu,
 		SWUpdatePopup,
 		BackgroundElement,
+		FooterButton,
+		InstallButton,
 	},
 	setup() {
 		const { activeView, setActiveView, AppView } = useViewController()
@@ -182,9 +183,5 @@ export default defineComponent({
 	font-size: 12px;
 	line-height: 24px;
 	color: var(--primary-dark);
-
-	button {
-		-webkit-tap-highlight-color: transparent;
-	}
 }
 </style>
