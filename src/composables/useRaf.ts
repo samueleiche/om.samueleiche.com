@@ -1,5 +1,5 @@
 import { ref, readonly } from 'vue'
-import { tryOnScopeDispose } from '../support/tryOnScopeDispose'
+import { tryOnScopeDispose } from '../support/vue'
 import { isDocumentVisible } from '../support/utils'
 import { useEventListener } from './useEventListener'
 
