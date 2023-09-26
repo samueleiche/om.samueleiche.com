@@ -44,6 +44,7 @@ import { getNotificationPermission, requestNotificationPermission } from '../../
 import { timerOptions } from '../../../support/settings'
 import { getCircle, setCircleStyle } from '../../../support/transition'
 import { isMobile } from '../../../support/utils'
+import { updateThemeColorMeta } from '../../../support/dom'
 
 import { useViewController } from '../../../composables/global/useViewController'
 
@@ -64,8 +65,9 @@ export default defineComponent({
 		InstallButton,
 	},
 	setup() {
-		const { activeView, setActiveView, AppView } = useViewController()
+		updateThemeColorMeta('#ffffff')
 
+		const { activeView, setActiveView, AppView } = useViewController()
 		const appVersion = import.meta.env.VITE_APP_VERSION
 		const timerInterval = computed(() => store.state.timerInterval)
 		const isReducedMotionMode = computed(() => store.state.reducedMotion)

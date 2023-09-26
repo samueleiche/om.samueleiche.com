@@ -21,6 +21,7 @@ import { easeInOutQuint, toPx, m2PI, mPI2, dpr } from '../../../support/utils'
 import { trackEvent, trackView } from '../../../support/analytics'
 import { requestWakeLock, releaseWakeLock } from '../../../support/wakeLock'
 import { sendNotification } from '../../../support/notification'
+import { updateThemeColorMeta } from '../../../support/dom'
 
 import { useWindowSize } from '../../../composables/useWindowSize'
 import { useRaf } from '../../../composables/useRaf'
@@ -61,6 +62,8 @@ export default defineComponent({
 		CountDownOverlay,
 	},
 	setup() {
+		updateThemeColorMeta('#000000')
+
 		const { width: windowWidth, height: windowHeight } = useWindowSize()
 		const { addOverlay, removeOverlay, isOverlayActive } = useOverlay()
 		const { time: countDownTime, startTimer } = useCountDown()
