@@ -1,4 +1,4 @@
-const isSupported = 'Notification' in window
+const isWebNotificationSupported = 'Notification' in window
 
 // Safari doesn't support the promise-based version of notification.requestPermission()
 // https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API
@@ -13,7 +13,7 @@ function isNotificationPromise() {
 }
 
 export function getNotificationPermission() {
-	if (!isSupported) {
+	if (!isWebNotificationSupported) {
 		return {
 			supported: false,
 		}
@@ -28,7 +28,7 @@ export function getNotificationPermission() {
 }
 
 export function sendNotification(title: string, body: string) {
-	if (!getNotificationPermission().granted || !isSupported) {
+	if (!getNotificationPermission().granted || !isWebNotificationSupported) {
 		return
 	}
 
@@ -44,7 +44,7 @@ export function sendNotification(title: string, body: string) {
 }
 
 export function requestNotificationPermission(): Promise<NotificationPermission | void> {
-	if (!getNotificationPermission().default || !isSupported) {
+	if (!getNotificationPermission().default || !isWebNotificationSupported) {
 		return Promise.resolve()
 	}
 
