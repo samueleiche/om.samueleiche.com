@@ -12,8 +12,8 @@ export default defineComponent({
 		FooterButton,
 	},
 	setup() {
-		const deferredPrompt = ref<any>(null)
-		const isVisible = ref(true)
+		const deferredPrompt = ref<BeforeInstallPromptEvent | null>(null)
+		const isVisible = ref(false)
 
 		window.addEventListener('beforeinstallprompt', (event) => {
 			event.preventDefault()
@@ -22,9 +22,15 @@ export default defineComponent({
 		})
 
 		async function promptInstall() {
-			const result = await deferredPrompt.value.prompt()
+			if (!deferredPrompt.value) {
+				return
+			}
+
+			deferredPrompt.value.prompt()
+			const { outcome } = await deferredPrompt.value.userChoice
+
 			deferredPrompt.value = null
-			isVisible.value = result.outcome !== 'accepted'
+			isVisible.value = outcome !== 'accepted'
 		}
 
 		return {

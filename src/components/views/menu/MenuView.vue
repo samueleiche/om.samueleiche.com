@@ -17,7 +17,7 @@
 			/>
 			<FooterButton
 				:active="isReducedMotionMode"
-				:label="isReducedMotionMode ? 'Start with sound (on)' : 'Start with sound (off)'"
+				:label="isReducedMotionMode ? 'Reduce motion (on)' : 'Reduce motion (off)'"
 				@click="toggleReducedMotionMode"
 			/>
 			<FooterButton
