@@ -1,6 +1,7 @@
 import { computed, ref, readonly, defineComponent, markRaw } from 'vue'
-import MenuView from '../../components/views/menu/MenuView.vue'
-import TimerView from '../../components/views/timer/TimerView.vue'
+import MenuView from '../../../components/views/menu/MenuView.vue'
+import TimerView from '../../../components/views/timer/TimerView.vue'
+import { transitionFromCenter, transitionFromElement } from './viewTransition'
 
 enum AppView {
 	MENU = 'MenuView',
@@ -30,10 +31,20 @@ function setActiveView(name: AppView) {
 	activeViewName.value = name
 }
 
+function transitionToView(name: AppView, fromElement?: HTMLElement) {
+	if (fromElement) {
+		transitionFromElement(fromElement)
+	} else {
+		transitionFromCenter()
+	}
+
+	setActiveView(name)
+}
+
 export function useViewController() {
 	return {
 		activeView: readonly(activeView),
-		setActiveView,
+		transitionToView,
 		AppView,
 	}
 }

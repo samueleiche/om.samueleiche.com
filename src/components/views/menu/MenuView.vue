@@ -42,7 +42,6 @@ import { loadAudio } from '../../../support/audio'
 import { trackEvent } from '../../../support/analytics'
 import { getNotificationPermission, requestNotificationPermission } from '../../../support/notification'
 import { timerOptions } from '../../../support/settings'
-import { getCircle, setCircleStyle } from '../../../support/transition'
 import { isMobile } from '../../../support/utils'
 import { updateThemeColorMeta } from '../../../support/dom'
 
@@ -67,7 +66,7 @@ export default defineComponent({
 	setup() {
 		updateThemeColorMeta('#ffffff')
 
-		const { activeView, setActiveView, AppView } = useViewController()
+		const { activeView, transitionToView, AppView } = useViewController()
 		const appVersion = import.meta.env.VITE_APP_VERSION
 		const timerInterval = computed(() => store.state.timerInterval)
 		const isReducedMotionMode = computed(() => store.state.reducedMotion)
@@ -109,10 +108,7 @@ export default defineComponent({
 				console.error(msg)
 			})
 
-			const circle = getCircle(button)
-			setCircleStyle(circle)
-
-			setActiveView(AppView.TIMER)
+			transitionToView(AppView.TIMER, button)
 		}
 
 		return {

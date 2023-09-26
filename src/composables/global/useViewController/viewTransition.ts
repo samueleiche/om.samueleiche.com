@@ -1,4 +1,4 @@
-export function getCircle(button: HTMLElement) {
+function getCircle(button: HTMLElement) {
 	const buttonRect = button.getBoundingClientRect()
 
 	const screenWidth = window.innerWidth
@@ -25,9 +25,19 @@ export function getCircle(button: HTMLElement) {
 	return { x, y, r }
 }
 
-export function setCircleStyle({ x, y, r }: { x: number | null; y: number | null; r: number | null }) {
+function setCircleStyle({ x, y, r }: { x: number | null; y: number | null; r: number | null }) {
 	const root = document.documentElement
 	root.style.setProperty('--circle-x', x ? `${x}%` : '')
 	root.style.setProperty('--circle-y', y ? `${y}%` : '')
 	root.style.setProperty('--circle-radius', r ? `${r}px` : '')
+}
+
+export function transitionFromElement(element: HTMLElement) {
+	const circle = getCircle(element)
+	setCircleStyle(circle)
+}
+
+export function transitionFromCenter() {
+	// default root styles are set to center
+	setCircleStyle({ x: null, y: null, r: null })
 }

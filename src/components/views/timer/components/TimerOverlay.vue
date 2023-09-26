@@ -21,7 +21,6 @@ import { defineComponent, computed } from 'vue'
 import { store } from '../../../../support/store'
 import { trackEvent } from '../../../../support/analytics'
 import { timerOptions } from '../../../../support/settings'
-import { getCircle, setCircleStyle } from '../../../../support/transition'
 
 import { useOverlay, OverlayName } from '../../../../composables/global/useOverlay'
 import { useViewController } from '../../../../composables/global/useViewController'
@@ -33,7 +32,7 @@ export default defineComponent({
 		AppOverlay,
 	},
 	setup() {
-		const { setActiveView, AppView } = useViewController()
+		const { transitionToView, AppView } = useViewController()
 		const { removeOverlay } = useOverlay()
 
 		const activeIntervalLabel = computed(() => {
@@ -51,10 +50,7 @@ export default defineComponent({
 
 			trackEvent('click', { category: 'Timer', label: 'Navigate Back' })
 
-			const circle = getCircle(button)
-			setCircleStyle(circle)
-
-			setActiveView(AppView.MENU)
+			transitionToView(AppView.MENU, button)
 			close()
 		}
 
