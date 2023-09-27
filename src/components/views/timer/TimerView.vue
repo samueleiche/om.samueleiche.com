@@ -149,14 +149,14 @@ export default defineComponent({
 				if (elapsed >= timerInterval.value) {
 					const elapsedMins = timerInterval.value / (60 * 1000)
 
+					playAudio(audio.defaultBowl)
+
 					trackEvent('audio_play', {
 						category: 'Timer',
 						label: 'Sound',
 						value: elapsedMins,
 						nonInteraction: true,
 					})
-
-					playAudio(audio.defaultBowl)
 					sendNotification('om says:', `${elapsedMins}min passed`)
 
 					stop()

@@ -99,7 +99,7 @@ export default defineComponent({
 }
 
 .timer-stop-button-wrapper {
-	transform: translate(0, 174px);
+	transform: translate3d(0, 174px, 0);
 	display: flex;
 	justify-content: center;
 	align-items: center;
