@@ -2,6 +2,16 @@
 
 This mindfulness app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
 
+## Features
+
+-   A progressive web app (PWA) for desktop and mobile
+-   -   installable like an app
+-   -   works offline
+-   Predefined time interval options
+-   Indefinite looping of selected time interval
+-   A few settings for user preferences
+-   Simple, minimal and meaningful design
+
 ## Credits
 
 -   Bowl sound by Ben Burnes
