@@ -2,6 +2,12 @@
 
 This mindfulness app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
 
-<br>
+## Credits
+
+-   Bowl sound by Ben Burnes
+-   Bowl image by SivanaSpirit
+-   Background images by Geran de Klerk, Bahman Farzad, Otaka Photos
+
+## Licence
 
 The code is licensed under <a href='./LICENSE'>MIT</a>
