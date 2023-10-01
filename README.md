@@ -14,9 +14,12 @@ This mindfulness app makes sound at intervals to encourage regular breaks and to
 
 ## Credits
 
--   Bowl sound by Ben Burnes
--   Bowl image by SivanaSpirit
--   Background images by Geran de Klerk, Bahman Farzad, Otaka Photos
+-   Inspired by:
+-   -   Futureproof's _Awareness_
+-   -   Thich Nhat Hanh's _Mindfulness Bell_
+-   Sound effect: Ben Burnes
+-   Bowl image: SivanaSpirit
+-   Background images: Geran de Klerk, Bahman Farzad, Otaka Photos
 
 ## Licence
 
