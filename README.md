@@ -12,7 +12,7 @@ This mindfulness app makes sound at intervals to encourage regular breaks and to
 -   A few settings for user preferences
 -   Simple, minimal and meaningful design
 
-## Credits
+## Credits & Gratitude
 
 -   Inspired by:
 -   -   Futureproof's _Awareness_
