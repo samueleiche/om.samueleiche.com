@@ -12,6 +12,10 @@ This mindfulness app makes sound at intervals to encourage regular breaks and to
 -   A few settings for user preferences
 -   Simple, minimal and meaningful design
 
+#### Limitations
+
+On mobile browsers the app may stop when it is running in the background. This behavior is due to how the device handles background processes and technical limitations inherent to PWA apps. The **[Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API)** helps with this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
+
 ## Credits & Gratitude
 
 -   Inspired by:
