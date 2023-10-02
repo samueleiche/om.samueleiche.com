@@ -2,6 +2,8 @@
 
 This mindfulness app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
 
+_**Om** is offered for free, forever. Do please share it with anyone who might benefit._
+
 ## Features
 
 -   A progressive web app (PWA) for desktop and mobile
