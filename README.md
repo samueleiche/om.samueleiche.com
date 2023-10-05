@@ -39,4 +39,4 @@ On mobile browsers the app may stop when it is running in the background. This b
 
 ## Licence
 
-The code is licensed under <a href='./LICENSE'>MIT</a>
+The code is licensed under <a href='./LICENCE'>MIT</a>
