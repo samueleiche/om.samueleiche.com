@@ -19,7 +19,7 @@ More about mindfulness <a href='./MINDFULNESS.md'>here</a>.
 -   A progressive web app (PWA) for desktop and mobile
 -   -   installable like an app
 -   -   works offline
--   Select a predefined time interval option (1min, 2min, 5min, 10min, 20min, 30min, 60min)
+-   Select a predefined time interval option (1, 2, 5, 10, 20, 30, or 60 minutes)
 -   Indefinite looping of selected time interval
 -   A few settings for user preferences
 -   Simple, minimal and meaningful design
