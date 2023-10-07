@@ -2,8 +2,6 @@
 
 This mindfulness app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
 
-_**Om** is offered for free, forever. Do please share it with anyone who might benefit._
-
 ## What is Mindfulness?
 
 > Mindfulness is the continuous practice of touching deeply every moment of daily life. To be mindful is to be truly present with your body and your mind, to harmonize your intentions and actions, and to be in harmony with those around you. \
@@ -27,6 +25,10 @@ More about mindfulness <a href='./MINDFULNESS.md'>here</a>.
 #### Limitations
 
 On mobile browsers the app may stop when it is running in the background. This behavior is due to how the device handles background processes and technical limitations inherent to PWA apps. The **[Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API)** helps with this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
+
+## Share the Gift of Mindfulness
+
+**Om** is offered for free, forever. Please consider sharing it with anyone who might benefit.
 
 ## Credits & Gratitude
 
