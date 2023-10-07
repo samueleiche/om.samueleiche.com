@@ -5,12 +5,29 @@ This mindfulness app makes sound at intervals to encourage regular breaks and to
 ## What is Mindfulness?
 
 > Mindfulness is the continuous practice of touching deeply every moment of daily life. To be mindful is to be truly present with your body and your mind, to harmonize your intentions and actions, and to be in harmony with those around you. \
->  — Zen master Thich Nhat Hanh
+>  — Thich Nhat Hanh, Zen master
 
-Mindfulness can be practiced at any time, whether we are in the office, kitchen, or bathroom. We can invite mindfulness into our daily activities such as sitting, working, and eating, and so on - with mindful awareness of what we're doing. However, it's not always easy to maintain this, as we can find ourselves lost in front of computer screens. A mindfulness bell programmed to make sound at intervals
-can remind us to stop and be present again for a few breaths.
+Mindfulness can be practiced at any time, whether we are in the office, kitchen, or bathroom. We can invite mindfulness into our daily activities such as sitting, working, and eating, and so on - with mindful awareness of what we're doing.
 
 More about mindfulness [here](./MINDFULNESS.md).
+
+## How (and Why) to Use the Mindfulness Reminder
+
+> The opposite of mindfulness is forgetfulness. — Thich Nhat Hanh
+
+Taking small moments during the day to connect with the body, and to the present moment, can greatly increase happiness and ease.
+
+Our tendency is to forget that we are in the present moment right now or that we are breathing. It's common to lose awareness while working on computers. Like with physical exercise, the longer we go without practicing, the more challenging it becomes to start again.
+
+> Short moments repeated many times. — Tulku Urgyen Rinpoche, from his book "As It Is"
+
+Developing a habit of mindfulness begins with making small, consistent commitments. A short duration of mindful practice guarantees it is authentic. If we force ourselves to longer practices, our mind can dull (or go wild), defeating our intention.
+
+A bell programmed to make sound at intervals can remind us to stop and be present again when we have been forgetful. In the **Om** app, you can set reminders at intervals that suit you.
+
+Whenever the bell sounds, you can use it as a cue to pause what you are doing and take three mindful breaths, returning to the here and now, reconnecting with your body. Even for only a few moments, you have a chance to check in with yourself. After enjoying a few breaths, you may notice that you have become tense, need to straighten your back, or that you have moved away from your intended task.
+
+Explore a variety of mindfulness practices [here](/PRACTICES.md).
 
 ## Features
 
