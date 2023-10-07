@@ -17,7 +17,7 @@ More about mindfulness [here](./MINDFULNESS.md).
 
 Taking small moments during the day to connect with the body, and to the present moment, can greatly increase happiness and ease.
 
-Our tendency is to forget that we are in the present moment right now or that we are breathing. It's common to lose awareness while working on computers. Like with physical exercise, the longer we go without practicing, the more challenging it becomes to start again.
+Our tendency is to forget that we are in the present moment right now or that we are breathing. It's common to lose awareness while working on computers. Similar to physical exercise, the longer we go without practicing mindfulness, the more challenging it becomes to start again.
 
 > Short moments repeated many times. — Tulku Urgyen Rinpoche, from his book "As It Is"
 
