@@ -10,7 +10,7 @@ This mindfulness app makes sound at intervals to encourage regular breaks and to
 Mindfulness can be practiced at any time, whether we are in the office, kitchen, or bathroom. We can invite mindfulness into our daily activities such as sitting, working, and eating, and so on - with mindful awareness of what we're doing. However, it's not always easy to maintain this, as we can find ourselves lost in front of computer screens. A mindfulness bell programmed to make sound at intervals
 can remind us to stop and be present again for a few breaths.
 
-More about mindfulness <a href='./MINDFULNESS.md'>here</a>.
+More about mindfulness [here](./MINDFULNESS.md).
 
 ## Features
 
@@ -41,4 +41,4 @@ On mobile browsers the app may stop when it is running in the background. This b
 
 ## Licence
 
-The code is licensed under <a href='./LICENCE'>MIT</a>
+The code is licensed under [MIT](./LICENCE).
