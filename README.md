@@ -21,7 +21,7 @@ Our tendency is to forget that we are in the present moment right now or that we
 
 > Short moments repeated many times. — Tulku Urgyen Rinpoche, from his book "As It Is"
 
-Developing a habit of mindfulness begins with making small, consistent commitments. A short duration of mindful practice guarantees it is authentic. If we force ourselves to longer practices, our mind can dull (or go wild), defeating our intention.
+Developing a habit of mindfulness begins with making small, consistent commitments. A short duration of mindful practice guarantees it is authentic. If we force ourselves into longer practices, our minds can become dull or restless, which goes against our original intention.
 
 A bell programmed to make sound at intervals can remind us to stop and be present again when we have been forgetful. In the **Om** app, you can set reminders at intervals that suit you.
 
@@ -43,10 +43,6 @@ Explore a variety of mindfulness practices [here](/PRACTICES.md).
 
 On mobile browsers the app may stop when it is running in the background. This behavior is due to how the device handles background processes and technical limitations inherent to PWA apps. The **[Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API)** helps with this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
 
-## Share the Gift of Mindfulness
-
-**Om** is offered for free, forever. Please consider sharing it with anyone who might benefit.
-
 ## Credits & Gratitude
 
 -   Inspired by:
@@ -55,6 +51,10 @@ On mobile browsers the app may stop when it is running in the background. This b
 -   Sound effect: Ben Burnes
 -   Bowl image: SivanaSpirit
 -   Background images: Geran de Klerk, Bahman Farzad, Otaka Photos
+
+## Share the Gift of Mindfulness
+
+**Om** is offered for free, forever. Please consider sharing it with anyone who might benefit.
 
 ## Licence
 
