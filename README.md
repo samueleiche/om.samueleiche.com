@@ -37,11 +37,11 @@ Whenever the bell sounds, you can use it as a cue to pause what you are doing an
 
 Explore a variety of mindfulness practices [here](/PRACTICES.md).
 
-#### Meditation
+#### Meditation Support
 
 > Stress is caused by being "here" but wanting to be "there" — Eckhart Tolle
 
-**Om** can be used to aid meditation practice. Generally we don't need anything to meditate, but a recurring bell during that time can have some benefits:
+**Om** can aid your meditation practice. While meditation typically requires very little, a recurring bell can be practical and offer several benefits:
 
 -   Continuous alertness: The sound of the bell can remind us to return to our original intention if our mind has started to wander.
 -   Undivided attention: Guided by a timer, we can wholly immerse ourselves in our practice. By temporarily relaxing thoughts of the past and future, we can be fully present, unconcerned about how long we've meditated for or when to end our session.
@@ -62,9 +62,9 @@ Explore a variety of mindfulness practices [here](/PRACTICES.md).
 
 Modern browsers optimize memory and performance by suspending inactive tabs, which stops the timer and sound playback. To avoid this you can follow the next steps:
 
-1. **Desktop Browsers:** browsers like Google Chrome offer a Memory Saver feature. To ensure continuous functionality, add the site to the ignore list or install the app (recommended) to keep it active. You can install it either from the "Install" option in the menu footer, the button next to the browser's search bar, or from the browser's three-dot menu.
+1. **Desktop browsers:** browsers like Google Chrome offer a Memory Saver feature. To ensure continuous functionality, add the site to the ignore list or install the app (recommended) to keep it active. You can install it either from the "Install" option in the menu footer, the button next to the browser's search bar, or from the browser's three-dot menu.
 
-2. **Mobile Browsers:** the app may stop when it is running in the background or when the screen is off. This behavior is due to how the device handles background processes. The **[Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API)** helps with this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
+2. **Mobile browsers:** the app may stop when it is running in the background or when the screen is off. This behavior is due to how the device handles background processes. The **[Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API)** helps with this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
 
 ## Credits & Gratitude
 
