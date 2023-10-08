@@ -29,7 +29,7 @@ Our tendency is to forget that we are in the present moment right now or that we
 
 > Short moments repeated many times. — Tulku Urgyen Rinpoche, from his book "As It Is"
 
-Developing a habit of mindfulness begins with making small, consistent commitments. A short duration of mindful practice guarantees it is authentic. If we force ourselves into longer practices, our minds can become dull or restless, which goes against our original intention.
+Developing a habit of mindfulness begins with making small, consistent commitments. A short duration of mindful practice guarantees it is authentic. If we force ourselves into longer practices, our minds can become dull or restless and we lose the essence of awareness.
 
 A bell programmed to make sound at intervals can remind us to stop and be present again when we have been forgetful. In the **Om** app, you can set reminders at intervals that suit you.
 
