@@ -1,10 +1,10 @@
-<br>
-
 <h3 align="center">OM</h3>
 
 <p align="center">
     App available online at <b><a href="https://om.samueleiche.com">om.samueleiche.com</a></b>
 </p>
+
+<br>
 
 This mindfulness app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
 
