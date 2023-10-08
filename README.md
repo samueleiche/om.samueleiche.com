@@ -2,6 +2,8 @@
 
 This mindfulness app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
 
+The app is available online [here](https://om.samueleiche.com).
+
 ## What is Mindfulness?
 
 > Mindfulness is the continuous practice of touching deeply every moment of daily life. To be mindful is to be truly present with your body and your mind, to harmonize your intentions and actions, and to be in harmony with those around you. \
@@ -31,9 +33,10 @@ Explore a variety of mindfulness practices [here](/PRACTICES.md).
 
 ## Features
 
--   A progressive web app (PWA) for desktop and mobile
--   -   installable like an app
--   -   works offline
+-   A progressive web app (PWA)
+-   -   Cross-platform compatibility: web apps run in web browsers, making them accessible on various platforms and devices regardless of their operating system
+-   -   Installable like an app
+-   -   Works offline
 -   Select a predefined time interval option (1, 2, 5, 10, 20, 30, or 60 minutes)
 -   Indefinite looping of selected time interval
 -   A few settings for user preferences
@@ -43,7 +46,7 @@ Explore a variety of mindfulness practices [here](/PRACTICES.md).
 
 Modern browsers optimize memory and performance by suspending inactive tabs, which stops the timer and sound playback. To avoid this you can follow the next steps:
 
-1. **Desktop Browsers:** browsers like Google Chrome offer a Memory Saver feature. To ensure continuous functionality, add the site to the ignore list or install the app (recommended) to keep it active. You can install it either from the "Install" option in the menu footer, the button next to the browser's search bar, or from the browser's three-dot menu
+1. **Desktop Browsers:** browsers like Google Chrome offer a Memory Saver feature. To ensure continuous functionality, add the site to the ignore list or install the app (recommended) to keep it active. You can install it either from the "Install" option in the menu footer, the button next to the browser's search bar, or from the browser's three-dot menu.
 
 2. **Mobile Browsers:** the app may stop when it is running in the background or when the screen is off. This behavior is due to how the device handles background processes. The **[Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API)** helps with this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
 
