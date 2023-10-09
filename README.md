@@ -77,7 +77,7 @@ Modern browsers optimize memory and performance by suspending inactive tabs, whi
 
 ## Share the Gift of Mindfulness
 
-**Om** is offered for free, forever. Please consider sharing it with anyone who might benefit.
+**Om** is offered for free, indefinitely. I designed it with my own well-being in mind, but I believe it has the potential to benefit anyone. Please feel free to share it with anyone who may find value in it.
 
 ## Licence
 
