@@ -81,4 +81,4 @@ Modern browsers optimize memory and performance by suspending inactive tabs, whi
 
 ## Licence
 
-The code is licensed under [MIT](./LICENCE).
+The [code](https://github.com/samueleiche/om.samueleiche.com) is licensed under [MIT](./LICENCE).
