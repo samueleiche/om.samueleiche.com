@@ -26,8 +26,8 @@
 				@click="askNotificationPermission"
 			/>
 			<InstallButton />
-
-			<span>v{{ appVersion }}</span>
+			<FooterButton label="About" link="https://samueleiche.github.io/om.samueleiche.com" />
+			<FooterButton :label="'v' + appVersion" />
 		</div>
 
 		<SWUpdatePopup />
@@ -177,9 +177,5 @@ export default defineComponent({
 	bottom: 0;
 	right: 0;
 	left: 0;
-	text-align: center;
-	font-size: 12px;
-	line-height: 24px;
-	color: var(--primary-dark);
 }
 </style>
