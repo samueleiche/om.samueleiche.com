@@ -66,6 +66,19 @@ Modern browsers optimize memory and performance by suspending inactive tabs, whi
 
 2. **Mobile browsers:** the app may stop when it is running in the background or when the screen is off. This behavior is due to how the device handles background processes. The **[Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API)** helps with this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
 
+#### Screenshots
+
+<table>
+    <tr>
+        <td>
+            <img src="./screenshots/screenshot-android.jpg" />
+        </td>
+        <td>
+            <img src="./screenshots/screenshot-windows.jpg" />
+        </td>
+    </tr>
+</table>
+
 ## Credits & Gratitude
 
 -   Inspired by:
