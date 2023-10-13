@@ -68,8 +68,8 @@ Modern browsers optimize memory and performance by suspending inactive tabs, whi
 
 #### Screenshots
 
-<img src="/screenshots/screenshot-android.jpg" style="max-height: 500px;" />
-<img src="./screenshots/screenshort-windows.jpg" style="max-height: 500px;" />
+<img src="./screenshots/screenshot-android.jpg" height="500" />
+<img src="./screenshots/screenshort-windows.jpg" height="500" />
 
 ## Credits & Gratitude
 
