@@ -37,7 +37,7 @@ Whenever the bell sounds, you can use it as a cue to pause what you are doing an
 
 Explore a variety of mindfulness practices [here](/PRACTICES.md).
 
-#### Meditation Support
+#### For Meditation
 
 > Stress is caused by being "here" but wanting to be "there" — Eckhart Tolle
 
@@ -64,7 +64,7 @@ Modern browsers optimize memory and performance by suspending inactive tabs, whi
 
 1. **Desktop browsers:** browsers like Google Chrome offer a Memory Saver feature. To ensure continuous functionality, add the site to the ignore list or install the app (recommended) to keep it active. You can install it either from the "Install" option in the menu footer, the button next to the browser's search bar, or from the browser's three-dot menu.
 
-2. **Mobile browsers:** the app may stop when it is running in the background or when the screen is off. This behavior is due to how the device handles background processes. The **[Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API)** helps with this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
+2. **Mobile browsers:** the app may stop (or go idle) when it is running in the background or when the screen is off. This behavior is due to how the device handles background processes and [a technical limitation of PWA's](https://bugs.chromium.org/p/chromium/issues/detail?id=889077). The **[Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API)** can help with this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
 
 ## Credits & Gratitude
 
