@@ -1,48 +1,48 @@
 <!doctype html>
-<html lang="">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<title>Om</title>
-		<meta name="description" content="A helpful app that reminds you to stay mindful" />
-		<link rel="icon" href="favicon.ico" sizes="any" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-		<link rel="mask-icon" href="/android-chrome-192x192.png" color="#ffffff" />
-		<meta name="theme-color" content="#ffffff" />
+<html lang="en">
 
-		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-		<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-		<link rel="preconnect" crossorigin="anonymous" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" crossorigin="anonymous" href="https://fonts.gstatic.com" />
-		<link
-			rel="stylesheet"
-			crossorigin="anonymous"
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-		/>
-		<link rel="prefetch" href="https://assets.samueleiche.com/media/bowls/large-bowl-1.mp3" as="audio" />
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Om</title>
+	<meta name="author" content="Samuel Eiche">
+	<meta name="description" content="A helpful app that reminds you to stay mindful" />
+	<link rel="icon" href="favicon.ico" sizes="any" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+	<link rel="mask-icon" href="/android-chrome-192x192.png" color="#ffffff" />
+	<meta name="theme-color" content="#ffffff" />
 
-		<% if (env.MODE === 'production') { %>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GTM_ID%"></script>
-		<script>
-			window.dataLayer = window.dataLayer || []
-			function gtag() {
-				dataLayer.push(arguments)
-			}
-			gtag('js', new Date())
-			gtag('config', '%VITE_GTM_ID%', { app_name: 'om', app_version: '%VITE_APP_VERSION%' }) // sends page view and configures default params
-		</script>
-		<% } %>
-	</head>
+	<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+	<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+	<link rel="preconnect" crossorigin="anonymous" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" crossorigin="anonymous" href="https://fonts.gstatic.com" />
+	<link rel="stylesheet" crossorigin="anonymous"
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
+	<link rel="prefetch" href="https://assets.samueleiche.com/media/bowls/large-bowl-1.mp3" as="audio" />
 
-	<body>
-		<noscript>
-			<strong>
-				We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to continue.
-			</strong>
-		</noscript>
+	<% if (env.MODE === 'production') { %>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GTM_ID%"></script>
+	<script>
+		window.dataLayer=window.dataLayer||[]
+		function gtag() {
+			dataLayer.push(arguments)
+		}
+		gtag('js',new Date())
+		gtag('config','%VITE_GTM_ID%',{app_name: 'om',app_version: '%VITE_APP_VERSION%'}) // sends page view and configures default params
+	</script>
+	<% } %>
+</head>
 
-		<div id="app"></div>
-		<script type="module" src="./src/main.ts"></script>
-	</body>
+<body>
+	<noscript>
+		<strong>
+			We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to continue.
+		</strong>
+	</noscript>
+
+	<div id="app"></div>
+	<script type="module" src="./src/main.ts"></script>
+</body>
+
 </html>
