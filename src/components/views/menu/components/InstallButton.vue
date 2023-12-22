@@ -7,10 +7,10 @@ import { defineComponent, ref } from 'vue'
 import FooterButton from './FooterButton.vue'
 
 export default defineComponent({
-	emits: ['click'],
 	components: {
 		FooterButton,
 	},
+	emits: ['click'],
 	setup() {
 		const deferredPrompt = ref<BeforeInstallPromptEvent | null>(null)
 		const isVisible = ref(false)

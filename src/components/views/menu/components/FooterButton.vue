@@ -15,12 +15,12 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-	emits: ['click'],
 	props: {
 		active: Boolean,
 		label: String,
 		link: String,
 	},
+	emits: ['click'],
 })
 </script>
 
