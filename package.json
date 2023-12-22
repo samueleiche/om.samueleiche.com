@@ -9,13 +9,16 @@
 		"serve": "vite preview",
 		"lint": "eslint --ext .ts,vue --ignore-path .gitignore .",
 		"lint:ts": "vue-tsc",
+		"prettier:check": "prettier --list-different \"*.{js,ts,vue,scss,html}\"",
+		"prettier:fix": "prettier --write \"*.{js,ts,vue,scss,html}\"",
 		"prepare": "husky install"
 	},
 	"lint-staged": {
-		"src/**/*.{js,jsx,ts,tsx,json,css}": [
+		"src/**/*.{js,ts,tsx,vue,scss}": [
 			"prettier --write",
 			"npm run lint"
-		]
+		],
+		"*.html": "prettier --write"
 	},
 	"dependencies": {
 		"vue": "^3.3.13"
