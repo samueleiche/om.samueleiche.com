@@ -1,6 +1,6 @@
 {
 	"name": "om",
-	"version": "1.5.1",
+	"version": "1.5.2",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -11,7 +11,7 @@
 		"lint:ts": "vue-tsc",
 		"prettier:check": "prettier --list-different \"*.{js,ts,vue,scss,html}\"",
 		"prettier:fix": "prettier --write \"*.{js,ts,vue,scss,html}\"",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"lint-staged": {
 		"src/**/*.{js,ts,tsx,vue,scss}": [
@@ -24,7 +24,7 @@
 		"vue": "^3.4.21"
 	},
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^7.0.0",
+		"@typescript-eslint/eslint-plugin": "^7.1.0",
 		"@typescript-eslint/parser": "^7.1.0",
 		"@vitejs/plugin-vue": "^5.0.4",
 		"@vue/eslint-config-prettier": "^9.0.0",
