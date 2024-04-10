@@ -37,7 +37,7 @@
 		"lint-staged": "^15.2.2",
 		"prettier": "^3.2.5",
 		"sass": "^1.74.1",
-		"typescript": "~5.4.3",
+		"typescript": "~5.4.4",
 		"vite": "^5.2.8",
 		"vite-plugin-ejs": "^1.7.0",
 		"vite-plugin-mkcert": "^1.17.5",
