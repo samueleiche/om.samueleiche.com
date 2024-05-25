@@ -1,6 +1,6 @@
 <br>
 
-<h3 align="center">OM</h3>
+<h3 align="center">OM - One Minute (of Mindfulness)</h3>
 
 <p align="center">
     App available online at <b><a href="https://om.samueleiche.com">om.samueleiche.com</a></b>
@@ -31,7 +31,7 @@ Our tendency is to forget that we are in the present moment right now or that we
 
 Developing a habit of mindfulness begins with making small, consistent commitments. A short duration of mindful practice guarantees it is authentic. If we force ourselves into longer practices, our minds can become dull or restless and we lose the essence of awareness.
 
-A bell programmed to make sound at intervals can remind us to stop and be present again when we have been forgetful. In the **Om** app, you can set reminders at intervals that suit you.
+A bell programmed to make sound at intervals can remind us to stop and be present again when we have been forgetful. In the **OM** app, you can set reminders at intervals that suit you.
 
 Whenever the bell sounds, you can use it as a cue to pause what you are doing and take three mindful breaths, returning to the here and now, reconnecting with your body. Even for only a few moments, you have a chance to check in with yourself. After enjoying a few breaths, you may notice that you have become tense, need to straighten your back, or that you have moved away from your intended task.
 
@@ -41,7 +41,7 @@ Explore a variety of mindfulness practices [here](/PRACTICES.md).
 
 > Stress is caused by being "here" but wanting to be "there" — Eckhart Tolle
 
-**Om** can aid your meditation practice. While meditation typically requires very little, a recurring bell can be practical and offer several benefits:
+**OM** can aid your meditation practice. While meditation typically requires very little, a recurring bell can be practical and offer several benefits:
 
 -   Continuous alertness: The sound of the bell can remind us to return to our original intention if our mind has started to wander.
 -   Undivided attention: Guided by a timer, we can wholly immerse ourselves in our practice. By temporarily relaxing thoughts of the past and future, we can be fully present, unconcerned about how long we've meditated for or when to end our session.
@@ -90,7 +90,9 @@ Modern browsers optimize memory and performance by suspending inactive tabs, whi
 
 ## Share the Gift of Mindfulness
 
-**Om** is offered for free, indefinitely. I designed it with my own well-being in mind, but I believe it has the potential to benefit anyone. Please feel free to share it with anyone who may find value in it.
+**OM** is offered for free, indefinitely. I designed it with my own well-being in mind, but I believe it has the potential to benefit anyone. Please feel free to share it with anyone who may find value in it.
+
+> This whole world is just Om. — Taittiriya Upanishad 1.8
 
 ## Licence
 
