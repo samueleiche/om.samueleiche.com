@@ -21,7 +21,7 @@
 		"*.html": "prettier --write"
 	},
 	"dependencies": {
-		"vue": "^3.4.33"
+		"vue": "^3.4.34"
 	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^7.17.0",
