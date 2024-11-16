@@ -62,19 +62,6 @@ Modern browsers optimize memory and performance by suspending inactive tabs, whi
 
 2. **Mobile browsers:** the app may stop (or go idle) when it is running in the background or when the screen is off. This behavior is due to how the device handles background processes and [a technical limitation of PWA's](https://bugs.chromium.org/p/chromium/issues/detail?id=889077). The [Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API) is used to alleviate this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
 
-#### Run app in development mode
-
-```bash
-# clone repo
-git clone https://github.com/samueleiche/om.samueleiche.com.git
-
-# install dependencies
-npm i
-
-# run local app https://localhost:5173
-npm run dev
-```
-
 #### Screenshots
 
 <table>
@@ -87,6 +74,19 @@ npm run dev
         </td>
     </tr>
 </table>
+
+## Run app in development mode
+
+```bash
+# clone repo
+git clone https://github.com/samueleiche/om.samueleiche.com.git
+
+# install dependencies
+npm i
+
+# run local app https://localhost:5173
+npm run dev
+```
 
 ## Credits & Gratitude
 
