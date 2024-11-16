@@ -17,8 +17,6 @@ This mindfulness app makes sound at intervals to encourage regular breaks and to
 
 Mindfulness can be practiced at any time, whether we are in the office, kitchen, or bathroom. We can invite mindfulness into our daily activities such as sitting, working, and eating, and so on - with mindful awareness of what we're doing.
 
-More about mindfulness [here](./MINDFULNESS.md).
-
 ## How (and Why) to Use the Mindfulness Reminder
 
 > The opposite of mindfulness is forgetfulness. — Thich Nhat Hanh
@@ -34,8 +32,6 @@ Developing a habit of mindfulness begins with making small, consistent commitmen
 A bell programmed to make sound at intervals can remind us to stop and be present again when we have been forgetful. In the **OM** app, you can set reminders at intervals that suit you.
 
 Whenever the bell sounds, you can use it as a cue to pause what you are doing and take three mindful breaths, returning to the here and now, reconnecting with your body. Even for only a few moments, you have a chance to check in with yourself. After enjoying a few breaths, you may notice that you have become tense, need to straighten your back, or that you have moved away from your intended task.
-
-Explore a variety of mindfulness practices [here](/PRACTICES.md).
 
 #### For Meditation
 
