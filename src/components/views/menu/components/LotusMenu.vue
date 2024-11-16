@@ -28,7 +28,7 @@ const ELEM_SIZE_RATIO = MIN_RADIUS / MIN_ELEM_SIZE
 const MIN_FONT_SIZE = 11.5
 const FONT_SIZE_RATIO = MIN_ELEM_SIZE / MIN_FONT_SIZE
 
-interface MenuOption {
+export interface MenuOption {
 	id: number
 	text: string
 	style: StyleValue
