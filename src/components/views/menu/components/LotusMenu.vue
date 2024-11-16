@@ -13,7 +13,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, StyleValue, computed } from 'vue'
+import { defineComponent, computed } from 'vue'
+import type { PropType, StyleValue } from 'vue'
 import { toPx, m2PI, mPI2 } from '../../../../support/utils'
 import { store } from '../../../../support/store'
 import { useWindowSize } from '../../../../composables/useWindowSize'

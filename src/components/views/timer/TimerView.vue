@@ -157,7 +157,7 @@ export default defineComponent({
 						value: elapsedMins,
 						nonInteraction: true,
 					})
-					sendNotification('om says:', `${elapsedMins}min passed`)
+					sendNotification('OM says:', `${elapsedMins}min passed`)
 
 					stop()
 					start()

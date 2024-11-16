@@ -3,7 +3,7 @@ import MenuView from '../../../components/views/menu/MenuView.vue'
 import TimerView from '../../../components/views/timer/TimerView.vue'
 import { transitionFromCenter, transitionFromElement } from './viewTransition'
 
-enum AppView {
+export enum AppView {
 	MENU = 'MenuView',
 	TIMER = 'TimerView',
 }

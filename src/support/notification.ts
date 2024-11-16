@@ -5,7 +5,9 @@ const isWebNotificationSupported = 'Notification' in window
 function isNotificationPromise() {
 	try {
 		Notification.requestPermission().then()
-	} catch (e) {
+	} catch (err) {
+		console.warn(err)
+
 		return false
 	}
 
