@@ -84,7 +84,7 @@ git clone https://github.com/samueleiche/om.samueleiche.com.git
 # install dependencies
 npm i
 
-# run local app https://localhost:5173
+# run app at https://localhost:5173
 npm run dev
 ```
 
