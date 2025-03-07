@@ -9,7 +9,7 @@
 		"preview": "vite preview",
 		"build-only": "vite build",
 		"lint": "eslint . --fix",
-		"prettier": "prettier --write .",
+		"prettier": "prettier . --write",
 		"type-check": "vue-tsc",
 		"prepare": "husky"
 	},

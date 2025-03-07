@@ -2,7 +2,7 @@ import pluginVue from 'eslint-plugin-vue'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 
-const vueTsEslintConfig = defineConfigWithVueTs(pluginVue.configs['flat/essential'], vueTsConfigs.recommended)
+const vueTsEslintConfig = defineConfigWithVueTs(pluginVue.configs['flat/recommended'], vueTsConfigs.recommended)
 
 export default [
 	{
