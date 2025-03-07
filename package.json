@@ -9,19 +9,20 @@
 		"preview": "vite preview",
 		"build-only": "vite build",
 		"lint": "eslint . --fix",
+		"prettier": "prettier --write .",
 		"type-check": "vue-tsc",
 		"prepare": "husky"
 	},
 	"lint-staged": {
 		"src/**/*.{js,ts,tsx,vue,scss}": [
-			"prettier --write",
+			"npm run prettier",
 			"npm run lint"
 		],
 		"./*.{js,ts,json}": [
-			"prettier --write",
+			"npm run prettier",
 			"npm run lint"
 		],
-		"*.html": "prettier --write"
+		"*.html": "npm run prettier"
 	},
 	"dependencies": {
 		"vue": "^3.5.13"

@@ -39,20 +39,20 @@ Whenever the bell sounds, you can use it as a cue to pause what you are doing an
 
 **OM** can aid your meditation practice. While meditation typically requires very little, a recurring bell can be practical and offer several benefits:
 
--   Continuous alertness: The sound of the bell can remind us to return to our original intention if our mind has started to wander.
--   Undivided attention: Guided by a timer, we can wholly immerse ourselves in our practice. By temporarily relaxing thoughts of the past and future, we can be fully present, unconcerned about how long we've meditated for or when to end our session.
--   We avoid overdoing it: We might get carried away and meditate for too long, leading to discomfort or loss of interest. A timer set to a short interval can prevent this by gently ending the session. Stopping a meditation session earlier than we would like to leads us to wanting more later.
+- Continuous alertness: The sound of the bell can remind us to return to our original intention if our mind has started to wander.
+- Undivided attention: Guided by a timer, we can wholly immerse ourselves in our practice. By temporarily relaxing thoughts of the past and future, we can be fully present, unconcerned about how long we've meditated for or when to end our session.
+- We avoid overdoing it: We might get carried away and meditate for too long, leading to discomfort or loss of interest. A timer set to a short interval can prevent this by gently ending the session. Stopping a meditation session earlier than we would like to leads us to wanting more later.
 
 ## Features
 
--   A progressive web app (PWA)
--   -   Cross-platform compatibility: web apps run in web browsers, making them accessible on various platforms and devices regardless of their operating system
--   -   Installable like an app
--   -   Works offline
--   Select a predefined time interval option (1, 2, 5, 10, 20, 30, or 60 minutes)
--   Indefinite looping of selected time interval
--   A few settings for user preferences
--   Simple, minimal and meaningful design
+- A progressive web app (PWA)
+-   - Cross-platform compatibility: web apps run in web browsers, making them accessible on various platforms and devices regardless of their operating system
+-   - Installable like an app
+-   - Works offline
+- Select a predefined time interval option (1, 2, 5, 10, 20, 30, or 60 minutes)
+- Indefinite looping of selected time interval
+- A few settings for user preferences
+- Simple, minimal and meaningful design
 
 #### Limitations
 
@@ -90,12 +90,12 @@ npm run dev
 
 ## Credits & Gratitude
 
--   Inspired by:
--   -   Futureproof's _Awareness_
--   -   Thich Nhat Hanh's _Mindfulness Bell_
--   Sound effect: Ben Burnes
--   Bowl image: SivanaSpirit
--   Background images: Geran de Klerk, Bahman Farzad, Otaka Photos
+- Inspired by:
+-   - Futureproof's _Awareness_
+-   - Thich Nhat Hanh's _Mindfulness Bell_
+- Sound effect: Ben Burnes
+- Bowl image: SivanaSpirit
+- Background images: Geran de Klerk, Bahman Farzad, Otaka Photos
 
 ## Share the Gift of Mindfulness
 
