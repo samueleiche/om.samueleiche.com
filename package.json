@@ -44,7 +44,7 @@
 		"typescript": "~5.8.2",
 		"vite": "^6.2.2",
 		"vite-plugin-ejs": "^1.7.0",
-		"vite-plugin-mkcert": "^1.17.7",
+		"vite-plugin-mkcert": "^1.17.8",
 		"vite-plugin-pwa": "^0.21.1",
 		"vue-tsc": "^2.2.8"
 	}
