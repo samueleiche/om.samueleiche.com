@@ -14,8 +14,8 @@ function getCircle(button: HTMLElement) {
 	}
 
 	// position of the circle so that it is centered on the button
-	const x = Math.round((buttonCenter.x * 100) / screenWidth)
-	const y = Math.round((buttonCenter.y * 100) / screenHeight)
+	const x = (buttonCenter.x * 100) / screenWidth
+	const y = (buttonCenter.y * 100) / screenHeight
 
 	// a circle radius wide enough it would cover the screen from the new position
 	const positionX = Math.abs(screenCenter.x - buttonCenter.x)
