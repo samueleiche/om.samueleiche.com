@@ -4,20 +4,12 @@
 	</Transition>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { store } from '../../support/store'
+<script setup lang="ts">
+import { computed } from 'vue'
+import { store } from '@/support/store'
 
-export default defineComponent({
-	setup() {
-		const transitionName = computed(() => {
-			return store.state.reducedMotion ? 'view-fade-transition' : 'view-circle-transition'
-		})
-
-		return {
-			transitionName,
-		}
-	},
+const transitionName = computed(() => {
+	return store.state.reducedMotion ? 'view-fade-transition' : 'view-circle-transition'
 })
 </script>
 

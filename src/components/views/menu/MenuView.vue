@@ -1,5 +1,5 @@
 <template>
-	<AppLayout>
+	<AppLayout class="menu-layout">
 		<BackgroundElement />
 
 		<div class="center-content">
@@ -34,8 +34,8 @@
 	</AppLayout>
 </template>
 
-<script lang="ts">
-import { computed, ref, defineComponent } from 'vue'
+<script lang="ts" setup>
+import { computed, ref } from 'vue'
 
 import { store } from '../../../support/store'
 import { loadAudio } from '../../../support/audio'
@@ -54,83 +54,56 @@ import BackgroundElement from './components/BackgroundElement.vue'
 import FooterButton from './components/FooterButton.vue'
 import InstallButton from './components/InstallButton.vue'
 
-export default defineComponent({
-	components: {
-		AppLayout,
-		LotusMenu,
-		SWUpdatePopup,
-		BackgroundElement,
-		FooterButton,
-		InstallButton,
-	},
-	setup() {
-		updateThemeColorMeta('#ffffff')
+updateThemeColorMeta('#ffffff')
 
-		const { activeView, transitionToView, AppView } = useViewController()
-		const appVersion = import.meta.env.VITE_APP_VERSION
-		const timerInterval = computed(() => store.state.timerInterval)
-		const isReducedMotionMode = computed(() => store.state.reducedMotion)
-		const isStartSoundEnabled = computed(() => store.state.startWithSound)
+const { transitionToView, AppView } = useViewController()
+const appVersion = import.meta.env.VITE_APP_VERSION
+const timerInterval = computed(() => store.state.timerInterval)
+const isReducedMotionMode = computed(() => store.state.reducedMotion)
+const isStartSoundEnabled = computed(() => store.state.startWithSound)
 
-		const canAskNotificationPermission = ref(!isMobile() && !!getNotificationPermission().default)
+const canAskNotificationPermission = ref(!isMobile() && !!getNotificationPermission().default)
 
-		function askNotificationPermission() {
-			requestNotificationPermission().then(() => {
-				canAskNotificationPermission.value = !!getNotificationPermission().default
-			})
-		}
+function askNotificationPermission() {
+	requestNotificationPermission().then(() => {
+		canAskNotificationPermission.value = !!getNotificationPermission().default
+	})
+}
 
-		function toggleReducedMotionMode() {
-			store.actions.toggleReducedMotion()
-		}
+function toggleReducedMotionMode() {
+	store.actions.toggleReducedMotion()
+}
 
-		function toggleStartWithSound() {
-			store.actions.toggleStartWithSound()
-		}
+function toggleStartWithSound() {
+	store.actions.toggleStartWithSound()
+}
 
-		function onSelect(id: number, event: PointerEvent) {
-			const button = event.target as HTMLElement
+function onSelect(id: number, event: PointerEvent) {
+	const button = event.target as HTMLElement
 
-			trackEvent('select', {
-				category: 'Menu',
-				label: timerOptions.find((option) => option.id === id)?.text,
-				value: id / (60 * 1000),
-			})
+	trackEvent('select', {
+		category: 'Menu',
+		label: timerOptions.find((option) => option.id === id)?.text,
+		value: id / (60 * 1000),
+	})
 
-			store.actions.setTimerInterval(id)
+	store.actions.setTimerInterval(id)
 
-			loadAudio({
-				defaultBowl: 'https://assets.samueleiche.com/media/bowls/large-bowl-1.mp3',
-			}).catch((err) => {
-				const msg = '[loadAudio]:' + err
+	loadAudio({
+		defaultBowl: 'https://assets.samueleiche.com/media/bowls/large-bowl-1.mp3',
+	}).catch((err) => {
+		const msg = '[loadAudio]:' + err
 
-				alert(msg)
-				console.error(msg)
-			})
+		alert(msg)
+		console.error(msg)
+	})
 
-			transitionToView(AppView.TIMER, button)
-		}
-
-		return {
-			timerInterval,
-			timerOptions,
-			onSelect,
-			AppView,
-			activeView,
-			appVersion,
-			canAskNotificationPermission,
-			askNotificationPermission,
-			toggleReducedMotionMode,
-			isReducedMotionMode,
-			isStartSoundEnabled,
-			toggleStartWithSound,
-		}
-	},
-})
+	transitionToView(AppView.TIMER, button)
+}
 </script>
 
 <style lang="scss" scoped>
-.app-layout {
+.menu-layout {
 	background-color: var(--primary-light);
 }
 

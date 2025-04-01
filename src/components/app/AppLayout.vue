@@ -1,8 +1,12 @@
 <template>
-	<div class="app-layout">
+	<div :class="['app-layout', { 'app-layout--mobile': isMobile() }]">
 		<slot />
 	</div>
 </template>
+
+<script setup lang="ts">
+import { isMobile } from '@/support/utils'
+</script>
 
 <style lang="scss" scoped>
 .app-layout {

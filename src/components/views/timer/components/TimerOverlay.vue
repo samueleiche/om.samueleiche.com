@@ -145,12 +145,13 @@ export default defineComponent({
 		z-index: -1;
 	}
 
-	&:hover,
-	&:focus,
-	&:active {
-		&::after {
-			animation: button 0.5s var(--ease-out-quad);
-		}
+	&:focus::after,
+	&:active::after {
+		animation: button 0.5s var(--ease-out-quad);
+	}
+
+	.app-layout:not(.app-layout--mobile) &:hover::after {
+		animation: button 0.5s var(--ease-out-quad);
 	}
 }
 

@@ -150,10 +150,15 @@ export default defineComponent({
 	}
 
 	&:not(.lotus-menu-option-transition-enter-active) {
-		&:hover,
-		&:focus,
-		&:active {
-			&::before {
+		&:focus::before,
+		&:active::before {
+			opacity: 1;
+		}
+	}
+
+	.app-layout:not(.app-layout--mobile) & {
+		&:not(.lotus-menu-option-transition-enter-active) {
+			&:hover::before {
 				opacity: 1;
 			}
 		}
