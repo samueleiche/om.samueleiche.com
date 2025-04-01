@@ -1,5 +1,11 @@
 <template>
-	<TransitionGroup appear tag="div" name="lotus-menu-option-transition" class="lotus-menu">
+	<TransitionGroup
+		:appear="!isLoaded"
+		tag="div"
+		name="lotus-menu-option-transition"
+		class="lotus-menu"
+		@afterEnter="onAfterEnter"
+	>
 		<button
 			v-for="option of computedOptions"
 			:key="`menu-option-${option.id}`"
@@ -15,30 +21,11 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import type { PropType, StyleValue } from 'vue'
-import { toPx, m2PI, mPI2 } from '../../../../support/utils'
-import { store } from '../../../../support/store'
-import { useWindowSize } from '../../../../composables/useWindowSize'
-
-const MAX_RADIUS = 150
-const MIN_RADIUS = 100
-
-const MIN_ELEM_SIZE = 52
-const ELEM_SIZE_RATIO = MIN_RADIUS / MIN_ELEM_SIZE
-
-const MIN_FONT_SIZE = 11.5
-const FONT_SIZE_RATIO = MIN_ELEM_SIZE / MIN_FONT_SIZE
-
-export interface MenuOption {
-	id: number
-	text: string
-	style: StyleValue
-}
-
-function getBorderGradient(angle: number) {
-	const deg = (angle + 55) * (180 / Math.PI)
-
-	return `linear-gradient(${deg}deg, var(--primary-light), var(--primary-light)) padding-box, linear-gradient(${deg}deg, var(--primary-dark), #997b3e 60%) border-box`
-}
+import { toPx, m2PI, mPI2 } from '@/support/utils'
+import { store } from '@/support/store'
+import { useWindowSize } from '@/composables/useWindowSize'
+import { useLotusMenu } from './composables/useLotusMenu'
+import type { MenuOption } from './utils/types'
 
 export default defineComponent({
 	props: {
@@ -54,6 +41,7 @@ export default defineComponent({
 	emits: ['update:modelValue'],
 	setup(props, { emit }) {
 		const { width: windowWidth, height: windowHeight } = useWindowSize()
+		const { isLoaded, getBorderGradient, MAX_RADIUS, MIN_RADIUS, ELEM_SIZE_RATIO, FONT_SIZE_RATIO } = useLotusMenu()
 		const { round, max, min, cos, sin } = Math
 
 		const isReducedMotionMode = computed(() => store.state.reducedMotion)
@@ -105,9 +93,15 @@ export default defineComponent({
 			emit('update:modelValue', option.id, event)
 		}
 
+		function onAfterEnter() {
+			isLoaded.value = true
+		}
+
 		return {
 			onClick,
 			computedOptions,
+			onAfterEnter,
+			isLoaded,
 		}
 	},
 })

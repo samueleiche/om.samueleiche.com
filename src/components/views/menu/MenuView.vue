@@ -37,17 +37,17 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 
-import { store } from '../../../support/store'
-import { loadAudio } from '../../../support/audio'
-import { trackEvent } from '../../../support/analytics'
-import { getNotificationPermission, requestNotificationPermission } from '../../../support/notification'
-import { timerOptions } from '../../../support/settings'
-import { isMobile } from '../../../support/utils'
-import { updateThemeColorMeta } from '../../../support/dom'
+import { store } from '@/support/store'
+import { loadAudio } from '@/support/audio'
+import { trackEvent } from '@/support/analytics'
+import { getNotificationPermission, requestNotificationPermission } from '@/support/notification'
+import { timerOptions } from '@/support/settings'
+import { isMobile } from '@/support/utils'
+import { updateThemeColorMeta } from '@/support/dom'
 
-import { useViewController } from '../../../composables/global/useViewController'
+import { useViewController } from '@/composables/global/useViewController'
 
-import LotusMenu from './components/LotusMenu.vue'
+import LotusMenu from './components/LotusMenu/LotusMenu.vue'
 import AppLayout from '../../app/AppLayout.vue'
 import SWUpdatePopup from './components/SWUpdatePopup.vue'
 import BackgroundElement from './components/BackgroundElement.vue'
