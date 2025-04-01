@@ -33,11 +33,13 @@ const actions = {
 		storage.store('startWithSound', String(state.startWithSound))
 	},
 	shuffleBackground() {
+		const backgroundsCount = 4
+
 		if (backgroundIdCache) {
 			let id: number
 
 			do {
-				id = getRandom(1, 4)
+				id = getRandom(1, backgroundsCount)
 			} while (id === state.backgroundId)
 
 			state.backgroundId = id
