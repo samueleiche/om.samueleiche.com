@@ -46,6 +46,6 @@
 		"vite-plugin-ejs": "^1.7.0",
 		"vite-plugin-mkcert": "^1.17.8",
 		"vite-plugin-pwa": "^1.0.0",
-		"vue-tsc": "^2.2.8"
+		"vue-tsc": "^2.2.10"
 	}
 }
