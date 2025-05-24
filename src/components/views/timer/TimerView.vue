@@ -23,7 +23,7 @@ import { requestWakeLock, releaseWakeLock } from '../../../support/wakeLock'
 import { sendNotification } from '../../../support/notification'
 import { updateThemeColorMeta } from '../../../support/dom'
 
-import { useWindowSize } from '../../../composables/useWindowSize'
+import { useLayoutSize } from '@/composables/useLayoutSize'
 import { useRaf } from '../../../composables/useRaf'
 import { useOverlay, OverlayName } from '../../../composables/global/useOverlay'
 import { useEventListener } from '../../../composables/useEventListener'
@@ -64,7 +64,7 @@ export default defineComponent({
 	setup() {
 		updateThemeColorMeta('#000000')
 
-		const { width: windowWidth, height: windowHeight } = useWindowSize()
+		const { layoutWidth, layoutHeight } = useLayoutSize()
 		const { addOverlay, removeOverlay, isOverlayActive } = useOverlay()
 		const { time: countDownTime, startTimer } = useCountDown()
 
@@ -77,15 +77,15 @@ export default defineComponent({
 		function setupCanvas(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
 			const ctx = canvas.getContext('2d')!
 
-			circle.center.x = windowWidth.value / 2
-			circle.center.y = windowHeight.value / 2
+			circle.center.x = layoutWidth.value / 2
+			circle.center.y = layoutHeight.value / 2
 			circle.radius = circle.baseRadius
 			circle.width = circle.baseWidth
 
-			canvas.width = Math.round(windowWidth.value * dpr)
-			canvas.height = Math.round(windowHeight.value * dpr)
-			canvas.style.width = toPx(windowWidth.value)
-			canvas.style.height = toPx(windowHeight.value)
+			canvas.width = Math.round(layoutWidth.value * dpr)
+			canvas.height = Math.round(layoutHeight.value * dpr)
+			canvas.style.width = toPx(layoutWidth.value)
+			canvas.style.height = toPx(layoutHeight.value)
 
 			ctx.scale(dpr, dpr)
 
@@ -225,8 +225,6 @@ export default defineComponent({
 
 		return {
 			canvasRef,
-			windowWidth,
-			windowHeight,
 			isOverlayActive,
 			OverlayName,
 		}

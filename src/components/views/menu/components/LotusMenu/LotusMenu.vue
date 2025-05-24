@@ -23,7 +23,7 @@ import { defineComponent, computed } from 'vue'
 import type { PropType, StyleValue } from 'vue'
 import { toPx, m2PI, mPI2 } from '@/support/utils'
 import { store } from '@/support/store'
-import { useWindowSize } from '@/composables/useWindowSize'
+import { useLayoutSize } from '@/composables/useLayoutSize'
 import { useLotusMenu } from './composables/useLotusMenu'
 import type { MenuOption } from './utils/types'
 
@@ -40,14 +40,14 @@ export default defineComponent({
 	},
 	emits: ['update:modelValue'],
 	setup(props, { emit }) {
-		const { width: windowWidth, height: windowHeight } = useWindowSize()
+		const { layoutWidth, layoutHeight } = useLayoutSize()
 		const { isLoaded, getBorderGradient, MAX_RADIUS, MIN_RADIUS, ELEM_SIZE_RATIO, FONT_SIZE_RATIO } = useLotusMenu()
 		const { round, max, min, cos, sin } = Math
 
 		const isReducedMotionMode = computed(() => store.state.reducedMotion)
 
 		const computedOptions = computed<MenuOption[]>(() => {
-			const radius = max(min(windowWidth.value / 3, MAX_RADIUS), MIN_RADIUS)
+			const radius = max(min(layoutWidth.value / 3, MAX_RADIUS), MIN_RADIUS)
 			const elemSize = radius / ELEM_SIZE_RATIO
 			const fontSize = elemSize / FONT_SIZE_RATIO
 
@@ -65,8 +65,8 @@ export default defineComponent({
 				const angle = startAngle + angleStep * i
 				const cosθ = cos(angle)
 				const sinθ = sin(angle)
-				const x = round(windowWidth.value / 2 + radius * cosθ - elemSize / 2)
-				const y = round(windowHeight.value / 2 + radius * sinθ - elemSize / 2)
+				const x = round(layoutWidth.value / 2 + radius * cosθ - elemSize / 2)
+				const y = round(layoutHeight.value / 2 + radius * sinθ - elemSize / 2)
 				const background = getBorderGradient(angle)
 
 				const style: StyleValue = {
