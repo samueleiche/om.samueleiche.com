@@ -82,8 +82,8 @@ export default defineComponent({
 			circle.radius = circle.baseRadius
 			circle.width = circle.baseWidth
 
-			canvas.width = windowWidth.value * dpr
-			canvas.height = windowHeight.value * dpr
+			canvas.width = Math.round(windowWidth.value * dpr)
+			canvas.height = Math.round(windowHeight.value * dpr)
 			canvas.style.width = toPx(windowWidth.value)
 			canvas.style.height = toPx(windowHeight.value)
 
