@@ -10,19 +10,8 @@
 		"build-only": "vite build",
 		"lint": "eslint . --fix",
 		"prettier": "prettier . --write",
-		"type-check": "vue-tsc",
+		"type-check": "vue-tsc -p tsconfig.app.json --noEmit",
 		"prepare": "husky"
-	},
-	"lint-staged": {
-		"src/**/*.{js,ts,tsx,vue,scss}": [
-			"npm run prettier",
-			"npm run lint"
-		],
-		"./*.{js,ts,json}": [
-			"npm run prettier",
-			"npm run lint"
-		],
-		"*.html": "npm run prettier"
 	},
 	"dependencies": {
 		"vue": "^3.5.14"
@@ -47,5 +36,6 @@
 		"vite-plugin-mkcert": "^1.17.8",
 		"vite-plugin-pwa": "^1.0.0",
 		"vue-tsc": "^2.2.10"
-	}
+	},
+	"packageManager": "yarn@4.1.0+sha512.5b7bc055cad63273dda27df1570a5d2eb4a9f03b35b394d3d55393c2a5560a17f5cef30944b11d6a48bcbcfc1c3a26d618aae77044774c529ba36cb771ad5b0f"
 }
