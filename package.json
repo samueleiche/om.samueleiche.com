@@ -1,6 +1,6 @@
 {
 	"name": "om",
-	"version": "1.5.4",
+	"version": "1.5.5",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"@tsconfig/node22": "^22.0.2",
 		"@types/node": "^22.15.21",
-		"@vitejs/plugin-vue": "^6.0.0",
+		"@vitejs/plugin-vue": "^6.0.1",
 		"@vue/eslint-config-prettier": "^10.2.0",
 		"@vue/eslint-config-typescript": "^14.5.0",
 		"@vue/tsconfig": "^0.7.0",
@@ -31,10 +31,10 @@
 		"prettier": "^3.5.3",
 		"sass": "^1.89.0",
 		"typescript": "~5.8.3",
-		"vite": "^6.3.5",
+		"vite": "^7.0.6",
 		"vite-plugin-ejs": "^1.7.0",
 		"vite-plugin-mkcert": "^1.17.8",
-		"vite-plugin-pwa": "^1.0.0",
+		"vite-plugin-pwa": "^1.0.2",
 		"vue-tsc": "^3.0.4"
 	},
 	"packageManager": "yarn@4.1.0+sha512.5b7bc055cad63273dda27df1570a5d2eb4a9f03b35b394d3d55393c2a5560a17f5cef30944b11d6a48bcbcfc1c3a26d618aae77044774c529ba36cb771ad5b0f"
