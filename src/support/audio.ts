@@ -22,11 +22,21 @@ export function loadAudio(data: { [key: string]: string }): Promise<void> {
 	})
 }
 
-export function playAudio(audioElement: HTMLAudioElement): Promise<void> {
+export function playAudio(audioElement?: HTMLAudioElement): Promise<void> {
+	if (!audioElement) {
+		console.error('[playAudio] audioElement not found')
+		return Promise.reject()
+	}
+
 	return audioElement.play()
 }
 
-export function pauseAudio(audioElement: HTMLAudioElement): Promise<void> {
+export function pauseAudio(audioElement?: HTMLAudioElement): Promise<void> {
+	if (!audioElement) {
+		console.error('[pauseAudio] audioElement not found')
+		return Promise.reject()
+	}
+
 	return new Promise((resolve) => {
 		audioElement.pause()
 		resolve()

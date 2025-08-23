@@ -183,10 +183,8 @@ export default defineComponent({
 
 					start()
 				} catch (err) {
-					const msg = '[playAudio]: ' + err
-
-					alert(msg)
-					console.error(msg)
+					alert(err)
+					console.error(err)
 				}
 			})
 		})
@@ -218,9 +216,13 @@ export default defineComponent({
 		})
 
 		onBeforeUnmount(() => {
-			pauseAudio(audio.defaultBowl)
-			releaseWakeLock()
-			store.actions.setTimerElapsed(0)
+			try {
+				pauseAudio(audio.defaultBowl)
+				releaseWakeLock()
+				store.actions.setTimerElapsed(0)
+			} catch (err) {
+				console.error(err)
+			}
 		})
 
 		return {

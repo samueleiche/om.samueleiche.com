@@ -25,7 +25,9 @@ const views: ViewConfig[] = [
 ]
 
 const activeViewName = ref(AppView.MENU)
-const activeView = computed(() => views.find((v) => v.name === activeViewName.value) || views[0])
+const activeView = computed(() => {
+	return views.find((v) => v.name === activeViewName.value) || views[0]!
+})
 
 function setActiveView(name: AppView) {
 	activeViewName.value = name
