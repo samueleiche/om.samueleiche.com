@@ -1,4 +1,4 @@
-import { m2PI, dpr } from '../../../../support/utils'
+import { m2PI } from '../../../../support/utils'
 
 interface Circle {
 	radius: number
@@ -63,8 +63,8 @@ export function drawPoint({ circle, angle, ctx }: { circle: Circle; angle: numbe
 }
 
 function drawGradient({ ctx }: { ctx: CanvasRenderingContext2D }) {
-	const width = ctx.canvas.width / dpr
-	const height = ctx.canvas.height / dpr
+	const width = ctx.canvas.width / window.devicePixelRatio
+	const height = ctx.canvas.height / window.devicePixelRatio
 	const centerX = width / 2
 	const centerY = height / 2
 	const outerRadius = Math.sqrt(width * width + height * height) / 2

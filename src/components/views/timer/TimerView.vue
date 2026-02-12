@@ -17,7 +17,7 @@ import { onMounted, onBeforeUnmount, watchPostEffect, ref, computed, defineCompo
 
 import { store } from '../../../support/store'
 import { audio, playAudio, pauseAudio } from '../../../support/audio'
-import { easeInOutQuint, toPx, m2PI, mPI2, dpr } from '../../../support/utils'
+import { easeInOutQuint, toPx, m2PI, mPI2 } from '../../../support/utils'
 import { trackEvent, trackView } from '../../../support/analytics'
 import { requestWakeLock, releaseWakeLock } from '../../../support/wakeLock'
 import { sendNotification } from '../../../support/notification'
@@ -76,6 +76,7 @@ export default defineComponent({
 
 		function setupCanvas(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
 			const ctx = canvas.getContext('2d')!
+			const dpr = window.devicePixelRatio
 
 			circle.center.x = layoutWidth.value / 2
 			circle.center.y = layoutHeight.value / 2
