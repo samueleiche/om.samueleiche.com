@@ -25,7 +25,7 @@ export default defineConfig({
 			},
 			manifest: {
 				name: 'OM',
-				description: 'A helpful app that reminds you to stay mindful',
+				description: 'A helpful web app to encourage regular mindful breaks',
 				theme_color: '#ffffff',
 				background_color: '#ffffff',
 				icons: [
