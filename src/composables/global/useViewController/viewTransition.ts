@@ -3,7 +3,6 @@ function getCircle(button: HTMLElement) {
 
 	const screenWidth = window.innerWidth
 	const screenHeight = window.innerHeight
-	const dpr = window.devicePixelRatio
 
 	const screenCenter = {
 		x: screenWidth / 2,
@@ -21,8 +20,7 @@ function getCircle(button: HTMLElement) {
 	// a circle radius wide enough it would cover the screen from the new position
 	const positionX = Math.abs(screenCenter.x - buttonCenter.x)
 	const positionY = Math.abs(screenCenter.y - buttonCenter.y)
-	const baseRadius = Math.sqrt(Math.pow(screenCenter.x + positionX, 2) + Math.pow(screenCenter.y + positionY, 2))
-	const r = baseRadius * dpr
+	const r = Math.sqrt(Math.pow(screenCenter.x + positionX, 2) + Math.pow(screenCenter.y + positionY, 2))
 
 	return { x, y, r }
 }
