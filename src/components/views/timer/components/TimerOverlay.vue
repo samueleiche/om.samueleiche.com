@@ -1,9 +1,11 @@
 <template>
 	<AppOverlay class="timer-overlay">
 		<div class="timer-overlay-content" @click="close">
-			<div class="active-interval-label">
-				{{ activeIntervalLabel }}
+			<div class="active-interval">
+				<div class="active-interval-label">Repeat</div>
+				<div class="active-interval-duration">{{ activeIntervalDuration }}</div>
 			</div>
+
 			<div class="total-elapsed-time">
 				{{ totalElapsedTime }}
 			</div>
@@ -35,7 +37,7 @@ export default defineComponent({
 		const { transitionToView, AppView } = useViewController()
 		const { removeOverlay } = useOverlay()
 
-		const activeIntervalLabel = computed(() => {
+		const activeIntervalDuration = computed(() => {
 			const timerInterval = store.state.timerInterval
 			return timerOptions.find((o) => o.id === timerInterval)?.text || ''
 		})
@@ -61,7 +63,7 @@ export default defineComponent({
 		return {
 			stop,
 			close,
-			activeIntervalLabel,
+			activeIntervalDuration,
 			totalElapsedTime,
 		}
 	},
@@ -91,11 +93,20 @@ export default defineComponent({
 	font-weight: 700;
 }
 
-.active-interval-label {
+.active-interval {
 	position: absolute;
+	transform: translate(0, -152px);
+	text-align: center;
 	font-weight: 700;
+}
+
+.active-interval-label {
+	font-size: 12px;
+	opacity: 0.7;
+}
+
+.active-interval-duration {
 	font-size: 16px;
-	transform: translate(0, -144px);
 }
 
 .timer-stop-button-wrapper {
