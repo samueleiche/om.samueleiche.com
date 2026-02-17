@@ -1,26 +1,26 @@
+/** Gets a circle with a radius wide enough that would cover the screen from its position. */
 function getCircle(button: HTMLElement) {
-	const buttonRect = button.getBoundingClientRect()
+	const rect = button.getBoundingClientRect()
+	const w = window.innerWidth
+	const h = window.innerHeight
 
-	const screenWidth = window.innerWidth
-	const screenHeight = window.innerHeight
+	// Center coordinates as percentages
+	const x = ((rect.left + rect.width / 2) / w) * 100
+	const y = ((rect.top + rect.height / 2) / h) * 100
 
-	const screenCenter = {
-		x: screenWidth / 2,
-		y: screenHeight / 2,
-	}
-	const buttonCenter = {
-		x: buttonRect.left + buttonRect.width / 2,
-		y: buttonRect.top + buttonRect.height / 2,
-	}
+	// Find the furthest distance to an edge in pixels
+	const centerX = rect.left + rect.width / 2
+	const centerY = rect.top + rect.height / 2
 
-	// position of the circle so that it is centered on the button
-	const x = (buttonCenter.x * 100) / screenWidth
-	const y = (buttonCenter.y * 100) / screenHeight
+	const maxDX = Math.max(centerX, w - centerX)
+	const maxDY = Math.max(centerY, h - centerY)
 
-	// a circle radius wide enough it would cover the screen from the new position
-	const positionX = Math.abs(screenCenter.x - buttonCenter.x)
-	const positionY = Math.abs(screenCenter.y - buttonCenter.y)
-	const r = Math.sqrt(Math.pow(screenCenter.x + positionX, 2) + Math.pow(screenCenter.y + positionY, 2))
+	// The required pixel radius to hit the furthest corner
+	const rPixels = Math.sqrt(Math.pow(maxDX, 2) + Math.pow(maxDY, 2))
+
+	// CSS circle() percentages are relative to: sqrt(width^2 + height^2) / sqrt(2)
+	const referenceValue = Math.sqrt(Math.pow(w, 2) + Math.pow(h, 2)) / Math.sqrt(2)
+	const r = (rPixels / referenceValue) * 100
 
 	return { x, y, r }
 }
@@ -29,7 +29,7 @@ function setCircleStyle({ x, y, r }: { x: number | null; y: number | null; r: nu
 	const root = document.documentElement
 	root.style.setProperty('--circle-x', x ? `${x}%` : '')
 	root.style.setProperty('--circle-y', y ? `${y}%` : '')
-	root.style.setProperty('--circle-radius', r ? `${r}px` : '')
+	root.style.setProperty('--circle-radius', r ? `${r}%` : '')
 }
 
 export function transitionFromElement(element: HTMLElement) {
