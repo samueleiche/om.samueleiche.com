@@ -30,7 +30,7 @@
 		"npm-run-all2": "^8.0.3",
 		"prettier": "^3.8.1",
 		"sass": "^1.89.0",
-		"typescript": "~5.9.2",
+		"typescript": "~5.9.3",
 		"vite": "^7.0.6",
 		"vite-plugin-ejs": "^1.7.0",
 		"vite-plugin-mkcert": "^1.17.8",
