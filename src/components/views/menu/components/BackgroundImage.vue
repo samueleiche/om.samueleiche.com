@@ -1,5 +1,5 @@
 <template>
-	<div :class="['background', `background-${backgroundId}`]" />
+	<div :class="['background-image', `background-image-${backgroundId}`]" />
 </template>
 
 <script lang="ts">
@@ -20,7 +20,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.background {
+.background-image {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -29,7 +29,7 @@ export default defineComponent({
 	background-size: cover;
 }
 
-.background-1 {
+.background-image-1 {
 	// Bahman Farzad https://www.flickr.com/photos/21644167@N04
 	background-image: url('../../../../assets/background-1.jpg');
 	opacity: 0.3;
@@ -41,7 +41,7 @@ export default defineComponent({
 	}
 }
 
-.background-2 {
+.background-image-2 {
 	// Unknown
 	background-image: url('../../../../assets/background-2.jpg');
 	opacity: 0.2;
@@ -52,14 +52,14 @@ export default defineComponent({
 	}
 }
 
-.background-3 {
+.background-image-3 {
 	// Otaka https://www.flickr.com/photos/otaka_photos
 	background-image: url('../../../../assets/background-3.jpg');
 	background-position: center center;
 	opacity: 0.25;
 }
 
-.background-4 {
+.background-image-4 {
 	// Unknown
 	background-image: url('../../../../assets/background-4.jpg');
 	background-position: top right;

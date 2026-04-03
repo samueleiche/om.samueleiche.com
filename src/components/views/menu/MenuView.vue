@@ -1,10 +1,10 @@
 <template>
 	<AppLayout class="menu-layout">
-		<BackgroundElement />
+		<BackgroundImage />
 
 		<div class="center-content">
-			<div class="background-border"></div>
-			<img class="active-sound-img" src="../../../assets/large-bowl.png" alt="" />
+			<div class="stage-backdrop"></div>
+			<img class="sound-image" src="../../../assets/large-bowl.png" alt="" />
 		</div>
 
 		<LotusMenu :options="timerOptions" :modelValue="timerInterval" @update:modelValue="onSelect" />
@@ -50,7 +50,7 @@ import { useViewController } from '@/composables/global/useViewController'
 import LotusMenu from './components/LotusMenu/LotusMenu.vue'
 import AppLayout from '../../app/AppLayout.vue'
 import SWUpdatePopup from './components/SWUpdatePopup.vue'
-import BackgroundElement from './components/BackgroundElement.vue'
+import BackgroundImage from './components/BackgroundImage.vue'
 import FooterButton from './components/FooterButton.vue'
 import InstallButton from './components/InstallButton.vue'
 
@@ -104,7 +104,7 @@ function onSelect(id: number, event: PointerEvent) {
 
 <style lang="scss" scoped>
 .menu-layout {
-	background-color: var(--primary-light);
+	background-color: #d8dce7;
 }
 
 .center-content {
@@ -121,18 +121,37 @@ function onSelect(id: number, event: PointerEvent) {
 	height: calc(100vmin - 24px);
 }
 
-.background-border {
+.stage-backdrop {
 	position: absolute;
 	bottom: 0;
-	width: 100%;
+	width: 144%;
 	height: 100vh;
-	border: 2px solid var(--primary-dark);
+	background-color: white;
 	border-top: none;
 	border-bottom-left-radius: 999px;
 	border-bottom-right-radius: 999px;
+	opacity: 0.3;
+	animation-name: fade-in;
+	animation-duration: 0s;
+	animation-iteration-count: 1;
+
+	.app-layout:not(.app-layout--reduced-motion) & {
+		animation-duration: 2s;
+	}
 }
 
-.active-sound-img {
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	100% {
+		opacity: 0.35;
+		transform: scale(1);
+	}
+}
+
+.sound-image {
 	position: absolute;
 	width: max(38%, 120px);
 	margin-top: min(-70%, -200px);
