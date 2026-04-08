@@ -26,7 +26,7 @@
 				@click="askNotificationPermission"
 			/>
 			<InstallButton />
-			<FooterButton label="About" link="https://samueleiche.github.io/om.samueleiche.com" />
+			<FooterButton label="About this app" link="https://samueleiche.github.io/om.samueleiche.com" />
 			<FooterButton :label="'v' + appVersion" />
 		</div>
 

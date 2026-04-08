@@ -3,7 +3,7 @@
 	<button
 		v-else
 		type="button"
-		class="footer-button"
+		:class="['footer-button', { 'footer-button-passive': !onClick }]"
 		:style="{ fontWeight: active ? 700 : 400 }"
 		@click="$emit('click')"
 	>
@@ -19,6 +19,7 @@ export default defineComponent({
 		active: Boolean,
 		label: String,
 		link: String,
+		onClick: Function,
 	},
 	emits: ['click'],
 })
@@ -32,5 +33,14 @@ export default defineComponent({
 	color: var(--primary-dark);
 	-webkit-tap-highlight-color: transparent;
 	text-decoration: none;
+	cursor: default;
+
+	&:not(.footer-button-passive) {
+		cursor: pointer;
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
 }
 </style>
