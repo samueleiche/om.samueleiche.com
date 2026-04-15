@@ -8,7 +8,7 @@
 
 <br>
 
-This mindfulness app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
+This app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
 
 ## What is Mindfulness?
 
@@ -75,7 +75,7 @@ Modern browsers optimize memory and performance by suspending inactive tabs, whi
     </tr>
 </table>
 
-## Run app in development mode
+## Development
 
 ```bash
 # clone repo
@@ -91,17 +91,15 @@ npm run dev
 ## Credits & Gratitude
 
 - Inspired by:
--   - Futureproof's _Awareness_
--   - Thich Nhat Hanh's _Mindfulness Bell_
+    - Futureproof's Awareness
+    - Thich Nhat Hanh's Mindfulness Bell
 - Sound effect: Ben Burnes
 - Bowl image: SivanaSpirit
 - Background images: Geran de Klerk, Bahman Farzad, Otaka Photos
 
-## Share the Gift of Mindfulness
+## Sharing the Gift of Mindfulness
 
-**OM** is offered for free, indefinitely. I designed it with my own well-being in mind, but I believe it has the potential to benefit anyone. Please feel free to share it with anyone who may find value in it.
-
-> This whole world is just Om. — Taittiriya Upanishad 1.8
+The app is usable online for free. I designed it with my own well-being in mind, and I believe it has the potential to benefit anyone. Please, feel free to share it with anyone who may find value in it.
 
 ## Licence
 
