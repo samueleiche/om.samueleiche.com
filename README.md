@@ -1,6 +1,7 @@
 <br>
 
-<h3 align="center">OM - One Minute (of Mindfulness)</h3>
+<h3 align="center">OM</h3>
+<h4 align="center">A Minute for Mindfulness</h3>
 
 <p align="center">
     App available online at <b><a href="https://om.samueleiche.com">om.samueleiche.com</a></b>
@@ -9,6 +10,10 @@
 <br>
 
 This app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
+
+## The Meaning
+
+**_Bīja_** — **a seed**; a figurative symbol of the potential for something to unfold or develop, and its basic cause. The best-known _bīja_ syllable is Oṃ (Tib.: ༀ).
 
 ## What is Mindfulness?
 
@@ -45,22 +50,16 @@ Whenever the bell sounds, you can use it as a cue to pause what you are doing an
 
 ## Features
 
-- A progressive web app (PWA)
--   - Cross-platform compatibility: web apps run in web browsers, making them accessible on various platforms and devices regardless of their operating system
--   - Installable like an app
--   - Works offline
-- Select a predefined time interval option (1, 2, 5, 10, 20, 30, or 60 minutes)
-- Indefinite looping of selected time interval
-- A few settings for user preferences
-- Simple, minimal and meaningful design
+The app is built as a Progressive Web App (PWA):
 
-#### Limitations
+- **Cross-Platform**: Runs in any widely-used browser on mobile or desktop.
+- **Installable**: Behaves like a native app once added to your home screen or desktop.
+- **Offline Access**: Works without an internet connection after the first use.
+- **Minimalist Design**: Simple, focused, and meaningful by design.
 
-Modern browsers optimize memory and performance by suspending inactive tabs, which stops the timer and sound playback. To avoid this you can follow the next steps:
+**Notes on usage:**<br>Modern browsers often optimize memory by suspending inactive tabs. Installing the app directly to your device or adding it to your browser's "Memory Saver" ignore list ensures the timer isn't silenced.
 
-1. **Desktop browsers:** browsers like Google Chrome offer a Memory Saver feature. To ensure continuous functionality, add the site to the ignore list or install the app (recommended) to keep it active. You can install it either from the "Install" option in the menu footer, the button next to the browser's search bar, or from the browser's three-dot menu.
-
-2. **Mobile browsers:** the app may stop (or go idle) when it is running in the background or when the screen is off. This behavior is due to how the device handles background processes and [a technical limitation of PWA's](https://bugs.chromium.org/p/chromium/issues/detail?id=889077). The [Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API) is used to alleviate this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
+On mobile devices, the app may go idle when running in the background or when the screen is off due to system optimizations and [PWA constraints](https://bugs.chromium.org/p/chromium/issues/detail?id=889077). To help with this, the [Screen Wake Lock](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API) is used to prevent the screen from turning off while the timer is running. Please note that keeping the screen active may increase battery usage.
 
 #### Screenshots
 
@@ -99,7 +98,7 @@ npm run dev
 
 ## Sharing the Gift of Mindfulness
 
-The app is usable online for free. I designed it with my own well-being in mind, and I believe it has the potential to benefit anyone. Please, feel free to share it with anyone who may find value in it.
+The app is usable online for free. I designed it with my own well-being in mind and believe it has the potential to benefit anyone. Please, feel free to share it with anyone who may find value in it.
 
 ## Licence
 
