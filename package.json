@@ -14,7 +14,7 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
-		"vue": "^3.5.32"
+		"vue": "^3.5.33"
 	},
 	"devDependencies": {
 		"@tsconfig/node22": "^22.0.5",
