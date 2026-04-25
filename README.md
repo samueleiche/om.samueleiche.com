@@ -17,36 +17,18 @@ This app makes sound at intervals to encourage regular breaks and to remind you 
 
 ## What is Mindfulness?
 
-> Mindfulness is the continuous practice of touching deeply every moment of daily life. To be mindful is to be truly present with your body and your mind, to harmonize your intentions and actions, and to be in harmony with those around you. \
->  — Thich Nhat Hanh, Zen master
+> Mindfulness is the continuous practice of touching deeply every moment of daily life.\
+>  — Zen Master Thich Nhat Hanh
 
-Mindfulness can be practiced at any time, whether we are in the office, kitchen, or bathroom. We can invite mindfulness into our daily activities such as sitting, working, and eating, and so on - with mindful awareness of what we're doing.
+As mentioned in **The Meaning**, the syllable represents potential. Mindfulness is the act of watering that seed. We all possess a natural capacity for well-being and clarity, but in the rush of work and daily activity, these qualities remain uncovered. By cultivating brief moments of awareness, we create the conditions for this potential to unfold.
 
-## How (and Why) to Use the Mindfulness Reminder
+In the traditional sense, mindfulness means to remember or to keep in mind; it is the cultivated result of establishing the foundations of mindfulness (_satipaṭṭhāna_) through dedicated practice.
 
-> The opposite of mindfulness is forgetfulness. — Thich Nhat Hanh
+**_Satipaṭṭhāna_**: the establishing (_upaṭṭhāna_) of mindfulness (_sati_) is a meditative technique for training the mind to keep mindfulness firmly established in a particular frame of reference in all its activities.
 
-Taking small moments during the day to connect with the body, and to the present moment, can greatly increase happiness and ease.
+Ṭhānissaro Bhikkhu writes:
 
-Our tendency is to forget that we are in the present moment right now or that we are breathing. It's common to lose awareness while working on computers. Similar to physical exercise, the longer we go without practicing mindfulness, the more challenging it becomes to start again.
-
-> Short moments repeated many times. — Tulku Urgyen Rinpoche, from his book "As It Is"
-
-Developing a habit of mindfulness begins with making small, consistent commitments. A short duration of mindful practice guarantees it is authentic. If we force ourselves into longer practices, our minds can become dull or restless and we lose the essence of awareness.
-
-A bell programmed to make sound at intervals can remind us to stop and be present again when we have been forgetful. In the **OM** app, you can set reminders at intervals that suit you.
-
-Whenever the bell sounds, you can use it as a cue to pause what you are doing and take three mindful breaths, returning to the here and now, reconnecting with your body. Even for only a few moments, you have a chance to check in with yourself. After enjoying a few breaths, you may notice that you have become tense, need to straighten your back, or that you have moved away from your intended task.
-
-#### For Meditation
-
-> Stress is caused by being "here" but wanting to be "there" — Eckhart Tolle
-
-**OM** can aid your meditation practice. While meditation typically requires very little, a recurring bell can be practical and offer several benefits:
-
-- Continuous alertness: The sound of the bell can remind us to return to our original intention if our mind has started to wander.
-- Undivided attention: Guided by a timer, we can wholly immerse ourselves in our practice. By temporarily relaxing thoughts of the past and future, we can be fully present, unconcerned about how long we've meditated for or when to end our session.
-- We avoid overdoing it: We might get carried away and meditate for too long, leading to discomfort or loss of interest. A timer set to a short interval can prevent this by gently ending the session. Stopping a meditation session earlier than we would like to leads us to wanting more later.
+> The role of mindfulness is to keep the mind properly focused in frames of reference that will give it guidance in what to develop, and which ones to abandon, so as to keep it on the right path. To make an analogy, mindfulness is what remembers to keep attention focused on the road to the mountain, rather than letting it stay focused on glimpses of the mountain or get distracted by other paths leading away from the road.
 
 ## Features
 
