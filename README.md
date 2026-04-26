@@ -1,6 +1,7 @@
 <br>
 
-<h3 align="center">OM - One Minute (of Mindfulness)</h3>
+<h3 align="center">OM</h3>
+<h4 align="center">A Minute for Mindfulness</h3>
 
 <p align="center">
     App available online at <b><a href="https://om.samueleiche.com">om.samueleiche.com</a></b>
@@ -8,59 +9,51 @@
 
 <br>
 
-This mindfulness app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
+This app makes sound at intervals to encourage regular breaks and to remind you to pause, breathe and center yourself throughout the day.
+
+## The Meaning
+
+**OM** (Tibetan: ༀ; Sanskrit: ॐ; Romanized: Om̆̇) is the best-known **seed syllable** (_bīja_): a figurative symbol of the potential for something to unfold or develop, and its basic cause.
 
 ## What is Mindfulness?
 
-> Mindfulness is the continuous practice of touching deeply every moment of daily life. To be mindful is to be truly present with your body and your mind, to harmonize your intentions and actions, and to be in harmony with those around you. \
->  — Thich Nhat Hanh, Zen master
+> Mindfulness is the continuous practice of touching deeply every moment of daily life.\
+>  — Zen Master Thich Nhat Hanh
 
-Mindfulness can be practiced at any time, whether we are in the office, kitchen, or bathroom. We can invite mindfulness into our daily activities such as sitting, working, and eating, and so on - with mindful awareness of what we're doing.
+As mentioned in **The Meaning**, the syllable represents potential. Mindfulness is the act of watering that seed. We all possess a natural capacity for well-being and clarity, but in the rush of work and daily activity, these qualities remain uncovered. By cultivating brief moments of awareness, we create the conditions for this potential to unfold.
 
-## How (and Why) to Use the Mindfulness Reminder
+In the traditional sense, mindfulness means to remember or to keep in mind; it is the result of first establishing the foundations of mindfulness (_satipaṭṭhāna_) through dedicated practice. _Satipaṭṭhāna_ — the establishing (_upaṭṭhāna_) of mindfulness (_sati_) — is a technique for training the mind to keep mindfulness firmly established in a particular frame of reference in all its activities.
+
+Mindfulness doesn't require mastery to be effective, as even short moments of refined attention on something meaningful are an invaluable gift to yourself.
+
+Ṭhānissaro Bhikkhu writes:
+
+> The role of mindfulness is to keep the mind properly focused in frames of reference that will give it guidance in what to develop, and which ones to abandon, so as to keep it on the right path. To make an analogy, mindfulness is what remembers to keep attention focused on the road to the mountain, rather than letting it stay focused on glimpses of the mountain or get distracted by other paths leading away from the road.
+
+## The Monkey Mind
 
 > The opposite of mindfulness is forgetfulness. — Thich Nhat Hanh
 
-Taking small moments during the day to connect with the body, and to the present moment, can greatly increase happiness and ease.
+Without a conscious intervention, the mind defaults to a state of distraction and forgetfulness. This is known as the **"monkey mind"** — a term for a restless and constantly jumping mind that shifts rapidly between thoughts, fears, and memories, much like a monkey swinging from branch to branch. It represents an untrained mind characterized by distraction.
 
-Our tendency is to forget that we are in the present moment right now or that we are breathing. It's common to lose awareness while working on computers. Similar to physical exercise, the longer we go without practicing mindfulness, the more challenging it becomes to start again.
+Life can pass by in a blur of stress and background noise. It is inevitable when writing or working on computers to forget you have a body, or even that you are alive. Taking small moments to connect with yourself is a way to stay alive to the wonders of your own existence; it ensures you touch your life deeply while you have the chance to live it, no matter where you are or what you're doing.
 
-> Short moments repeated many times. — Tulku Urgyen Rinpoche, from his book "As It Is"
+In the Plum Village Monastery, mindfulness is supported by the "Bell of Mindfulness." Whether it is a temple bell, a church bell in the distance, or even a ringing telephone, the sound serves as a signal to stop. Whenever the bell sounds, everyone pauses their activity to take a few breaths in full awareness. This tradition of conscious pausing is the direct inspiration for this app.
 
-Developing a habit of mindfulness begins with making small, consistent commitments. A short duration of mindful practice guarantees it is authentic. If we force ourselves into longer practices, our minds can become dull or restless and we lose the essence of awareness.
-
-A bell programmed to make sound at intervals can remind us to stop and be present again when we have been forgetful. In the **OM** app, you can set reminders at intervals that suit you.
-
-Whenever the bell sounds, you can use it as a cue to pause what you are doing and take three mindful breaths, returning to the here and now, reconnecting with your body. Even for only a few moments, you have a chance to check in with yourself. After enjoying a few breaths, you may notice that you have become tense, need to straighten your back, or that you have moved away from your intended task.
-
-#### For Meditation
-
-> Stress is caused by being "here" but wanting to be "there" — Eckhart Tolle
-
-**OM** can aid your meditation practice. While meditation typically requires very little, a recurring bell can be practical and offer several benefits:
-
-- Continuous alertness: The sound of the bell can remind us to return to our original intention if our mind has started to wander.
-- Undivided attention: Guided by a timer, we can wholly immerse ourselves in our practice. By temporarily relaxing thoughts of the past and future, we can be fully present, unconcerned about how long we've meditated for or when to end our session.
-- We avoid overdoing it: We might get carried away and meditate for too long, leading to discomfort or loss of interest. A timer set to a short interval can prevent this by gently ending the session. Stopping a meditation session earlier than we would like to leads us to wanting more later.
+## Watering the Seed
 
 ## Features
 
-- A progressive web app (PWA)
--   - Cross-platform compatibility: web apps run in web browsers, making them accessible on various platforms and devices regardless of their operating system
--   - Installable like an app
--   - Works offline
-- Select a predefined time interval option (1, 2, 5, 10, 20, 30, or 60 minutes)
-- Indefinite looping of selected time interval
-- A few settings for user preferences
-- Simple, minimal and meaningful design
+The app is built as a Progressive Web App (PWA):
 
-#### Limitations
+- **Cross-Platform**: Runs in any widely-used browser on mobile or desktop.
+- **Installable**: Behaves like a native app once added to your home screen or desktop.
+- **Offline Access**: Works without an internet connection after the first use.
+- **Minimalist Design**: Simple, focused, and meaningful by design.
 
-Modern browsers optimize memory and performance by suspending inactive tabs, which stops the timer and sound playback. To avoid this you can follow the next steps:
+**Notes on usage:**<br>Modern browsers often optimize memory by suspending inactive tabs. Installing the app directly to your device or adding it to your browser's "Memory Saver" ignore list ensures the timer isn't silenced.
 
-1. **Desktop browsers:** browsers like Google Chrome offer a Memory Saver feature. To ensure continuous functionality, add the site to the ignore list or install the app (recommended) to keep it active. You can install it either from the "Install" option in the menu footer, the button next to the browser's search bar, or from the browser's three-dot menu.
-
-2. **Mobile browsers:** the app may stop (or go idle) when it is running in the background or when the screen is off. This behavior is due to how the device handles background processes and [a technical limitation of PWA's](https://bugs.chromium.org/p/chromium/issues/detail?id=889077). The [Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API) is used to alleviate this issue by preventing the screen from turning off when the timer is running. Be mindful that having the screen on for long periods can lead to increased battery consumption.
+On mobile devices, the app may go idle when running in the background or when the screen is off due to system optimizations and [PWA constraints](https://bugs.chromium.org/p/chromium/issues/detail?id=889077). To help with this, the [Screen Wake Lock](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API) is used to prevent the screen from turning off while the timer is running. Please note that keeping the screen active may increase battery usage.
 
 #### Screenshots
 
@@ -75,7 +68,7 @@ Modern browsers optimize memory and performance by suspending inactive tabs, whi
     </tr>
 </table>
 
-## Run app in development mode
+## Development
 
 ```bash
 # clone repo
@@ -91,17 +84,15 @@ npm run dev
 ## Credits & Gratitude
 
 - Inspired by:
--   - Futureproof's _Awareness_
--   - Thich Nhat Hanh's _Mindfulness Bell_
+    - Futureproof's Awareness
+    - Thich Nhat Hanh's Mindfulness Bell
 - Sound effect: Ben Burnes
 - Bowl image: SivanaSpirit
 - Background images: Geran de Klerk, Bahman Farzad, Otaka Photos
 
-## Share the Gift of Mindfulness
+## Sharing the Gift of Mindfulness
 
-**OM** is offered for free, indefinitely. I designed it with my own well-being in mind, but I believe it has the potential to benefit anyone. Please feel free to share it with anyone who may find value in it.
-
-> This whole world is just Om. — Taittiriya Upanishad 1.8
+The app is usable online for free. I designed it with my own well-being in mind and believe it has the potential to benefit anyone. Please, feel free to share it with anyone who may find value in it.
 
 ## Licence
 
