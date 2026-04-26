@@ -40,7 +40,7 @@ Without a conscious intervention, the mind defaults to a state of distraction an
 
 Life can pass by in a blur of stress and background noise. It is inevitable when writing or working on computers to forget you have a body, or even that you are alive. Taking small moments to connect with yourself is a way to stay alive to the wonders of your own existence; it ensures you touch your life deeply while you have the chance to live it, no matter where you are or what you're doing.
 
-In the Plum Village Monastery, mindfulness is supported by the "Bell of Mindfulness." Whether it is a temple bell, a church bell in the distance, or even a ringing telephone, the sound serves as a signal to stop. Whenever the bell sounds, everyone pauses their activity to take a few breaths in full awareness. This creates the necessary intervention in the momentum of the day. This tradition is the direct inspiration for this app.
+In the Plum Village Monastery, mindfulness is supported by the "Bell of Mindfulness." Whether it is a temple bell, a church bell in the distance, or even a ringing telephone, the sound serves as a signal to stop. Whenever the bell sounds, everyone pauses their activity to take a few breaths in full awareness. This tradition of conscious pausing is the direct inspiration for this app.
 
 ## Watering the Seed
 
