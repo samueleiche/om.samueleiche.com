@@ -24,13 +24,25 @@ As mentioned in **The Meaning**, the syllable represents potential. Mindfulness 
 
 In the traditional sense, mindfulness means to remember or to keep in mind; it is the result of first establishing the foundations of mindfulness (_satipaṭṭhāna_) through dedicated practice.
 
-**_Satipaṭṭhāna_**: the establishing (_upaṭṭhāna_) of mindfulness (_sati_) is a meditative technique for training the mind to keep mindfulness firmly established in a particular frame of reference in all its activities.
+**_Satipaṭṭhāna_** is the establishing (_upaṭṭhāna_) of mindfulness (_sati_) is a meditative technique for training the mind to keep mindfulness firmly established in a particular frame of reference in all its activities.
+
+Mindfulness doesn't require mastery to be effective, as even short moments of refined attention on something meaningful are an invaluable gift to yourself.
 
 Ṭhānissaro Bhikkhu writes:
 
 > The role of mindfulness is to keep the mind properly focused in frames of reference that will give it guidance in what to develop, and which ones to abandon, so as to keep it on the right path. To make an analogy, mindfulness is what remembers to keep attention focused on the road to the mountain, rather than letting it stay focused on glimpses of the mountain or get distracted by other paths leading away from the road.
 
-Mindfulness doesn't require mastery to be effective, as even short moments of refined attention on something meaningful are an invaluable gift to yourself.
+## The Monkey Mind
+
+> The opposite of mindfulness is forgetfulness. — Thich Nhat Hanh
+
+Without a conscious intervention, the mind defaults to a state of distraction and forgetfulness. This is known as the **"monkey mind"** — a term for a restless and constantly jumping mind that shifts rapidly between thoughts, fears, and memories, much like a monkey swinging from branch to branch. It represents an untrained mind characterized by distraction.
+
+Life can pass by in a blur of stress and background noise. It is inevitable when writing or working on computers to forget you have a body, or even that you are alive. Taking small moments to connect with yourself is a way to stay alive to the wonders of your own existence; it ensures you touch your life deeply while you have the chance to live it, no matter where you are or what you're doing.
+
+In the Plum Village Monastery, mindfulness is supported by the "Bell of Mindfulness." Whether it is a temple bell, a church bell in the distance, or even a ringing telephone, the sound serves as a signal to stop. Whenever the bell sounds, everyone pauses their activity to take a few breaths in full awareness. This creates the necessary intervention in the momentum of the day. This tradition is the direct inspiration for this app.
+
+## Watering the Seed
 
 ## Features
 
