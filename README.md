@@ -13,7 +13,7 @@ This app makes sound at intervals to encourage regular breaks and to remind you 
 
 ## The Meaning
 
-**OM** (Tibetan: ༀ; Sanskrit: ॐ; Romanized: Om̆̇) is the best-known **seed syllable**, or **bīja**: a figurative symbol of the potential for something to unfold or develop, and its basic cause.
+**OM** (Tibetan: ༀ; Sanskrit: ॐ; Romanized: Om̆̇) is the best-known **seed syllable** (_bīja_): a figurative symbol of the potential for something to unfold or develop, and its basic cause.
 
 ## What is Mindfulness?
 
