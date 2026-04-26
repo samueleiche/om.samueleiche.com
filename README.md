@@ -13,7 +13,7 @@ This app makes sound at intervals to encourage regular breaks and to remind you 
 
 ## The Meaning
 
-**_Bīja_** — **a seed**; a figurative symbol of the potential for something to unfold or develop, and its basic cause. The best-known _bīja_ syllable is Oṃ (Tib.: ༀ).
+**OM** (Tibetan: ༀ; Sanskrit: ॐ; Romanized: Om̆̇) is the best-known **seed syllable**, or **_bīja_**: a figurative symbol of the potential for something to unfold or develop, and its basic cause.
 
 ## What is Mindfulness?
 
@@ -22,13 +22,15 @@ This app makes sound at intervals to encourage regular breaks and to remind you 
 
 As mentioned in **The Meaning**, the syllable represents potential. Mindfulness is the act of watering that seed. We all possess a natural capacity for well-being and clarity, but in the rush of work and daily activity, these qualities remain uncovered. By cultivating brief moments of awareness, we create the conditions for this potential to unfold.
 
-In the traditional sense, mindfulness means to remember or to keep in mind; it is the cultivated result of establishing the foundations of mindfulness (_satipaṭṭhāna_) through dedicated practice.
+In the traditional sense, mindfulness means to remember or to keep in mind; it is the result of first establishing the foundations of mindfulness (_satipaṭṭhāna_) through dedicated practice.
 
 **_Satipaṭṭhāna_**: the establishing (_upaṭṭhāna_) of mindfulness (_sati_) is a meditative technique for training the mind to keep mindfulness firmly established in a particular frame of reference in all its activities.
 
 Ṭhānissaro Bhikkhu writes:
 
 > The role of mindfulness is to keep the mind properly focused in frames of reference that will give it guidance in what to develop, and which ones to abandon, so as to keep it on the right path. To make an analogy, mindfulness is what remembers to keep attention focused on the road to the mountain, rather than letting it stay focused on glimpses of the mountain or get distracted by other paths leading away from the road.
+
+Mindfulness doesn't require mastery to be effective, as even short moments of refined attention on something meaningful are an invaluable gift to yourself.
 
 ## Features
 
