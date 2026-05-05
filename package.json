@@ -24,7 +24,7 @@
 		"@vue/eslint-config-typescript": "^14.7.0",
 		"@vue/tsconfig": "^0.9.1",
 		"eslint": "9.39.2",
-		"eslint-plugin-vue": "^10.9.0",
+		"eslint-plugin-vue": "^10.9.1",
 		"husky": "^9.1.7",
 		"lint-staged": "^16.4.0",
 		"npm-run-all2": "^8.0.4",
